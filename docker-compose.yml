@@ -10,7 +10,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - .:/app
+      - .:/myapp
       - public-data:/myapp/public
       - tmp-data:/myapp/tmp
       - log-data:/myapp/log
