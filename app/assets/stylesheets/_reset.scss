@@ -4,21 +4,11 @@
  * Copyright 2012 Yahoo! Inc. All rights reserved.
  * http://yuilibrary.com/license/
  */
-/*
-    TODO will need to remove settings on HTML since we can't namespace it.
-    TODO with the prefix, should I group by selector or property for weight savings?
-*/
 html{
   color:#000;
   background:#FFF;
+  font-size:100%;
 }
-/*
-  TODO remove settings on BODY since we can't namespace it.
-*/
-/*
-  TODO test putting a class on HEAD.
-      - Fails on FF.
-*/
 body,
 div,
 dl,
@@ -46,6 +36,11 @@ th,
 td {
   margin:0;
   padding:0;
+  font-family:"Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体","ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", sans-serif;
+  line-height:1.7;
+}
+a {
+  text-decoration: none;
 }
 table {
   border-collapse:collapse;
@@ -54,10 +49,8 @@ table {
 fieldset,
 img {
   border:0;
+  max-width: 100%;
 }
-/*
-  TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
-*/
 address,
 caption,
 cite,

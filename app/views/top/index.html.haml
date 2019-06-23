@@ -1,2 +1,24 @@
-%h1 Top#index
-%p Find me in app/views/top/index.html.haml
+#top.big-bg
+  = render partial: "shared/header"
+  .top-content.wrapper  
+    %h2.top-content__title
+      apptitle
+    %p
+      このアプリは〜〜〜です。
+    .row
+      .top-content__description.col-sm-4
+        .top-content__description--icon
+          %i.fas.fa-book.fa-2x
+        .top-content__description--text
+          %p 蔵書
+      .top-content__description.col-sm-4
+        .top-content__description--icon
+          %i.fas.fa-pencil-alt.fa-2x
+        .top-content__description--text
+          %p メモ
+      .top-content__description.col-sm-4
+        .top-content__description--icon
+          %i.fas.fa-tasks.fa-2x
+        .top-content__description--text
+          %p 行動
+    =link_to "かんたんログイン", "#", class: "btn btn-info btn-lg"
