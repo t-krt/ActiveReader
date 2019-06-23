@@ -2,7 +2,8 @@ FROM ruby:2.5.1
 
 ENV LANG C.UFF-8
 
-RUN apt-get update && apt-get install -y  \
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+&&  apt-get update && apt-get install -y  \
     --no-install-recommends \
     build-essential \
     nodejs \

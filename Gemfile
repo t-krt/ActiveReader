@@ -29,7 +29,8 @@ gem 'jbuilder', '~> 2.5'
 gem "haml-rails"
 gem 'erb2haml'
 gem 'bootstrap', '~> 4.3.1'
-gem "font-awesome-rails"
+gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.8.1'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
