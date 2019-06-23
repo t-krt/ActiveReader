@@ -1,22 +1,37 @@
--# %nav.navbar.navbar-expand.navbar-dark.bg-dark.fixed-top
--#   = link_to "sample", "#", id: "logo", class: "navbar-brand"
--#   %ul.navbar-nav.ml-auto
--#     %li.nav-item
--#       = link_to "Home", "#", class: "nav-link"
--#     %li.nav-item
--#       = link_to "新規登録", "#", class: "nav-link"
--#     %li.nav-item
--#       = link_to "ログイン", "#", class: "nav-link"
-%header.page-header.wrapper
-  %h1
-    =link_to "title", "#", id: "logo"
-    -# TODO: link_to image_tag("ファビコン", width: ~, alt: "title")
-  %nav
-    %ul.main-nav
-      %li.main-nav__item
-        = link_to "Home", "#", class: "nav-link"
-      %li.main-nav__item
-        = link_to "新規登録", "#", class: "nav-link"
-      %li.main-nav__item
-        = link_to "ログイン", "#", class: "nav-link"
+%nav.navbar.navbar-expand.navbar-dark.fixed-top
+  = link_to "title", root_path, id: "logo", class: "navbar-brand"
+  -# TODO: link_to image_tag("ファビコン", width: ~, alt: "title")
+  %ul.navbar-nav.ml-auto
+    - if user_signed_in?
+      %li.nav-item
+        = link_to "#" do
+          .nav-link ユーザーネーム
+          -# TODO: ユーザーネーム+アバターを表示→マイページへ。
+      %li.nav-item
+        = link_to "投稿する", "#", class: "nav-link"
+      %li.nav-item
+        = link_to "サインアウト", destroy_user_session_path, method: :delete, class: "nav-link"
+    - else
+      %li.nav-item
+        = link_to "新規登録", new_user_registration_path, class: "nav-link"
+      %li.nav-item
+        = link_to "ログイン", new_user_session_path, class: "nav-link"
+
+
+-# %header.page-header.wrapper
+-#   %h1
+-#     =link_to "title", root_path, id: "logo"
+    
+-#   %nav
+-#     %ul.main-nav
+-#       - if user_signed_in?
+-#         %li.main-nav__item
+-#           = link_to "投稿する", "#", class: "nav-link"
+-#         %li.main-nav__item
+-#           = link_to "サインアウト", destroy_user_session_path, method: delete, class: "nav-link"
+-#       - else
+-#         %li.main-nav__item
+-#           = link_to "新規登録", new_user_registration_path, class: "nav-link"
+-#         %li.main-nav__item
+-#           = link_to "ログイン", new_user_session_path, class: "nav-link"
 
