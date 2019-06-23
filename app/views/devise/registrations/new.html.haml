@@ -9,7 +9,7 @@
           = f.text_field :nickname, class: 'form-control'
         .form-group
           = f.label :email
-          = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
+          = f.email_field :email, autocomplete: 'email', class: 'form-control'
         .form-group
           = f.label :password
           = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
@@ -18,6 +18,9 @@
         .form-group
           = f.label :password_confirmation
           = f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control'
+        .form-group
+          = f.label :avatar
+          = f.file_field :avatar, class: 'custom-file'
         .form-group
           = f.submit t('.sign_up'), class: 'btn btn-primary'
       = render 'devise/shared/links'
