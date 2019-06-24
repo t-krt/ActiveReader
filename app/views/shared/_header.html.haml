@@ -9,7 +9,7 @@
             = current_user.nickname 
           -# TODO: ユーザーネーム+アバターを表示→マイページへ。
       %li.nav-item
-        = link_to "投稿する", new_review_path, class: "nav-link"
+        = link_to "投稿する", search_books_path, class: "nav-link"
       %li.nav-item
         = link_to "サインアウト", destroy_user_session_path, method: :delete, class: "nav-link"
     - else
