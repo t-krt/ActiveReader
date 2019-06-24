@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_23_152847) do
+ActiveRecord::Schema.define(version: 2019_06_24_041203) do
 
   create_table "book_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "book_id"
@@ -36,6 +36,30 @@ ActiveRecord::Schema.define(version: 2019_06_23_152847) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "purpose", null: false
+    t.text "learned"
+    t.text "note"
+    t.integer "rate"
+    t.integer "review_status", null: false
+    t.date "deadline"
+    t.bigint "user_id"
+    t.bigint "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reviews_on_book_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "task_content", null: false
+    t.boolean "finished", default: false, null: false
+    t.bigint "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_tasks_on_review_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -52,4 +76,7 @@ ActiveRecord::Schema.define(version: 2019_06_23_152847) do
 
   add_foreign_key "book_categories", "books"
   add_foreign_key "book_categories", "categories"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "tasks", "reviews"
 end
