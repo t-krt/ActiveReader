@@ -1,0 +1,29 @@
+.user-show
+  .container
+    -# TODO パンくずリストの追加？
+    .row
+      .side-bar.col-sm-3
+        .side-bar__profile.panel
+          .side-bar__profile--avatar
+            = image_tag current_user.avatar.url if current_user.avatar?
+            -# = current_user.avatar if current_user.avatar
+          .side-bar__profile--name
+            = current_user.nickname
+        %nav.side-bar__menu
+          .list-group.list-group-flush
+            .list-group-item.list-group-item-light
+              = link_to "Todo", user_tasks_path(current_user)
+            .list-group-item.list-group-item-light
+              = link_to "ユーザー情報編集", edit_user_registration_path
+            .list-group-item.list-group-item-light
+              = link_to "他の投稿一覧", "#"
+      .main-content.col-sm-9
+        .card
+          .card-header 
+            = current_user.nickname + "さんの本棚"
+          .btn-group.d-flex{"aria-label":"読書状況"}
+            %button.btn.btn-primary.w-100{type:"button"} 読書中
+            %button.btn.btn-success.w-100{type:"button"} 読了
+            %button.btn.btn-danger.w-100{type:"button"} 積読
+          .card-body
+            

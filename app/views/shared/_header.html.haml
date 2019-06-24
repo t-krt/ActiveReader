@@ -4,11 +4,12 @@
   %ul.navbar-nav.ml-auto
     - if user_signed_in?
       %li.nav-item
-        = link_to "#" do
-          .nav-link ユーザーネーム
+        = link_to user_path(current_user) do
+          .nav-link 
+            = current_user.nickname 
           -# TODO: ユーザーネーム+アバターを表示→マイページへ。
       %li.nav-item
-        = link_to "投稿する", "#", class: "nav-link"
+        = link_to "投稿する", search_books_path, class: "nav-link"
       %li.nav-item
         = link_to "サインアウト", destroy_user_session_path, method: :delete, class: "nav-link"
     - else

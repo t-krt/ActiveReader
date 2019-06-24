@@ -1,18 +1,22 @@
-.users-form {
-  padding-top: 50px;
-}
-
 body {
   padding-top: 50px;
 }
-
+.users-form {
+  padding-top: 50px;
+}
+.review-form{
+  padding-top: 50px;
+}
 .navbar {
   height: 50px;
   background-color: #07575B;
 }
-
 .form-group{
   a {
     color: white;
   }
+  textarea {
+    resize: none;
+  }
 }
+
