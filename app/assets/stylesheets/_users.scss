@@ -1,0 +1,41 @@
+.user-show  {
+  background-color: #FAF9F5;
+  padding-top: 20px;
+  height: calc(100vh - 40px);
+  .side-bar{
+    list-style: none;
+    &__profile {
+      border: ridge;
+      border-width: thin;
+      height: 20vw;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+        &--avatar {
+          border-radius: 10px;
+          margin: 5px auto 5px auto;
+          max-height: 80%;
+          max-width: 80%;
+          overflow: hidden;
+        }
+        &--name {
+          font-size: 18px;
+        }
+    }
+  }
+  .main-content {
+    padding-left: 20px;
+    .card {
+      min-height: 80%; 
+      font-size: 20px;
+      font-weight: bold;
+      .card-header {
+        border: none;
+      }
+    }
+    .btn-group{
+      padding: 5px 10px;
+    }
+  }
+}
+

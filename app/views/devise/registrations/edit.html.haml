@@ -1,6 +1,6 @@
 .container.users-form
   .card
-    %h1.card-header= t('.title', resource: resource_name.to_s.humanize)
+    %h3.card-header= t('.title', resource: resource_name.to_s.humanize)
     .card-body
       = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
         = bootstrap_devise_error_messages!
