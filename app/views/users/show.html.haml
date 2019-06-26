@@ -16,14 +16,14 @@
             .list-group-item.list-group-item-light
               = link_to "ユーザー情報編集", edit_user_registration_path
             .list-group-item.list-group-item-light
-              = link_to "他の投稿一覧", "#"
+              = link_to "みんなの投稿", "#"
       .main-content.col-sm-9
         .card
-          .card-header 
+          .card-header.bg-light
             = current_user.nickname + "さんの本棚"
           .btn-group.d-flex{"aria-label":"読書状況"}
             %button.btn.btn-primary.w-100{type:"button"} 読書中
             %button.btn.btn-success.w-100{type:"button"} 読了
             %button.btn.btn-danger.w-100{type:"button"} 積読
           .card-body
-            
+            a

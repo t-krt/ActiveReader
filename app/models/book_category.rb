@@ -1,4 +1,4 @@
 class BookCategory < ApplicationRecord
   belongs_to :book
-  begonds_to :category
+  belongs_to :category
 end

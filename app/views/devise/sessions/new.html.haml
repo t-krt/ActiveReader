@@ -1,6 +1,6 @@
 .container.users-form
   .card
-    %h1.card-header= t('.sign_in')
+    %h3.card-header= t('.sign_in')
     .card-body
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .form-group
