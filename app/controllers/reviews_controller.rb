@@ -16,8 +16,7 @@ class ReviewsController < ApplicationController
       redirect_to user_path(current_user)
     else
       flash[:notice] = '正しく入力してください'
-      render :new
-      # redirect_to new_book_path
+      redirect_to new_book_path
     end
   end
 
