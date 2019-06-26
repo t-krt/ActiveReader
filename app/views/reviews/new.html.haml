@@ -1,24 +1,49 @@
 .container.review-form
+  .flash
+    = flash[:notice]
   -# bookモデル、Taskモデル,Categoryモデルも一つのformで登録する?
-  = form_with model: @review, local: true do |f|
-    .form-group.row
-      = f.label :読書状況, class: "col-sm-2 col-form-label"
-      = f.select :review_status, [0,1,2], {}, class: 'form-control col-sm-3', placeholder: 0
-    .form-group.row
-      = f.label :目標期日, class: "col-sm-2 col-form-label"
-      = f.date_field :deadline, class: 'form-control col-sm-3'
-    .form-group
-      = f.label :なぜ読むか？
-      = f.text_area :purpose, class: 'form-control'
-    .form-group
-      = f.label :学んだこと
-      = f.text_area :learned, class: 'form-control'
-    .form-group
-      = f.label :読書メモ
-      = f.text_area :note, class: 'form-control'
-    .form-group.row
-      = f.label :評価, class: "col-sm-2 col-form-label"
-      -# TODO MOOOVI参考に★に変更
-      = f.number_field :rate, class: 'form-control col-sm-3 search__query', value: 1, max: 5, min: 1
-    .form-group
-      = f.submit  "投稿する", class: 'btn btn-primary'
+  
+  .review-header
+    書籍情報
+  .review-body__book
+    = form_with model: @book, url: reviews_path, local: true do |book|  
+      .form-group.row.review-body__content
+        = book.label :タイトル, class:"col-sm-2 col-form-label"
+        = book.text_field :title, class: 'form-control col-sm-6', placeholder: "必須項目"
+      .form-group.row.review-body__content
+        = book.label :著者, class:"col-sm-2 col-form-label"
+        = book.text_field :author, class: 'form-control col-sm-6'
+      .form-group.row.review-body__content
+        = book.label :書影, class:"col-sm-2 col-form-label"
+        = book.file_field :image
+      .form-group.row.review-body__content
+        = book.label :カテゴリ, class:"col-sm-2 col-form-label"
+        = book.select :genre, Book.genres_i18n.invert, {}, class: 'form-control col-sm-4', placeholder: 0
+        -# =fields_for(@book_categories) do |category|
+          -# = category.label :カテゴリ
+          -# = 
+      .review-header.review-header__internal
+        読書メモ
+      .review-body__memo
+        = fields_for(@review) do |review|
+          .form-group.row.review-body__content
+            = review.label :読書状況, class: "col-sm-2 col-form-label"
+            = review.select :review_status, Review.review_statuses_i18n.invert, {}, class: 'form-control col-sm-3', placeholder: 0
+          .form-group.row.review-body__content
+            = review.label :目標期日, class: "col-sm-2 col-form-label"
+            = review.date_field :deadline, class: 'form-control col-sm-3'
+          .form-group.review-body__content
+            = review.label :なぜ読むか？
+            = review.text_area :purpose, class: 'form-control', placeholder: "必須項目"
+          .form-group.review-body__content
+            = review.label :学んだこと
+            = review.text_area :learned, class: 'form-control'
+          .form-group.review-body__content
+            = review.label :読書メモ
+            = review.text_area :note, class: 'form-control'
+          .form-group.row.review-body__content
+            = review.label :評価, class: "col-sm-2 col-form-label"
+            -# TODO MOOOVI参考に★に変更
+            = review.number_field :rate, class: 'form-control col-sm-3 search__query', value: 1, max: 5, min: 1
+        .form-group.review-submit
+          = book.submit  "登録する", class: 'btn btn-primary'
