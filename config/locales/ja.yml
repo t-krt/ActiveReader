@@ -1,0 +1,17 @@
+ja:
+  enums:
+    book:
+      genre:
+        literature: "文学・評論"
+        nonfiction: "ノンフィクション"
+        practical: "実用書"
+        science: "サイエンス・テクノロジー"
+        it: "コンピュータ・IT"
+        art: "アート"
+        entertainment: "エンターテインメント"
+        other: "その他"
+    review:
+      review_status:
+        reading: "読書中"
+        read: "読了"
+        stock: "あとで読む"
