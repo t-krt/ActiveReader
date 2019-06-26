@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem "haml-rails"
+gem 'haml-rails'
 gem 'erb2haml'
 gem 'bootstrap', '~> 4.3.1'
 gem 'devise-bootstrap-views', '~> 1.0'
@@ -37,9 +37,10 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'kaminari'
 gem 'rails-i18n', '~> 5.1'
-gem "carrierwave"
-gem "mini_magick"
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'ransack'
+gem 'enum_help'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
