@@ -16,6 +16,7 @@ services:
       - log-data:/myapp/log
     depends_on:
       - db
+      - webpacker
     tty: true
     stdin_open: true
   db:
@@ -39,6 +40,15 @@ services:
       - tmp-data:/myapp/tmp
     depends_on:
       - app
+  webpacker:
+    build: .
+    env_file:
+      - ./environments/.env.docker
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/myapp
+    ports:
+      - '8080:8080'
 volumes:
   db-data:
   public-data:
