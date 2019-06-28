@@ -3,12 +3,16 @@ services:
   app:
     build: .
     container_name: my_rails_app
+    command: bundle exec foreman start -f Procfile.dev
+      # /bin/bash -c 'rm -rf tmp/pids/server.pid; bundle exec rails s -b 0.0.0.0'
     env_file:
       - ./environments/db.env
+      - ./environments/.env.docker
     environment:
       TZ: "Asia/Tokyo"
     ports:
       - 3000:3000
+      - 8080:8080
     volumes:
       - .:/myapp
       - public-data:/myapp/public
