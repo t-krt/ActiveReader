@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
     # @task = Task.new
     @book = Book.new
     @review = Review.new
+    @task = Task.new
   end
 
   def create
@@ -16,13 +17,13 @@ class ReviewsController < ApplicationController
       redirect_to user_path(current_user)
     else
       flash[:notice] = '正しく入力してください'
-      redirect_to new_book_path
+      render :new
     end
   end
 
   private
   def book_params
-    params.require(:book).permit(:title, :author, :image,\
+    params.require(:book).permit(:title, :author, :image, :genre\
       # book_categories_attributes: [:book_id, :category_id], \
       # reviews_attributes: [:purpose, :learned, :note, :rate, :review_status, :deadline,\
          # ,tasks_attributes: [:task_content, :finished]
