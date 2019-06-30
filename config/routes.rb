@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] do
     resources :tasks, only: [:index, :new, :create]
   end
-  resources :reviews, only: [:new, :create, :edit, :show]
+  resources :reviews
   resources :books, only: :show do
     get :search, on: :collection
   end

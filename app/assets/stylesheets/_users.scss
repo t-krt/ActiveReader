@@ -7,7 +7,6 @@
     &__profile {
       border: ridge;
       border-width: thin;
-      height: 20vw;
       width: 100%;
       text-align: center;
       margin-bottom: 20px;
@@ -20,6 +19,7 @@
         }
         &--name {
           font-size: 18px;
+          padding-bottom: 5px;
         }
     }
   }
@@ -35,6 +35,35 @@
     }
     .btn-group{
       padding: 5px 10px;
+    }
+  }
+}
+
+.book-list {
+  &__reading--top {
+    width: 100%;
+    img {
+      border: ridge;
+      border-width: thin;
+    }
+    .title {
+      font-size: 1rem;
+      display: block;
+      margin: 10px auto 20px auto;
+      padding-left: 5px;
+    }
+    .limit {
+      font-size: 1rem;
+      display: block;
+      margin: 10px auto;
+      padding-left: 5px;
+    }
+  }
+  &__reading--bottom {
+    margin-top: 1.2rem;
+    width: 100%;
+    .card-body {
+      font-size: 1rem;
     }
   }
 }

@@ -1,12 +1,14 @@
 .user-show
   .container
+    .flash
+      = flash[:notice]
     -# TODO パンくずリストの追加？
     .row
       .side-bar.col-sm-3
         .side-bar__profile.panel
           .side-bar__profile--avatar
-            = image_tag current_user.avatar.url if current_user.avatar?
-            -# = current_user.avatar if current_user.avatar
+            -# carrierwaveで設定。current_user.avatarが存在しない場合はno_image.jpgを指定。
+            = image_tag current_user.avatar.url
           .side-bar__profile--name
             = current_user.nickname
         %nav.side-bar__menu
@@ -25,5 +27,5 @@
             %button.btn.btn-primary.w-100{type:"button"} 読書中
             %button.btn.btn-success.w-100{type:"button"} 読了
             %button.btn.btn-danger.w-100{type:"button"} 積読
-          .card-body
-            a
+          .card-body.book-list
+            = render 'reading', { reading_book: @reading_book } 
