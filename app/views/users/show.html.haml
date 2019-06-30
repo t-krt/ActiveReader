@@ -5,8 +5,8 @@
       .side-bar.col-sm-3
         .side-bar__profile.panel
           .side-bar__profile--avatar
-            = image_tag current_user.avatar.url if current_user.avatar?
-            -# = current_user.avatar if current_user.avatar
+            -# carrierwaveで設定。current_user.avatarが存在しない場合はno_image.jpgを指定。
+            = image_tag current_user.avatar.url
           .side-bar__profile--name
             = current_user.nickname
         %nav.side-bar__menu
