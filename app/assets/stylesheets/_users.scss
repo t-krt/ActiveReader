@@ -7,7 +7,6 @@
     &__profile {
       border: ridge;
       border-width: thin;
-      height: 20vw;
       width: 100%;
       text-align: center;
       margin-bottom: 20px;
@@ -20,6 +19,7 @@
         }
         &--name {
           font-size: 18px;
+          padding-bottom: 5px;
         }
     }
   }
