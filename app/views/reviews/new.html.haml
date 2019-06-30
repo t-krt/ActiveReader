@@ -1,8 +1,7 @@
 .container.review-form
   .flash
     = flash[:notice]
-  -# bookモデル、Taskモデル,Categoryモデルも一つのformで登録する?
-  
+
   .review-header
     書籍情報
   .review-body__book
@@ -19,9 +18,6 @@
       .form-group.row.review-body__content
         = book.label :カテゴリ, class:"col-sm-2 col-form-label"
         = book.select :genre, Book.genres_i18n.invert, {}, class: 'form-control col-sm-4', placeholder: 0
-        -# =fields_for(@book_categories) do |category|
-          -# = category.label :カテゴリ
-          -# = 
       .review-header.review-header__internal
         読書メモ
       .review-body__memo
@@ -45,5 +41,12 @@
             = review.label :評価, class: "col-sm-2 col-form-label"
             -# TODO MOOOVI参考に★に変更
             = review.number_field :rate, class: 'form-control col-sm-3 search__query', value: 1, max: 5, min: 1
+          -# .review-header.review-header__internal
+          -#   タスク登録
+          -# .review-body__task
+          -#   = fields_for(@task) do |task|
+          -#     .form-group.row.review-body__content
+          -#   -# TODO:ここからタスク
         .form-group.review-submit
-          = book.submit  "登録する", class: 'btn btn-primary'
+          = book.submit "登録する", class: 'btn btn-primary'
+
