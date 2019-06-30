@@ -39,3 +39,32 @@
   }
 }
 
+.book-list {
+  &__reading--top {
+    width: 100%;
+    img {
+      border: ridge;
+      border-width: thin;
+    }
+    .title {
+      font-size: 1rem;
+      display: block;
+      margin: 10px auto 20px auto;
+      padding-left: 5px;
+    }
+    .limit {
+      font-size: 1rem;
+      display: block;
+      margin: 10px auto;
+      padding-left: 5px;
+    }
+  }
+  &__reading--bottom {
+    margin-top: 1.2rem;
+    width: 100%;
+    .card-body {
+      font-size: 1rem;
+    }
+  }
+}
+

@@ -1,10 +1,11 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_review, only: [:edit, :update, :show, :destroy]
+
+  def index
+  end
 
   def new
-    # @book = Book.find(params[:book_id])
-    # @review = ReviewForm.new
-    # @task = Task.new
     @book = Book.new
     @review = Review.new
   end
@@ -26,6 +27,33 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def show
+  end
+
+  def update
+    if @review.user_id == current_user.id
+      if @book.update || @review.update
+        if @review[:review_status] == "reading"
+          last_review = Review.last
+          was_reading = Review.where.not(id: last_review[:id]).find_by(user_id: current_user.id, review_status: "reading")
+          was_reading.update(review_status: "stock") if was_reading
+        end
+        redirect_to user_path(current_user)
+      else
+        flash[:notice] = '正しく入力してください'
+        redirect_to new_book_path
+      end
+    end
+  end
+
+  def destroy
+    @review.destroy if @review.user.id == current_user.id
+    redirect_to user_path(current_user), notice: "削除しました"
+  end
+  
   private
   def book_params
     params.require(:book).permit(:title, :author, :image,\
@@ -39,5 +67,9 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:purpose, :learned, :note, :rate, :review_status, :deadline)\
     .merge(user_id: current_user.id, book_id: @book.id)
+  end
+
+  def set_review
+    @review = Review.find(params[:id])
   end
 end

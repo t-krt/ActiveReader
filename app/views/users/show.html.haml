@@ -1,5 +1,7 @@
 .user-show
   .container
+    .flash
+      = flash[:notice]
     -# TODO パンくずリストの追加？
     .row
       .side-bar.col-sm-3
@@ -25,5 +27,5 @@
             %button.btn.btn-primary.w-100{type:"button"} 読書中
             %button.btn.btn-success.w-100{type:"button"} 読了
             %button.btn.btn-danger.w-100{type:"button"} 積読
-          .card-body
-            a
+          .card-body.book-list
+            = render 'reading', { reading_book: @reading_book } 
