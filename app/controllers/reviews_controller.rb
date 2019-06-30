@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_review, only: [:edit, :update, :show, :destroy]
+  before_action :set_review_with_book, only: [:edit, :update, :show, :destroy]
 
   def index
   end
@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
       end
       redirect_to user_path(current_user)
     else
-      flash[:notice] = '正しく入力してください'
+      flash.now[:alert] = '正しく入力してください'
       render :new
     end
   end
@@ -36,10 +36,9 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.user_id == current_user.id
-      if @book.update || @review.update
+      if @book.update(book_params) && @review.update(review_params)
         if @review[:review_status] == "reading"
-          last_review = Review.last
-          was_reading = Review.where.not(id: last_review[:id]).find_by(user_id: current_user.id, review_status: "reading")
+          was_reading = Review.where.not(id: @review[:id]).find_by(user_id: current_user.id, review_status: "reading")
           was_reading.update(review_status: "stock") if was_reading
         end
         redirect_to user_path(current_user)
@@ -70,7 +69,9 @@ class ReviewsController < ApplicationController
     .merge(user_id: current_user.id, book_id: @book.id)
   end
 
-  def set_review
+  def set_review_with_book
     @review = Review.find(params[:id])
+    @book = Book.find(@review.book_id)
   end
+
 end

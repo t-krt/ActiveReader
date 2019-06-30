@@ -1,0 +1,10 @@
+.container.review-form
+  .flash
+    = flash.now[:alert]
+  %h2
+    編集
+  .review-header
+    書籍情報
+  .review-body__book
+    = form_with model: @book, url: "/reviews/#{@review.id}", local: true do |book|  
+      = render partial: 'form', locals: { book: book }  
