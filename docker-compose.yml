@@ -3,7 +3,8 @@ services:
   app:
     build: .
     container_name: my_rails_app
-    command: bundle exec foreman start -f Procfile.dev
+    command: 
+      /bin/bash -c "bundle exec foreman start -f Procfile.dev && yarn add axios"
       # /bin/bash -c 'rm -rf tmp/pids/server.pid; bundle exec rails s -b 0.0.0.0'
     env_file:
       - ./environments/db.env

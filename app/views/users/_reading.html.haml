@@ -1,7 +1,7 @@
 .container
   .row
     .book-list__reading--top
-      .col-sm-6.float-left
+      .col-sm-6.float-left.image-wrapper
         = image_tag reading_book.book.image.url
       .card.col-sm-6.float-right
         .book-list__reading--title
@@ -13,16 +13,16 @@
           .badge.badge-secondary
             期限
           .limit
-            = reading_book.deadline ? reading_book.deadline.present? : "未設定"
-    .book-list__reading--bottom.col-sm-12
+            = reading_book.deadline.present? ? reading_book.deadline.strftime('%Y/%m/%d') : "未設定"
+    .book-list__reading--bottom
       .card
         .card-header
-          目的
+          読書の目的
           .dropdown.float-right
             %button{type:"button", class:"btn dropdown-toggle", id:"dropdownMenuButton", "data-toggle":"dropdown", "aria-haspopup":"true", "aria-expanded":"false"}
             .dropdown-menu{"aria-labelledby":"dropdownMenuButton"}
               = link_to "詳細", review_path(reading_book), class: "dropdown-item" 
               = link_to "編集", edit_review_path(reading_book), class: "dropdown-item" 
-              = link_to "削除", "/tweets/#{reading_book.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
+              = link_to "削除", "/reviews/#{reading_book.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
         .card-body
           = reading_book.purpose

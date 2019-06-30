@@ -9,6 +9,3 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 end
-
-
-# TODO taskの内容？

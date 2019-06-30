@@ -18,14 +18,18 @@
             .list-group-item.list-group-item-light
               = link_to "ユーザー情報編集", edit_user_registration_path
             .list-group-item.list-group-item-light
-              = link_to "みんなの投稿", "#"
+              = link_to "みんなの投稿", reviews_path
       .main-content.col-sm-9
         .card
           .card-header.bg-light
             = current_user.nickname + "さんの本棚"
           .btn-group.d-flex{"aria-label":"読書状況"}
-            %button.btn.btn-primary.w-100{type:"button"} 読書中
+            %button.btn.btn-primary.w-100.active{type:"button", "aria-pressed":"true" } 読書中
             %button.btn.btn-success.w-100{type:"button"} 読了
             %button.btn.btn-danger.w-100{type:"button"} 積読
           .card-body.book-list
-            = render 'reading', { reading_book: @reading_book } 
+            - if @reading_book.present?
+              = render 'reading', { reading_book: @reading_book }
+            - else
+              現在読書中の本はありません
+
