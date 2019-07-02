@@ -1,0 +1,25 @@
+.user-show
+  .container
+    = render partial: "shared/notification"
+    -# TODO パンくずリストの追加？
+    .row
+      = render "sidebar"
+      .main-content.col-sm-9
+        .card
+          .card-header.bg-light
+            = current_user.nickname + "さんの本棚"
+          .btn-group.d-flex{"aria-label":"読書状況"}
+            = link_to "読書中", reading_path, class: "btn btn-primary w-100 btn-status"
+            = link_to "読了", read_path, class: "btn btn-success w-100 btn-status btn-status__active"
+            = link_to "あとで読む", stock_path, class: "btn btn-danger w-100 btn-status"
+          - if @read_books.present?
+            .container.book-lists
+              .row
+                .card-group
+                  - @read_books.each do |read_book|
+                    = render partial: "book-lists", locals: { reviewed_book: read_book }
+            = paginate(@read_books)
+          - else
+            = render "no-entry" 
+
+
