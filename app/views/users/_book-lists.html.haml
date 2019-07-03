@@ -1,0 +1,30 @@
+.col-sm-4.book-lists__cards
+  .card.img-thumbnail
+    = image_tag reviewed_book.book.image.url, class: "card-img-top"
+  .card-body.px-2.py-3
+    .book-list__reading--title
+      .dropdown.float-right
+        %button{type:"button", class:"btn dropdown-toggle", id:"dropdownMenuButton", "data-toggle":"dropdown", "aria-haspopup":"true", "aria-expanded":"false"}
+        .dropdown-menu{"aria-labelledby":"dropdownMenuButton"}
+          = link_to "詳細", review_path(reviewed_book), class: "dropdown-item" 
+          = link_to "編集", edit_review_path(reviewed_book), class: "dropdown-item" 
+          = link_to "削除", "/reviews/#{reviewed_book.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
+      .card-title
+        = link_to review_path(reviewed_book) do
+          = reviewed_book.book.title
+    .card-text
+      .genre
+        = reviewed_book.book.genre_i18n 
+      .rate{id: "star-rate-#{reviewed_book.id}"}
+
+:erb
+  <script>
+    $('#star-rate-<%= reviewed_book.id %>').raty({
+      size: 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      readOnly: true,
+      score: <%= reviewed_book.rate %>,
+    });
+  </script>

@@ -1,10 +1,10 @@
 %nav.navbar.navbar-expand.navbar-dark.fixed-top
-  = link_to "title", root_path, id: "logo", class: "navbar-brand" unless user_signed_in?
+  = link_to "title", root_path, id: "logo", class: "navbar-brand"
   -# TODO: link_to image_tag("ファビコン", width: ~, alt: "title")
   %ul.navbar-nav.ml-auto
     - if user_signed_in?
       %li.nav-item
-        = link_to user_path(current_user) do
+        = link_to reading_path(current_user) do
           .nav-link 
             マイページ
       %li.nav-item

@@ -1,0 +1,15 @@
+.side-bar.col-sm-3
+  .side-bar__profile.panel
+    .side-bar__profile--avatar
+      -# carrierwaveで設定。current_user.avatarが存在しない場合はno_image.jpgを指定。
+      = image_tag current_user.avatar.url
+    .side-bar__profile--name
+      = current_user.nickname
+  %nav.side-bar__menu
+    .list-group.list-group-flush
+      .list-group-item.list-group-item-light
+        = link_to "Todo", user_tasks_path(current_user)
+      .list-group-item.list-group-item-light
+        = link_to "ユーザー情報編集", edit_user_registration_path
+      .list-group-item.list-group-item-light
+        = link_to "みんなの投稿", reviews_path

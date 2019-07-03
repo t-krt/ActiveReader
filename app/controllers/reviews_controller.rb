@@ -21,9 +21,10 @@ class ReviewsController < ApplicationController
         was_reading = Review.where.not(id: last_review[:id]).find_by(user_id: current_user.id, review_status: "reading")
         was_reading.update(review_status: "stock") if was_reading
       end
-      redirect_to user_path(current_user)
+      redirect_to reading_path(current_user)
+      flash[:notice] = '本を登録しました'
     else
-      flash.now[:alert] = '正しく入力してください'
+      flash[:notice] = '正しく入力してください'
       render :new
     end
   end
@@ -41,17 +42,18 @@ class ReviewsController < ApplicationController
           was_reading = Review.where.not(id: @review[:id]).find_by(user_id: current_user.id, review_status: "reading")
           was_reading.update(review_status: "stock") if was_reading
         end
-        redirect_to user_path(current_user)
+        redirect_to reading_path(current_user)
+        flash[:notice] = '本の情報を更新しました'
       else
         flash[:notice] = '正しく入力してください'
-        redirect_to new_book_path
+        render :new
       end
     end
   end
 
   def destroy
     @review.destroy if @review.user.id == current_user.id
-    redirect_to user_path(current_user), notice: "削除しました"
+    redirect_to reading_path(current_user), notice: "削除しました"
   end
   
   private

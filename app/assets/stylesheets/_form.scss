@@ -8,6 +8,9 @@ body {
 
 .review-form{
   padding-top: 30px;
+  h2 {
+    text-align: center;
+  }
 }
 
 .navbar {
@@ -28,7 +31,6 @@ body {
   background-color: rgba(0, 0, 0, 0.03);
   font-size: 1.2rem;
   padding: 0.2rem 1.1rem;
-  // margin-bottom: 1rem;
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.125);
   &__internal {
@@ -40,13 +42,21 @@ body {
   &__book{
     padding-top: 1rem;
     border: 1px solid rgba(0, 0, 0, 0.125);
+    .textarea {
+      min-height: 60px;
+    }
+    .badge-info {
+      text-align: center;
+    }
   }
   &__memo {
     padding-top: 1rem;
   }
   &__content {
-    padding: 0 1.2rem 0 1.2rem;
-
+    padding: 0 1rem 0 1rem;
+    .star-label {
+      margin-right: 1rem;
+    }
   }
 }
 
@@ -57,8 +67,3 @@ body {
   }
 }
 
-.flash {
-  background-color: #07575B;
-  color: white;
-  text-align: center;
-}
