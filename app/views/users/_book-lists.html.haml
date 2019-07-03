@@ -1,4 +1,4 @@
-.col-sm-4
+.col-sm-4.book-lists__cards
   .card.img-thumbnail
     = image_tag reviewed_book.book.image.url, class: "card-img-top"
   .card-body.px-2.py-3
@@ -14,28 +14,17 @@
           = reviewed_book.book.title
     .card-text
       .genre
-        = reviewed_book.book.genre_i18n
-      .rate
-        = reviewed_book.rate
-    -# .book-list__reading--bottom
-    -#   .card
-    -#     .card-header
-    -#       読書の目的
-    -#       .dropdown.float-right
-    -#         %button{type:"button", class:"btn dropdown-toggle", id:"dropdownMenuButton", "data-toggle":"dropdown", "aria-haspopup":"true", "aria-expanded":"false"}
-    -#         .dropdown-menu{"aria-labelledby":"dropdownMenuButton"}
-    -#           = link_to "詳細", review_path(reviewed_book), class: "dropdown-item" 
-    -#           = link_to "編集", edit_review_path(reviewed_book), class: "dropdown-item" 
-    -#           = link_to "削除", "/reviews/#{reviewed_book.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
-    -#     .card-body
-    -#       = reviewed_book.purpose
-      
+        = reviewed_book.book.genre_i18n 
+      .rate{id: "star-rate-#{reviewed_book.id}"}
 
--# <div class="row">
--#   <div class="col-sm-6 col-md-3">
--#     <div class="card img-thumbnail">
--#       <img class="card-img-top" src="..." alt="画像">
--#       <div class="card-body px-2 py-3">
--#         <h5 class="card-title">タイトル</h5>
--#         <p class="card-text">コンテンツ コンテンツ コンテンツ コンテンツ</p>
--#         <p class="mb-0"><a href="#" class="btn btn-primary btn-sm">ボタン</a> <a href="#" class="btn btn-secondary btn-sm">ボタン</a></p>
+:erb
+  <script>
+    $('#star-rate-<%= reviewed_book.id %>').raty({
+      size: 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      readOnly: true,
+      score: <%= reviewed_book.rate %>,
+    });
+  </script>
