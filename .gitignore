@@ -30,6 +30,7 @@
 /config/credentials.yml.enc
 public/uploads/*
 .DS_Store
+/config/initializers/rakuten.rb
 
 /public/packs
 /public/packs-test

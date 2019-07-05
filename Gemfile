@@ -42,6 +42,7 @@ gem 'mini_magick'
 gem 'ransack'
 gem 'enum_help'
 gem 'webpacker', github: 'rails/webpacker'
+gem 'rakuten_web_service'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

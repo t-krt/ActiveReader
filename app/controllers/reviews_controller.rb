@@ -7,6 +7,9 @@ class ReviewsController < ApplicationController
 
   def new
     @book = Book.new
+    @book.title = params[:title] 
+    @book.author = params[:author]
+    @book.remote_image_url  = params[:image]
     @review = Review.new
     @task = Task.new
   end
@@ -15,6 +18,7 @@ class ReviewsController < ApplicationController
     @book = Book.create(book_params)
     @review = Review.create(review_params)
     # TODO:scopeで書き直す？
+    @book.remote_image_url = 
     if @book.save && @review.save
       if @review[:review_status] == "reading"
         last_review = Review.last
