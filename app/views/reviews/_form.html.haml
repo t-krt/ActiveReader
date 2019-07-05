@@ -1,12 +1,17 @@
 .form-group.row.review-body__content
   = book.label :タイトル, class:"col-sm-2 col-form-label badge-info"
-  = book.text_field :title, class: 'form-control col-sm-6 .badge-info', placeholder: "必須項目"
+  = book.text_field :title, class: 'form-control col-sm-6 .badge-info', value: @book.title, placeholder: "必須項目"
 .form-group.row.review-body__content
   = book.label :著者, class:"col-sm-2 col-form-label badge-info"
-  = book.text_field :author, class: 'form-control col-sm-6'
+  = book.text_field :author, class: 'form-control col-sm-6', value: @book.author
 .form-group.row.review-body__content
   = book.label :書影, class:"col-sm-2 col-form-label badge-info"
-  = book.file_field :image
+  - if @book.remote_image_url.present?
+    = image_tag "#{@book.remote_image_url}", size: "120x150", alt: "書影"
+    = @book.remote_image_url
+    = book.hidden_field :remote_image_url, value: @book.remote_image_url
+  - else
+    = book.file_field :image
 .form-group.row.review-body__content
   = book.label :ジャンル, class:"col-sm-2 col-form-label badge-info"
   = book.select :genre, Book.genres_i18n.invert, {}, class: 'form-control col-sm-4', placeholder: 0
