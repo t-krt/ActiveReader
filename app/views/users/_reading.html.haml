@@ -9,7 +9,10 @@
     .row
       .book-list__reading--top
         .col-sm-6.float-left.image-wrapper
-          = image_tag reading_book.book.image.url
+          - if reading_book.book.image_url.present?
+            = image_tag reading_book.book.image_url, size: "150x200"
+          - else
+            = image_tag asset_path("no_image.jpg")
         .card.col-sm-6.float-right
           .book-list__reading--title
             .badge.badge-secondary

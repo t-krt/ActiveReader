@@ -1,6 +1,10 @@
 .col-sm-4.book-lists__cards
   .card.img-thumbnail
-    = image_tag reviewed_book.book.image.url, class: "card-img-top"
+    .card-image-top
+    - if reviewed_book.book.image_url.present?
+      = image_tag reviewed_book.book.image_url
+    - else
+      = image_tag asset_path("no_image.jpg")
   .card-body.px-2.py-3
     .book-list__reading--title
       .dropdown.float-right

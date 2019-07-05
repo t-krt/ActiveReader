@@ -1,12 +1,15 @@
 - if @books.present?
   - @books.each do |book|
     .search__result
-      = image_tag "#{book.image}", size: "100x120", alt: "書影"
+      = image_tag "#{book.image_url}", size: "100x120", alt: "書影"
       %p 
-        = book.title
-        = book.author
-        = book.image
-        = link_to "登録する", new_review_path(title: book.title, author: book.author, image: book.image )
+        タイトル：
+        = link_to book.url do
+          = book.title
+      %p
+        著者：#{book.author}
+      %p
+        = link_to "登録する", new_review_path(title: book.title, author: book.author, image_url: book.image_url, url: book.url, isbn: book.isbn)
 -# - else
 -#   %p
 -#     該当する書籍が見つかりませんでした。検索をやり直してください。

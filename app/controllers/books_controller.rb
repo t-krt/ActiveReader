@@ -20,16 +20,16 @@ class BooksController < ApplicationController
   def read(result)
     title = result['title']
     author = result['author']
+    image_url = result['largeImageUrl']
     url = result['itemUrl']
     isbn = result['isbn']
-    image_url = result['mediumImageUrl']
 
     {
       title: title,
       author: author,
+      image_url: image_url,
       url: url,
       isbn: isbn,
-      remote_image_url: image_url,
     }
   end
 end
