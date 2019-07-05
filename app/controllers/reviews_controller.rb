@@ -7,18 +7,16 @@ class ReviewsController < ApplicationController
 
   def new
     @book = Book.new
-    @book.title = params[:title] 
-    @book.author = params[:author]
-    @book.remote_image_url  = params[:image]
+    @book.title, @book.author, @book.image_url, @book.url, @book.isbn = \
+    params[:title], params[:author], params[:image_url], params[:url], params[:isbn]
     @review = Review.new
     @task = Task.new
   end
 
   def create
-    @book = Book.create(book_params)
+    @book = Book.where(isbn: book_params[:isbn]).first_or_create(book_params)
     @review = Review.create(review_params)
     # TODO:scopeで書き直す？
-    @book.remote_image_url = 
     if @book.save && @review.save
       if @review[:review_status] == "reading"
         last_review = Review.last
@@ -62,7 +60,7 @@ class ReviewsController < ApplicationController
   
   private
   def book_params
-    params.require(:book).permit(:title, :author, :image, :genre\
+    params.require(:book).permit(:title, :author, :image_url, :genre, :url, :isbn\
       # book_categories_attributes: [:book_id, :category_id], \
       # reviews_attributes: [:purpose, :learned, :note, :rate, :review_status, :deadline,\
          # ,tasks_attributes: [:task_content, :finished]
