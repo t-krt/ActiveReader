@@ -1,10 +1,8 @@
-%h1 Book 
-.content
-  #search-box
-    = form_tag('/books/search', method: :get) do
-      = text_field_tag :title, @title, class: 'form_control', placeholder: "書籍タイトル", size: 40
-      %button{:title => "検索", :type => "submit"} 検索
-    = link_to "自分で登録する",  new_review_path
-  %h2 検索結果
-  #searchbox__result
+.container
+  .search-box.row
+    .search-box__input
+      = form_tag('/books/search', method: :get) do
+        = text_field_tag :title, @title, class: 'form_control col-sm-10', placeholder: "本のタイトルを入力してください"
+        %button{title: "検索", type: "submit", class: "col-sm-1 badge badge-light"} 検索
+  .search-box__result
     = render partial: 'result_list'

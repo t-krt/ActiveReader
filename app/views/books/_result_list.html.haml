@@ -1,15 +1,25 @@
 - if @books.present?
-  - @books.each do |book|
-    .search__result
-      = image_tag "#{book.image_url}", size: "100x120", alt: "書影"
-      %p 
-        タイトル：
-        = link_to book.url do
+  - @books.zip(@details) do |book, detail|
+    .result-wrapper.row
+      .result-wrapper__image.col-sm-5
+        = image_tag "#{book.image_url}", size: "350x350", alt: "書影"
+      .col-sm-7
+        .result-wrapper__title
+          .badge.badge-info.badge-pill
+            タイトル
           = book.title
-      %p
-        著者：#{book.author}
-      %p
-        = link_to "登録する", new_review_path(title: book.title, author: book.author, image_url: book.image_url, url: book.url, isbn: book.isbn)
+        .result-wrapper__author
+          .badge.badge-info.badge-pill
+            著者
+          = book.author
+        .result-wrapper__details
+          .badge.badge-info.badge-pill
+            商品詳細
+          = detail.truncate(100)
+        .result-wrapper__links
+          = link_to "楽天ブックスで詳細を見る", "#{book.url}"
+          .links--to-review
+            = link_to "この本を登録する", new_review_path(title: book.title, author: book.author, image_url: book.image_url, url: book.url, isbn: book.isbn)
 -# - else
 -#   %p
 -#     該当する書籍が見つかりませんでした。検索をやり直してください。
