@@ -1,0 +1,101 @@
+.container
+  .wrapper-book-info.review-show
+    .row
+      .wrapper-book-info__image.col-sm-5
+        - if @book.image_url.present?
+          = image_tag @book.image_url, size: "350x350", alt: "書影"
+        - else
+          = image_tag asset_path("no_image.jpg")
+      .col-sm-7
+        .wrapper-book-info__title
+          .badge.badge-info.badge-pill
+            タイトル
+          = @book.title
+        .wrapper-book-info__author
+          .badge.badge-info.badge-pill
+            著者
+          = @book.author
+        .wrapper-book-info__genre
+          .badge.badge-info.badge-pill
+            ジャンル
+          = @book.genre_i18n
+        .wrapper-book-info__created
+          .badge.badge-info.badge-pill
+            登録日
+          = @review.created_at.strftime("%Y/%m/%d")
+        .rate{id: "star-rate-#{@review.id}"}
+        .wrapper-book-info__icon.float-right
+          = link_to edit_review_path(@review) do
+            %i.fas.fa-edit.fa-lg.icon-color
+          = link_to "/reviews/#{@review.id}", method: :delete, data: { confirm: "本当に削除しますか？" } do
+            %i.fas.fa-trash-alt.fa-lg.icon-color
+          = link_to "#{@book.url}" do
+            %i.fas.fa-info-circle.fa-lg.icon-color
+    .card
+      .card-header 読書の目的
+      .card-body 
+        = @review.purpose
+      .card-header 学んだこと
+      .card-body
+        = @review.learned
+      - if user_signed_in? && @review.user_id == current_user.id
+        .card-header 読書メモ（※あなたにしか見えていません）
+        .card-body
+          = @review.note
+
+    -# .book-list__reading--bottom
+    -#   .card
+    -#     .card-header
+    -#       レビュー
+    -#       .dropdown.float-right
+    -#         %button{type:"button", class:"btn dropdown-toggle", id:"dropdownMenuButton", "data-toggle":"dropdown", "aria-haspopup":"true", "aria-expanded":"false"}
+    -#         .dropdown-menu{"aria-labelledby":"dropdownMenuButton"}
+    -#           = link_to "編集", edit_review_path(@review), class: "dropdown-item" 
+    -#           = link_to "削除", "/reviews/#{@review.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
+    -#     .card-body
+    -#       = @review.purpose
+
+
+      -# .book-list__reading--limit
+      -#   .badge.badge-secondary
+      -#     期限
+      -#   .limit
+      -# -#     = @review.deadline.present? ? @review.deadline.strftime('%Y/%m/%d') : "未設定"
+      -#   .badge.badge-secondary
+      -#     ジャンル
+      -#   .genre
+      -#     = @book.genre_i18n
+ 
+
+
+    -# .wrapper-book-info.row
+    -#   .wrapper-book-info__image.col-sm-5
+    -#     = image_tag "#{book.image_url}", size: "350x350", alt: "書影"
+    -#   .col-sm-7
+    -#     .wrapper-book-info__title
+    -#       .badge.badge-info.badge-pill
+    -#         タイトル
+    -#       = book.title
+    -#     .wrapper-book-info__author
+    -#       .badge.badge-info.badge-pill
+    -#         著者
+    -#       = book.author
+    -#     .wrapper-book-info__details
+    -#       .badge.badge-info.badge-pill
+    -#         商品詳細
+    -#       = detail.truncate(100)
+    -#     .wrapper-book-info__links
+    -#       = link_to "楽天ブックスで詳細を見る", "#{book.url}"
+
+:erb
+  <script>
+    $('#star-rate-<%= @review.id %>').raty({
+      size: 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      readOnly: true,
+      score: <%= @review.rate %>
+    });
+  </script>
+  

@@ -34,12 +34,6 @@
       font-weight: bold;
       border: none;
     }
-    &__reading {
-      .card {
-        min-height: 80%; 
-        font-size: 20px;
-      }
-    }
   }
 }
 
@@ -92,7 +86,7 @@
 
 .book-lists {
   display: block;
-  height: 100%;
+  width: 100%;
   text-align: right;
   &__cards {
     margin-bottom: 1rem;
@@ -130,5 +124,8 @@
 .no-entry-message {
   display: block;
   margin: auto;
+  padding-top: 15vh;
+  height: 40vh; 
+  font-size: 20px;
 }
 
