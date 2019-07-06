@@ -32,3 +32,22 @@
   clear: both;
   padding-top: 1rem;
 }
+
+.wrapper-book-info {
+  padding: 1rem 0;
+  border: 10px #f0f0f0 solid;
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
+  &__links {
+    text-align: right;
+  }
+  .badge {
+    margin-top: 1rem;
+    display: table;
+    font-size: 1rem;
+  }
+}

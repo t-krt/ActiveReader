@@ -1,0 +1,17 @@
+.search-box {
+  &__input {
+    width: 100%;
+    margin: 3rem auto;  
+  }
+  button {
+    font-size: 1rem;
+    margin-left: 2rem;
+  }
+  &__to-review {
+    a {
+      color: white;
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+  }
+}
