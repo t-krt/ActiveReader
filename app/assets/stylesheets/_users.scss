@@ -1,44 +1,19 @@
-.user-show  {
-  background-color: #FAF9F5;
-  padding-top: 20px;
-  padding-bottom: 2rem;
-  height: 100%;
-  min-height: 100vh;
-  .side-bar{
-    list-style: none;
-    &__profile {
-      border: ridge;
-      border-width: thin;
-      width: 100%;
-      text-align: center;
-      margin-bottom: 20px;
-        &--avatar {
-          border-radius: 10px;
-          margin: 5px auto 5px auto;
-          max-height: 80%;
-          max-width: 80%;
-          overflow: hidden;
-        }
-        &--name {
-          font-size: 18px;
-          padding-bottom: 5px;
-        }
-    }
+.main-content {
+  padding-left: 20px;
+  min-height: 60vh;
+  .container {
+    padding-top: 0;
   }
-  
-  .main-content {
-    padding-left: 20px;
-    min-height: 60vh;
-    .card-header {
-      font-size: 20px;
-      font-weight: bold;
-      border: none;
-    }
+  .card-header {
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
   }
 }
 
 .book-list {
   &__reading--top {
+    font-size: 1.2rem;
     width: 100%;
     .image-wrapper{
       border-style: none;
@@ -57,19 +32,16 @@
       margin-top: 1.2rem;
     }
     .title {
-      font-size: 1rem;
       display: block;
       margin: 0 auto 15px auto;
       padding-left: 5px;
     }
     .limit {
-      font-size: 1rem;
       display: block;
       margin: 0 auto 15px auto;
       padding-left: 5px;
     }
     .genre {
-      font-size: 1rem;
       display: block;
       margin: 0 auto 1.2rem auto;
       padding-left: 5px;

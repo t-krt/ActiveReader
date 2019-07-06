@@ -25,10 +25,11 @@
           = @review.created_at.strftime("%Y/%m/%d")
         .rate{id: "star-rate-#{@review.id}"}
         .wrapper-book-info__icon.float-right
-          = link_to edit_review_path(@review) do
-            %i.fas.fa-edit.fa-lg.icon-color
-          = link_to "/reviews/#{@review.id}", method: :delete, data: { confirm: "本当に削除しますか？" } do
-            %i.fas.fa-trash-alt.fa-lg.icon-color
+          - if user_signed_in? && @review.user_id == current_user.id
+            = link_to edit_review_path(@review) do
+              %i.fas.fa-edit.fa-lg.icon-color
+            = link_to "/reviews/#{@review.id}", method: :delete, data: { confirm: "本当に削除しますか？" } do
+              %i.fas.fa-trash-alt.fa-lg.icon-color
           = link_to "#{@book.url}" do
             %i.fas.fa-info-circle.fa-lg.icon-color
     .card
