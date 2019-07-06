@@ -4,7 +4,7 @@
     -# TODO パンくずリストの追加？
     .row
       = render "sidebar"
-      .main-content.col-sm-9
+      .main-content.col-sm-9.col-md-9
         .card
           .card-header.bg-light
             = current_user.nickname + "さんの本棚"
@@ -13,9 +13,9 @@
             = link_to "読了", read_path, class: "btn btn-success w-100 btn-status"
             = link_to "あとで読む", stock_path, class: "btn btn-danger w-100 btn-status  btn-status__active"
           - if @stock_books.present?
-            .container.book-lists
+            .container
               .row
-                .card-group
+                .card-group.book-lists
                   - @stock_books.each do |stock_book|
                     = render partial: "book-lists", locals: { reviewed_book: stock_book }
             = paginate(@stock_books)

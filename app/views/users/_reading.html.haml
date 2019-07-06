@@ -8,8 +8,11 @@
   .container
     .row
       .book-list__reading--top
-        .col-sm-6.float-left.image-wrapper
-          = image_tag reading_book.book.image.url
+        .col-sm-6.float-left.image-wrapper.book-list__reading--top--image
+          - if reading_book.book.image_url.present?
+            = image_tag reading_book.book.image_url
+          - else
+            = image_tag asset_path("no_image.jpg")
         .card.col-sm-6.float-right
           .book-list__reading--title
             .badge.badge-secondary

@@ -1,6 +1,10 @@
 .col-sm-4.book-lists__cards
   .card.img-thumbnail
-    = image_tag reviewed_book.book.image.url, class: "card-img-top"
+    .card-image-top
+    - if reviewed_book.book.image_url.present?
+      = image_tag reviewed_book.book.image_url
+    - else
+      = image_tag asset_path("no_image.jpg")
   .card-body.px-2.py-3
     .book-list__reading--title
       .dropdown.float-right
@@ -11,7 +15,7 @@
           = link_to "削除", "/reviews/#{reviewed_book.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
       .card-title
         = link_to review_path(reviewed_book) do
-          = reviewed_book.book.title
+          = reviewed_book.book.title.truncate(35)
     .card-text
       .genre
         = reviewed_book.book.genre_i18n 

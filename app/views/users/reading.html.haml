@@ -4,6 +4,7 @@
     -# TODO パンくずリストの追加？
     .row
       = render "sidebar"
-      .main-content.main-content__reading.col-sm-9
+      .main-content.main-content__reading.col-sm-9.col-md-9
         .card
           = render 'reading', { reading_book: @reading_book }
+          
