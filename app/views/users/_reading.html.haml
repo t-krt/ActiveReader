@@ -8,9 +8,9 @@
   .container
     .row
       .book-list__reading--top
-        .col-sm-6.float-left.image-wrapper
+        .col-sm-6.float-left.image-wrapper.book-list__reading--top--image
           - if reading_book.book.image_url.present?
-            = image_tag reading_book.book.image_url, size: "150x200"
+            = image_tag reading_book.book.image_url
           - else
             = image_tag asset_path("no_image.jpg")
         .card.col-sm-6.float-right

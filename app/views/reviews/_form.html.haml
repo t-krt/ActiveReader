@@ -4,10 +4,10 @@
 .form-group.row.review-body__content
   = book.label :著者, class:"col-sm-2 col-form-label badge-info"
   = book.text_field :author, class: 'form-control col-sm-6', value: @book.author
-.form-group.row.review-body__content
+.form-group.row.review-body__content.book-image
   - if @book.image_url.present?
     = book.label :書影, class:"col-sm-2 col-form-label badge-info"
-    = image_tag "#{@book.image_url}", size: "150x200", alt: "書影"
+    = image_tag "#{@book.image_url}", size: "150x200", alt: "書影", class: "col-sm-2"
     = book.hidden_field :image_url, value: @book.image_url
   = book.hidden_field :url, value: @book.url
   = book.hidden_field :isbn, value: @book.isbn

@@ -15,7 +15,7 @@
           = link_to "削除", "/reviews/#{reviewed_book.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
       .card-title
         = link_to review_path(reviewed_book) do
-          = reviewed_book.book.title
+          = reviewed_book.book.title.truncate(35)
     .card-text
       .genre
         = reviewed_book.book.genre_i18n 
