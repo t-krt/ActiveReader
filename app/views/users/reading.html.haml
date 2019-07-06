@@ -1,9 +1,9 @@
-.user-show
+.whole-page
   .container
     = render partial: "shared/notification"
     -# TODO パンくずリストの追加？
     .row
-      = render "sidebar"
+      = render "shared/sidebar"
       .main-content.col-sm-9.col-md-9
         .card
           = render 'reading', { reading_book: @reading_book }

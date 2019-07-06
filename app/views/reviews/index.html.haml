@@ -1,1 +1,11 @@
-review#index
+.whole-page
+  .container
+    .row
+      = render "shared/sidebar"
+      .main-content.col-sm-9.col-md-9.card
+        .card-header
+          みんなの感想・レビュー
+        .card-body
+          - @reviews.each do |review|
+            = render partial: "review", locals: { review: review }
+        = paginate(@reviews)

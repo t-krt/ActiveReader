@@ -1,11 +1,15 @@
-.container
-  .card.task-index
-    - @reviews.each do |review|
-      .card-header.task-index__book-title
-        = link_to review_path(review) do
-          = simple_format(review.book.title) 
-      .card-body.task-index__tasks
-        - review.tasks.each do |task|
-          = simple_format(task.task_content)
-  = paginate(@reviews)
-  
+.whole-page
+  .container
+    .row
+      = render "shared/sidebar"
+      .col-sm-9.col-md-9
+        .card.task-index
+          - @reviews.each do |review|
+            .card-header.task-index__book-title
+              = link_to review_path(review) do
+                = simple_format(review.book.title) 
+            .card-body.task-index__tasks
+              - review.tasks.each do |task|
+                = simple_format(task.task_content)
+        = paginate(@reviews)
+      

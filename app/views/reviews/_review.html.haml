@@ -1,0 +1,43 @@
+.wrapper-book-info.review-index
+  .row.user-info
+    .user-info__left.col-sm-2
+      = image_tag review.user.avatar.url
+    .user-info__right.col-sm-10
+      .user_info--ro-review-show
+        = link_to "詳しく見る", review_path(review), class: "badge badge-info float-right"
+      .user-info--name
+        = review.user.nickname
+      .user-info--review
+        = review.learned.present? ? review.learned : "レビューはありません"
+      .user-info--others
+        = review.created_at.strftime("%Y/%m/%d")
+        .rate{id: "star-rate-#{review.id}"}
+  .review-info-box
+    .row.col-sm-10.review-info-box__body
+      .review-info-box__body--left.col-sm-3
+        - if review.book.image_url.present?
+          = image_tag review.book.image_url, size: "100x150", alt: "書影"
+        - else
+          = image_tag asset_path("no_image.jpg")
+      .review-info-box__body--right.col-sm-9
+        .right__title
+          = review.book.title
+        .right__author
+          = review.book.author
+        .right__badges
+          = link_to "本を登録する", new_review_path(title: review.book.title, author: review.book.author,
+                                  image_url: review.book.image_url, url: review.book.url, isbn: review.book.isbn),
+                                  class: "badge badge-info"
+          = link_to "本の詳細を見る", "#{review.book.url}", class: "badge badge-info"
+
+:erb
+  <script>
+    $('#star-rate-<%= review.id %>').raty({
+      size: 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      readOnly: true,
+      score: <%= review.rate %>,
+    });
+  </script>

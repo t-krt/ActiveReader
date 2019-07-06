@@ -51,3 +51,42 @@
     font-size: 1rem;
   }
 }
+
+.container {
+  padding-top: 2rem;
+}
+
+.side-bar{
+  list-style: none;
+  &__profile {
+    border: ridge;
+    border-width: thin;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+      &--avatar {
+        border-radius: 10px;
+        margin: 5px auto 5px auto;
+        max-height: 80%;
+        max-width: 80%;
+        overflow: hidden;
+      }
+      &--name {
+        font-size: 18px;
+        padding-bottom: 5px;
+      }
+  }
+}
+
+.whole-page  {
+  background-color: #FAF9F5;
+  padding-bottom: 2rem;
+  height: 100%;
+  min-height: 100vh;
+}
+
+.rate {
+  img {
+    width: auto;
+  }
+}
