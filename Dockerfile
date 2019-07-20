@@ -1,6 +1,6 @@
 FROM ruby:2.5.1
 
-ENV LANG C.UFF-8
+ENV LANG C.UTF-8
 
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
