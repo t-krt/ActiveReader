@@ -1,17 +1,28 @@
 .search-box {
   &__input {
     width: 100%;
-    margin: 2rem auto;  
+    margin: 2rem auto;
   }
   button {
     font-size: 1rem;
-    margin-left: 2rem;
+    float: right;
   }
   &__to-review {
     a {
       color: white;
       font-size: 1rem;
       line-height: 1.5rem;
+    }
+  }
+  &__result {
+    padding: 0 0 40px;
+    .result-note {
+      color: $accent-color;
+      display: inline-block;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
     }
   }
 }
