@@ -4,12 +4,27 @@ class BooksController < ApplicationController
     @details = []
 
     title = params[:title]
-    if title.present?
+    author =  params[:author]
+
+    if title.present? && author.present?
+      results = RakutenWebService::Books::Book.search({
+        title: title,
+        author: author,
+        hits: 20
+      })
+    elsif title.present?
       results = RakutenWebService::Books::Book.search({
         title: title,
         hits: 20
       })
+    elsif author.present?
+      results = RakutenWebService::Books::Book.search({
+        author: author,
+        hits: 20
+      })
+    end
 
+    if results.present?
       results.each do |result|
         book = Book.new(read(result))
         detail = result['itemCaption']
