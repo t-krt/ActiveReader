@@ -20,3 +20,5 @@
           = link_to "楽天ブックスで詳細を見る", "#{book.url}"
           .links--to-review
             = link_to "この本を登録する", new_review_path(title: book.title, author: book.author, image_url: book.image_url, url: book.url, isbn: book.isbn)
+  .result-note
+    探している書籍が見つからなかった場合は、条件を変えて再度検索してください。
