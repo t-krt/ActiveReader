@@ -58,7 +58,7 @@ class ReviewsController < ApplicationController
     @review.destroy if @review.user.id == current_user.id
     redirect_to reading_path(current_user), notice: "削除しました"
   end
-  
+
   private
 
   def book_params

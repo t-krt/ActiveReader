@@ -29,7 +29,7 @@ class BooksController < ApplicationController
         book = Book.new(read(result))
         detail = result['itemCaption']
         @books << book
-        @details << detail 
+        @details << detail
       end
     end
   end
