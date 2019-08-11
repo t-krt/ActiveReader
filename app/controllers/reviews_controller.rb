@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
   def new
     @book = Book.new
     @book.title, @book.author, @book.image_url, @book.url, @book.isbn = \
-    params[:title], params[:author], params[:image_url], params[:url], params[:isbn]
+      params[:title], params[:author], params[:image_url], params[:url], params[:isbn]
     @review = Review.new
     @task = Task.new
   end
