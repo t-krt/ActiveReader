@@ -8,18 +8,6 @@
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Layout/ClosingParenthesisIndentation:
-  Exclude:
-    - 'app/controllers/reviews_controller.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Layout/CommentIndentation:
-  Exclude:
-    - 'app/controllers/reviews_controller.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Layout/EmptyLines:
   Exclude:
     - 'app/controllers/tasks_controller.rb'

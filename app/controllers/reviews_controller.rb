@@ -64,9 +64,9 @@ class ReviewsController < ApplicationController
     params.require(:book).permit(:title, :author, :image_url, :genre, :url, :isbn\
       # book_categories_attributes: [:book_id, :category_id], \
       # reviews_attributes: [:purpose, :learned, :note, :rate, :review_status, :deadline,\
-         # ,tasks_attributes: [:task_content, :finished]
-        # ]
-      )
+      # ,tasks_attributes: [:task_content, :finished]
+      # ]
+    )
   end
 
   def review_params
