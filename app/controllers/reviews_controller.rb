@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
   def create
     @book = Book.where(isbn: book_params[:isbn]).first_or_create(book_params)
     @review = Review.create(review_params)
-    # TODO:scopeで書き直す？
+    # TODO: scopeで書き直す？
     if @book.save && @review.save
       if @review[:review_status] == "reading"
         last_review = Review.last

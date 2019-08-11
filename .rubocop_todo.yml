@@ -20,8 +20,6 @@ Metrics/BlockNesting:
 Metrics/MethodLength:
   Max: 29
 
-
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, EnforcedStyle.
@@ -29,15 +27,6 @@ Metrics/MethodLength:
 Style/ClassAndModuleChildren:
   Exclude:
     - 'test/test_helper.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: Keywords.
-# Keywords: TODO, FIXME, OPTIMIZE, HACK, REVIEW
-Style/CommentAnnotation:
-  Exclude:
-    - 'app/controllers/reviews_controller.rb'
-    - 'app/forms/review_form.rb'
 
 # Offense count: 4
 # Cop supports --auto-correct.
