@@ -60,6 +60,7 @@ class ReviewsController < ApplicationController
   end
   
   private
+
   def book_params
     params.require(:book).permit(:title, :author, :image_url, :genre, :url, :isbn\
       # book_categories_attributes: [:book_id, :category_id], \
