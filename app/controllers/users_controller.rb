@@ -16,5 +16,4 @@ class UsersController < ApplicationController
   def stock
     @stock_books = Review.includes(:book, :user).where(user_id: current_user.id, review_status: "stock").page(params[:page]).per(6).order("created_at DESC")
   end
-
 end

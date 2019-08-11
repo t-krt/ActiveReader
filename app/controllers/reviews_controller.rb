@@ -79,5 +79,4 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @book = Book.find(@review.book_id)
   end
-
 end
