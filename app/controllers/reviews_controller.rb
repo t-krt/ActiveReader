@@ -62,17 +62,16 @@ class ReviewsController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :image_url, :genre, :url, :isbn\
-      # book_categories_attributes: [:book_id, :category_id], \
-      # reviews_attributes: [:purpose, :learned, :note, :rate, :review_status, :deadline,\
-      # ,tasks_attributes: [:task_content, :finished]
-      # ]
-    )
+    params.require(:book).permit(:title, :author, :image_url, :genre, :url, :isbn)\
+    # book_categories_attributes: [:book_id, :category_id], \
+    # reviews_attributes: [:purpose, :learned, :note, :rate, :review_status, :deadline,\
+    # ,tasks_attributes: [:task_content, :finished]
+    # ]
   end
 
   def review_params
     params.require(:review).permit(:purpose, :learned, :note, :rate, :review_status, :deadline)\
-    .merge(user_id: current_user.id, book_id: @book.id)
+          .merge(user_id: current_user.id, book_id: @book.id)
   end
 
   def set_review_with_book
