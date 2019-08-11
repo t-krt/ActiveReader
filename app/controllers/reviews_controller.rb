@@ -32,11 +32,9 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
-  def show
-  end
+  def show; end
 
   def update
     if @review.user_id == current_user.id

@@ -28,16 +28,6 @@ Style/ClassAndModuleChildren:
   Exclude:
     - 'test/test_helper.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'app/controllers/reviews_controller.rb'
-    - 'app/controllers/tasks_controller.rb'
-    - 'app/controllers/top_controller.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/ExpandPathArguments:

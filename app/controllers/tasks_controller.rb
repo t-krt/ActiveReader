@@ -6,6 +6,5 @@ class TasksController < ApplicationController
     @reviews = has_task_reviews.where(user_id: current_user.id,).page(params[:page]).per(5).order("created_at DESC").includes(:book, :tasks)
   end
 
-  def new
-  end
+  def new; end
 end
