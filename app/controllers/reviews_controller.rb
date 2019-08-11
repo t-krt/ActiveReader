@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_review_with_book, only: [:edit, :update, :show, :destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_review_with_book, only: %i[edit update show destroy]
 
   def index
     @reviews = Review.includes(:book, :user).page(params[:page]).per(5).order("created_at DESC")

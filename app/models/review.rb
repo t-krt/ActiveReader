@@ -10,5 +10,5 @@ class Review < ApplicationRecord
   validates :user_id, presence: true
   validates :book_id, presence: true
 
-  enum review_status: [:reading, :read, :stock]
+  enum review_status: %i[reading read stock]
 end

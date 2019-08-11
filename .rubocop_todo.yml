@@ -49,11 +49,3 @@ Style/SafeNavigation:
   Exclude:
     - 'app/controllers/reviews_controller.rb'
 
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: MinSize.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
-
