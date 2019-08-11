@@ -42,12 +42,6 @@ Style/ParallelAssignment:
   Exclude:
     - 'app/controllers/reviews_controller.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/Proc:
-  Exclude:
-    - 'config/application.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: ConvertCodeThatCanStartToReturnNil, Whitelist.
