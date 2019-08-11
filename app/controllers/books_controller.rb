@@ -48,7 +48,7 @@ class BooksController < ApplicationController
       author: author,
       image_url: image_url,
       url: url,
-      isbn: isbn,
+      isbn: isbn
     }
   end
 end
