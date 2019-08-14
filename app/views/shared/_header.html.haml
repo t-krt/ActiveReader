@@ -4,7 +4,7 @@
   %ul.navbar-nav.ml-auto
     - if user_signed_in?
       %li.nav-item
-        = link_to reading_path(current_user) do
+        = link_to reading_user_path(current_user) do
           .nav-link 
             マイページ
       %li.nav-item
