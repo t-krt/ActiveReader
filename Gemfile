@@ -26,23 +26,23 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'haml-rails'
-gem 'erb2haml'
 gem 'bootstrap', '~> 4.3.1'
-gem 'devise-bootstrap-views', '~> 1.0'
-gem 'jquery-rails'
-gem 'font-awesome-sass', '~> 5.8.1'
+gem 'carrierwave'
 gem 'devise'
+gem 'devise-bootstrap-views', '~> 1.0'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
-gem 'kaminari'
-gem 'rails-i18n', '~> 5.1'
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'ransack'
 gem 'enum_help'
-gem 'webpacker', github: 'rails/webpacker'
+gem 'erb2haml'
+gem 'font-awesome-sass', '~> 5.8.1'
+gem 'haml-rails'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'mini_magick'
+gem 'rails-i18n', '~> 5.1'
 gem 'rakuten_web_service'
+gem 'ransack'
+gem 'webpacker', github: 'rails/webpacker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -52,22 +52,24 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry-rails'
   gem 'bullet'
-  gem 'rspec-rails', '~> 3.6.0'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem "factory_bot_rails", "~> 4.10.0"
+  gem 'pry-rails'
   gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 3.6.0'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'foreman'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'foreman'
 end
 
 group :test do
@@ -79,4 +81,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
-  has_many :tasks
+  has_many :tasks, dependent: :delete_all
   accepts_nested_attributes_for :tasks
 
   belongs_to :user
@@ -10,5 +10,5 @@ class Review < ApplicationRecord
   validates :user_id, presence: true
   validates :book_id, presence: true
 
-  enum review_status: [:reading, :read, :stock]
+  enum review_status: %i[reading read stock]
 end

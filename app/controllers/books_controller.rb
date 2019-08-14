@@ -4,24 +4,24 @@ class BooksController < ApplicationController
     @details = []
 
     title = params[:title]
-    author =  params[:author]
+    author = params[:author]
 
     if title.present? && author.present?
-      results = RakutenWebService::Books::Book.search({
+      results = RakutenWebService::Books::Book.search(
         title: title,
         author: author,
         hits: 20
-      })
+      )
     elsif title.present?
-      results = RakutenWebService::Books::Book.search({
+      results = RakutenWebService::Books::Book.search(
         title: title,
         hits: 20
-      })
+      )
     elsif author.present?
-      results = RakutenWebService::Books::Book.search({
+      results = RakutenWebService::Books::Book.search(
         author: author,
         hits: 20
-      })
+      )
     end
 
     if results.present?
@@ -29,12 +29,13 @@ class BooksController < ApplicationController
         book = Book.new(read(result))
         detail = result['itemCaption']
         @books << book
-        @details << detail 
+        @details << detail
       end
     end
   end
 
   private
+
   def read(result)
     title = result['title']
     author = result['author']
@@ -47,7 +48,7 @@ class BooksController < ApplicationController
       author: author,
       image_url: image_url,
       url: url,
-      isbn: isbn,
+      isbn: isbn
     }
   end
 end
