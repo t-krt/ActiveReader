@@ -38,7 +38,7 @@ gem 'font-awesome-sass', '~> 5.8.1'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'mini_magick'
+gem "mini_magick", ">= 4.9.4"
 gem 'rails-i18n', '~> 5.1'
 gem 'rakuten_web_service'
 gem 'ransack'
