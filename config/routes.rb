@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :tasks, only: [:index, :new, :create]
   end
 
-  resources :reviews
+  resources :reviews, only: [:index, :new, :edit, :show]
   
   resources :books, only: :show do
     get :search, on: :collection
