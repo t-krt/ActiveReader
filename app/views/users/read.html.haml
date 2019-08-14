@@ -9,9 +9,9 @@
           .card-header.bg-light
             = current_user.nickname + "さんの本棚"
           .btn-group.d-flex{"aria-label":"読書状況"}
-            = link_to "読書中", reading_path, class: "btn btn-primary w-100 btn-status"
-            = link_to "読了", read_path, class: "btn btn-success w-100 btn-status btn-status__active"
-            = link_to "あとで読む", stock_path, class: "btn btn-danger w-100 btn-status"
+            = link_to "読書中", reading_user_path, class: "btn btn-primary w-100 btn-status"
+            = link_to "読了", read_user_path, class: "btn btn-success w-100 btn-status btn-status__active"
+            = link_to "あとで読む", stock_user_path, class: "btn btn-danger w-100 btn-status"
           - if @read_books.present?
             .container
               .row
