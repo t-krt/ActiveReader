@@ -42,7 +42,6 @@ gem "mini_magick", ">= 4.9.4"
 gem 'rails-i18n', '~> 5.1'
 gem 'rakuten_web_service'
 gem 'ransack'
-gem 'webpacker', github: 'rails/webpacker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -65,7 +64,6 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'foreman'
   gem 'rubocop', require: false
   gem 'rubocop-rails'
   gem 'spring'
