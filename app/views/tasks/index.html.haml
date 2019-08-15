@@ -6,9 +6,9 @@
         .card.task-index
           %ul#pills-tab.nav.nav-pills.mb-3.task-nav{role: "tablist"}
             %li.nav-item
-              = link_to "未実行", "#pills-unfinished", {id: "pills-unfinished-tab", class: "nav-link active", "aria-controls" => "pills-unfinished", "aria-selected" => "true", "data-toggle" => "pill", role: "tab"}
+              = link_to "TODO", "#pills-unfinished", {id: "pills-unfinished-tab", class: "nav-link active", "aria-controls" => "pills-unfinished", "aria-selected" => "true", "data-toggle" => "pill", role: "tab"}
             %li.nav-item
-              = link_to "完了済み", "#pills-finished", {id: "pills-finished-tab", class: "nav-link", "aria-controls" => "pills-finished", "aria-selected" => "false", "data-toggle" => "pill", role: "tab"}
+              = link_to "DONE", "#pills-finished", {id: "pills-finished-tab", class: "nav-link", "aria-controls" => "pills-finished", "aria-selected" => "false", "data-toggle" => "pill", role: "tab"}
           #pills-tabContent.tab-content
             #pills-unfinished.tab-pane.fade.show.active{"aria-labelledby" => "pills-unfinished-tab", :role => "tabpanel"} 
               - if @unfinished_task_reviews.present?
@@ -20,7 +20,7 @@
                     - review.tasks.each do |task|
                       = simple_format(task.task_content)
               - else 
-                未実行のタスクはありません。
+                未完了のタスクはありません。
             = paginate(@unfinished_task_reviews)
             #pills-finished.tab-pane.fade{"aria-labelledby" => "pills-finished-tab", :role => "tabpanel"} 
               - if @finished_task_reviews.present?
