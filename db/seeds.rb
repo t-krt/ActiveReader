@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+	
+3.times { Task.create!(task_content: 'Sample Task', review_id: 1) }
+2.times { Task.create!(task_content: 'Sample Task finished', finished: true, review_id: 2) }
