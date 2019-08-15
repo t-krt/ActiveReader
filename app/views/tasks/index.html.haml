@@ -6,9 +6,9 @@
         .card.task-index
           %ul#pills-tab.nav.nav-pills.mb-3{role: "tablist"}
             %li.nav-item
-              %a#pills-unfinished-tab.nav-link.active{"aria-controls" => "pills-unfinished", "aria-selected" => "true", "data-toggle" => "pill", href: "#pills-unfinished", role: "tab"} 未実行
+              = link_to "未実行", "#pills-unfinished", {id: "pills-unfinished-tab", class: "nav-link active", "aria-controls" => "pills-unfinished", "aria-selected" => "true", "data-toggle" => "pill", role: "tab"}
             %li.nav-item
-              %a#pills-finished-tab.nav-link{"aria-controls" => "pills-finished", "aria-selected" => "false", "data-toggle" => "pill", href: "#pills-finished", role: "tab"} 完了済み
+              = link_to "完了済み", "#pills-finished", {id: "pills-finished-tab", class: "nav-link", "aria-controls" => "pills-finished", "aria-selected" => "false", "data-toggle" => "pill", role: "tab"}
           #pills-tabContent.tab-content
             #pills-unfinished.tab-pane.fade.show.active{"aria-labelledby" => "pills-unfinished-tab", :role => "tabpanel"} 
               - if @unfinished_task_reviews.present?
