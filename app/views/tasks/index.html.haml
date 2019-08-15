@@ -4,7 +4,7 @@
       = render "shared/sidebar"
       .col-sm-9.col-md-9
         .card.task-index
-          %ul#pills-tab.nav.nav-pills.mb-3{role: "tablist"}
+          %ul#pills-tab.nav.nav-pills.mb-3.task-nav{role: "tablist"}
             %li.nav-item
               = link_to "未実行", "#pills-unfinished", {id: "pills-unfinished-tab", class: "nav-link active", "aria-controls" => "pills-unfinished", "aria-selected" => "true", "data-toggle" => "pill", role: "tab"}
             %li.nav-item

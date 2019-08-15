@@ -1,6 +1,12 @@
 .task-index {
-  margin-top: 20px;
+  .task-nav {
+    margin-bottom: 0 !important;
+    vertical-align: middle;
+  }
   &__book-title {
+    p {
+      margin-bottom: 0;
+    }
     font-size: 1.2rem;
   }
 }
