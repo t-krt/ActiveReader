@@ -4,12 +4,33 @@
       = render "shared/sidebar"
       .col-sm-9.col-md-9
         .card.task-index
-          - @reviews.each do |review|
-            .card-header.task-index__book-title
-              = link_to review_path(review) do
-                = simple_format(review.book.title) 
-            .card-body.task-index__tasks
-              - review.tasks.each do |task|
-                = simple_format(task.task_content)
-        = paginate(@reviews)
-      
+          %ul#pills-tab.nav.nav-pills.mb-3{role: "tablist"}
+            %li.nav-item
+              %a#pills-unfinished-tab.nav-link.active{"aria-controls" => "pills-unfinished", "aria-selected" => "true", "data-toggle" => "pill", href: "#pills-unfinished", role: "tab"} 未実行
+            %li.nav-item
+              %a#pills-finished-tab.nav-link{"aria-controls" => "pills-finished", "aria-selected" => "false", "data-toggle" => "pill", href: "#pills-finished", role: "tab"} 完了済み
+          #pills-tabContent.tab-content
+            #pills-unfinished.tab-pane.fade.show.active{"aria-labelledby" => "pills-unfinished-tab", :role => "tabpanel"} 
+              - if @unfinished_task_reviews.present?
+                - @unfinished_task_reviews.each do |review|
+                  .card-header.task-index__book-title
+                    = link_to review_path(review) do
+                      = simple_format(review.book.title) 
+                  .card-body.task-index__tasks
+                    - review.tasks.each do |task|
+                      = simple_format(task.task_content)
+              - else 
+                未実行のタスクはありません。
+            = paginate(@unfinished_task_reviews)
+            #pills-finished.tab-pane.fade{"aria-labelledby" => "pills-finished-tab", :role => "tabpanel"} 
+              - if @finished_task_reviews.present?
+                - @finished_task_reviews.each do |review|
+                  .card-header.task-index__book-title
+                    = link_to review_path(review) do
+                      = simple_format(review.book.title) 
+                  .card-body.task-index__tasks
+                    - review.tasks.each do |task|
+                      = simple_format(task.task_content)
+              - else 
+                完了済みのタスクはありません。
+            = paginate(@finished_task_reviews)
