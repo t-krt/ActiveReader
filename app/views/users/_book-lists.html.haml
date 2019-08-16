@@ -17,8 +17,6 @@
         = link_to review_path(reviewed_book) do
           = reviewed_book.book.title.truncate(35)
     .card-text
-      .genre
-        = reviewed_book.book.genre_i18n 
       .rate{id: "star-rate-#{reviewed_book.id}"}
 
 :erb
