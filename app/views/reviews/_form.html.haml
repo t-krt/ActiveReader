@@ -1,9 +1,13 @@
 .form-group.row.review-body__content
-  = book.label :タイトル, class:"col-sm-2 col-form-label badge-info"
-  = book.text_field :title, class: 'form-control col-sm-6 .badge-info', value: @book.title, placeholder: "必須項目"
+  = book.label :タイトル, class: "col-sm-2 col-form-label badge-info"
+  .col-sm-10
+    = @book.title
+  = book.hidden_field :title, value: @book.title
 .form-group.row.review-body__content
-  = book.label :著者, class:"col-sm-2 col-form-label badge-info"
-  = book.text_field :author, class: 'form-control col-sm-6', value: @book.author
+  = book.label :著者, class: "col-sm-2 col-form-label badge-info"
+  .col-sm-10
+    = @book.author
+  = book.hidden_field :author, value: @book.author
 .form-group.row.review-body__content.book-image
   - if @book.image_url.present?
     = book.label :書影, class:"col-sm-2 col-form-label badge-info"
@@ -11,9 +15,6 @@
     = book.hidden_field :image_url, value: @book.image_url
   = book.hidden_field :url, value: @book.url
   = book.hidden_field :isbn, value: @book.isbn
-.form-group.row.review-body__content
-  = book.label :ジャンル, class:"col-sm-2 col-form-label badge-info"
-  = book.select :genre, Book.genres_i18n.invert, {}, class: 'form-control col-sm-4', placeholder: 0
 .review-header.review-header__internal
   読書メモ
 .review-body__memo
@@ -36,12 +37,6 @@
     #star.form-group.row.review-body__content
       = review.label :評価, class: "col-sm-2 col-form-label badge-info star-label"
       = review.hidden_field :rate, id: 'review_star', class: 'form-control col-sm-2', value: 1, max: 5, min: 1
-    -# .review-header.review-header__internal
-    -#   タスク登録
-    -# .review-body__task
-    -#   = fields_for(@task) do |task|
-    -#     .form-group.row.review-body__content
-    -#   -# TODO:ここからタスク
   .form-group.review-submit
     = book.submit "登録する", class: 'btn btn-primary'
 

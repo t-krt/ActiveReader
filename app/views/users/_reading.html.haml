@@ -24,10 +24,6 @@
               期限
             .limit
               = reading_book.deadline.present? ? reading_book.deadline.strftime('%Y/%m/%d') : "未設定"
-            .badge.badge-secondary
-              ジャンル
-            .genre
-              = reading_book.book.genre_i18n
       .book-list__reading--bottom
         .card
           .card-header
