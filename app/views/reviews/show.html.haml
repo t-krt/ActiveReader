@@ -9,15 +9,15 @@
         - else
           = image_tag asset_path("no_image.jpg")
       .col-sm-7
-        .wrapper-book-info__title
+        .wrapper-book-info__right
           .badge.badge-info.badge-pill
             タイトル
           = @book.title
-        .wrapper-book-info__author
+        .wrapper-book-info__right
           .badge.badge-info.badge-pill
             著者
           = @book.author
-        .wrapper-book-info__created
+        .wrapper-book-info__right
           .badge.badge-info.badge-pill
             登録日
           = @review.created_at.strftime("%Y/%m/%d")
@@ -46,6 +46,7 @@
     .card-header 
       この本を読んで行動に移すこと
       %span.wrapper-book-info--notice （※あなたにしか見えていません）
+    = render 'shared/task-list'
 
 :erb
   <script>

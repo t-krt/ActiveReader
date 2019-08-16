@@ -5,6 +5,9 @@
     font-size: 1.1rem;
   }
   .wrapper-book-info {
+    &__right {
+      margin-bottom: 2rem;
+    }
     &__icon {
       padding: 1rem 2rem 1rem 0;
       .icon-color {
