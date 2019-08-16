@@ -15,9 +15,6 @@
     = book.hidden_field :image_url, value: @book.image_url
   = book.hidden_field :url, value: @book.url
   = book.hidden_field :isbn, value: @book.isbn
--# .form-group.row.review-body__content
--#   = book.label :ジャンル, class:"col-sm-2 col-form-label badge-info"
--#   = book.select :genre, Book.genres_i18n.invert, {}, class: 'form-control col-sm-4', placeholder: 0
 .review-header.review-header__internal
   読書メモ
 .review-body__memo
