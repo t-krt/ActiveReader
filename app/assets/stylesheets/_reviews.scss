@@ -1,5 +1,6 @@
 .review-show {
   margin-top: 1rem;
+  padding-bottom: 3rem;
   .badge {
     font-size: 1.1rem;
   }
@@ -10,6 +11,10 @@
         color: #007bff;
         padding-right: 0.5rem;
       }
+    }
+    &--notice {
+      font-size: 0.9rem;
+      color: $accent-color;
     }
   }
 }

@@ -38,7 +38,9 @@
       .card-body
         = @review.learned.present? ? @review.learned : "「学んだこと」は未記入です。"
       - if user_signed_in? && @review.user_id == current_user.id
-        .card-header 読書メモ（※あなたにしか見えていません）
+        .card-header 
+          読書メモ
+          %span.wrapper-book-info--notice （※あなたにしか見えていません）
         .card-body
           = @review.note.present? ? @review.note :  "「読書メモ」は未記入です。"
 
