@@ -37,12 +37,6 @@
     #star.form-group.row.review-body__content
       = review.label :評価, class: "col-sm-2 col-form-label badge-info star-label"
       = review.hidden_field :rate, id: 'review_star', class: 'form-control col-sm-2', value: 1, max: 5, min: 1
-    -# .review-header.review-header__internal
-    -#   タスク登録
-    -# .review-body__task
-    -#   = fields_for(@task) do |task|
-    -#     .form-group.row.review-body__content
-    -#   -# TODO:ここからタスク
   .form-group.review-submit
     = book.submit "登録する", class: 'btn btn-primary'
 
