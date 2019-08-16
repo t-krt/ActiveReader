@@ -36,11 +36,11 @@
         = @review.purpose
       .card-header 学んだこと
       .card-body
-        = @review.learned
+        = @review.learned.present? ? @review.learned : "「学んだこと」は未記入です。"
       - if user_signed_in? && @review.user_id == current_user.id
         .card-header 読書メモ（※あなたにしか見えていません）
         .card-body
-          = @review.note
+          = @review.note.present? ? @review.note :  "「読書メモ」は未記入です。"
 
 :erb
   <script>
