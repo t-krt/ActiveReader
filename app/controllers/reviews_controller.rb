@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
         was_reading = Review.where.not(id: last_review[:id]).find_by(user_id: current_user.id, review_status: "reading")
         was_reading.update(review_status: "stock") if was_reading
       end
-      redirect_to reading_path(current_user)
+      redirect_to review_path(@review)
       flash[:notice] = '本を登録しました'
     else
       flash[:notice] = '正しく入力してください'
@@ -43,7 +43,7 @@ class ReviewsController < ApplicationController
           was_reading = Review.where.not(id: @review[:id]).find_by(user_id: current_user.id, review_status: "reading")
           was_reading.update(review_status: "stock") if was_reading
         end
-        redirect_to reading_path(current_user)
+        redirect_to review_path(@review)
         flash[:notice] = '本の情報を更新しました'
       else
         flash[:notice] = '正しく入力してください'
@@ -60,11 +60,7 @@ class ReviewsController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :image_url, :genre, :url, :isbn)\
-    # book_categories_attributes: [:book_id, :category_id], \
-    # reviews_attributes: [:purpose, :learned, :note, :rate, :review_status, :deadline,\
-    # ,tasks_attributes: [:task_content, :finished]
-    # ]
+    params.require(:book).permit(:title, :author, :image_url, :url, :isbn)
   end
 
   def review_params
