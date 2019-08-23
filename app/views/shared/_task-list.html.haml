@@ -16,6 +16,14 @@
             %th タスク内容
             %th 期限
         %tbody#new-task
+          - if @unfinished_tasks.present?
+            - @unfinished_tasks.each do |task|
+              %tr
+                %td
+                  = task.content
+                %td
+                  = task.limit.present? ? task.limit : "未設定"
+    = paginate @unfinished_tasks
   / 完了したタスクリスト
   #complete.tab-pane.fade{"aria-labelledby": "complete-tab", role: "tabpanel"}
     .table-responsive
@@ -23,5 +31,12 @@
         %thead
           %tr
             %th タスク内容
-            %th 実行日
+            %th 実行日時
         %tbody
+          - if @finished_tasks.present?
+            - @finished_tasks.each do |task|
+              %tr
+                %td
+                  = task.content
+                %td
+                  = task.updated_at.strftime("%Y-%m-%d %H:%M")
