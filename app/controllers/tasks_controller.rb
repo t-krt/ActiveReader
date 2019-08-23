@@ -9,18 +9,24 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @review = Review.find(params[:review_id])
   end
 
   def create
-    @task = Task.create(task_params)
+    @task = Task.new(task_params)
+
     respond_to do |format|
-      format.html {redirect_to root_path }
-      format.json
+      if @task.save
+        format.js { @status = "success"}
+      else
+        format.js {@status = "fail"}
+      end
     end
   end
 
   private
   def task_params
-    params.require(:task).permit(:content, :limit).merge(user_id: current_user.id)
+    params.require(:task).permit(:content, :limit, :review_id)
+    # params.require(:task).permit(:content, :limit).merge(review_id: @review.id)
   end
 end
