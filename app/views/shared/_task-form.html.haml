@@ -1,0 +1,17 @@
+-# / Modal
+.modal-dialog{role: "document"}
+  = form_with model: @task do |f|
+    .modal-content
+      .modal-header
+        #modalLabel.modal-title タスク登録
+      .modal-body
+        .form-group
+          = f.label :タスク
+          = f.text_field :content, class: "form-control"
+        .form-group
+          = f.label :期限
+          = f.date_field :limit, class: 'form-control'
+          = f.hidden_field :review_id, value: review.id
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss": "modal", type: "button"} 閉じる
+        = f.submit :"登録する", id: "btnAdd", class: 'btn btn-primary'

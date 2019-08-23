@@ -1,0 +1,7 @@
+%tr
+  %td
+    = task.content
+  %td
+    = task.limit.present? ? task.limit : "未設定"
+  -# %td= link_to 'Show', task
+  -# %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?'}

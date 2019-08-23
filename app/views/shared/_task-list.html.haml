@@ -1,0 +1,27 @@
+/ タブを画面に表示する
+%ul#myTab.nav.nav-tabs{role: "tablist"}
+  %li.nav-item
+    = link_to "未完了のタスク", "#todolist", { id: "#todolist-tab", class:"nav-link active", "aria-controls": "todolist", "aria-selected": "true", "data-toggle": "tab", role: "tab"}
+  %li.nav-item
+    = link_to "完了したタスク", "#complete", { id: "complete-tab", class: "nav-link", "aria-controls": "complete", "aria-selected": "false", "data-toggle": "tab", role: "tab" }
+
+/ タブの中身
+#myTabContent.tab-content
+  / 未完了のタスクリスト
+  #todolist.tab-pane.fade.show.active{"aria-labelledby": "todolist-tab", role: "tabpanel"}
+    .table-responsive
+      %table#todoList.table.table-hover
+        %thead
+          %tr
+            %th タスク内容
+            %th 期限
+        %tbody#new-task
+  / 完了したタスクリスト
+  #complete.tab-pane.fade{"aria-labelledby": "complete-tab", role: "tabpanel"}
+    .table-responsive
+      %table#completeList.table.table-hover
+        %thead
+          %tr
+            %th タスク内容
+            %th 実行日
+        %tbody
