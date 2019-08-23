@@ -43,10 +43,11 @@
           %span.wrapper-book-info--notice （※あなたにしか見えていません）
         .card-body
           = @review.note.present? ? @review.note :  "「読書メモ」は未記入です。"
-    .card-header 
-      この本を読んで行動に移すこと
-      %span.wrapper-book-info--notice （※あなたにしか見えていません）
-    = render 'shared/task-list'
+        .card-header 
+          この本を読んで行動に移すこと
+          %span.wrapper-book-info--notice （※あなたにしか見えていません）
+        .card-body
+          = render 'shared/task-form'
 
 :erb
   <script>
