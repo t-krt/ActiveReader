@@ -18,7 +18,7 @@
                       = simple_format(review.book.title) 
                   .card-body.task-index__tasks
                     - review.tasks.each do |task|
-                      = simple_format(task.task_content)
+                      = simple_format(task.content)
               - else 
                 未完了のタスクはありません。
             = paginate(@unfinished_task_reviews)
