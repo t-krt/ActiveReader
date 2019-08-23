@@ -9,15 +9,15 @@
         - else
           = image_tag asset_path("no_image.jpg")
       .col-sm-7
-        .wrapper-book-info__title
+        .wrapper-book-info__right
           .badge.badge-info.badge-pill
             タイトル
           = @book.title
-        .wrapper-book-info__author
+        .wrapper-book-info__right
           .badge.badge-info.badge-pill
             著者
           = @book.author
-        .wrapper-book-info__created
+        .wrapper-book-info__right
           .badge.badge-info.badge-pill
             登録日
           = @review.created_at.strftime("%Y/%m/%d")
@@ -36,12 +36,23 @@
         = @review.purpose
       .card-header 学んだこと
       .card-body
-        = @review.learned
+        = @review.learned.present? ? @review.learned : "「学んだこと」は未記入です。"
       - if user_signed_in? && @review.user_id == current_user.id
-        .card-header 読書メモ（※あなたにしか見えていません）
+        .card-header 
+          読書メモ
+          %span.wrapper-book-info--notice （※あなたにしか見えていません）
         .card-body
-          = @review.note
-
+          = @review.note.present? ? @review.note :  "「読書メモ」は未記入です。"
+        .card-header 
+          この本を読んで行動に移すこと
+          %span.wrapper-book-info--notice （※あなたにしか見えていません）
+        .card-body
+          -# review_idがtasks_controllerで必要になるため、パラメータをtasks#newに渡す
+          = link_to new_task_path(params: {review_id: @review.id}), remote: true do 
+            .i.fas.fa-plus-square.add-task-btn
+            -# class: "btn btn-primary mb-3 add-task__btn"
+          #todoModal.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
+          = render 'shared/task-list'
 :erb
   <script>
     $('#star-rate-<%= @review.id %>').raty({

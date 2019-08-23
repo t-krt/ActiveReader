@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     member do 
       get :reading, :read, :stock
     end
-    resources :tasks, only: [:index, :new, :create]
+    resources :tasks, only: [:index]
   end
 
+  resources :tasks, except: [:index, :show]
   resources :reviews
   
   resources :books, only: :show do

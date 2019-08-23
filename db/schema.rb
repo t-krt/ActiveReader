@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_16_080152) do
+ActiveRecord::Schema.define(version: 2019_08_23_083125) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(version: 2019_08_16_080152) do
   end
 
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "task_content", null: false
+    t.string "content", null: false
     t.boolean "finished", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "review_id"
+    t.date "limit"
     t.index ["review_id"], name: "index_tasks_on_review_id"
   end
 
