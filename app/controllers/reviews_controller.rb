@@ -33,7 +33,11 @@ class ReviewsController < ApplicationController
 
   def edit; end
 
-  def show; end
+  def show
+    tasks = Task.where(review_id: @review.id).order("created_at DESC")
+    @unfinished_tasks = tasks.where(finished: 0).page(params[:page]).per(5)    
+    @finished_tasks = tasks.where(finished: 1).page(params[:page]).per(5)
+  end
 
   def update
     if @review.user_id == current_user.id
