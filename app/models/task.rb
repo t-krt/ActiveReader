@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
   belongs_to :review
 
-  validates :task_content, presence: true
+  validates :content, presence: true
 end
