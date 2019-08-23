@@ -1,5 +1,5 @@
 <% if @status == 'success' %>
-  $("#new-task").append("<%= j(render("task-tr", task: @task)) %>");
+  $("#new-task").prepend("<%= j(render("task-tr", task: @task)) %>");
   $("#todoModal").modal("hide");
 <%  elsif @status == 'fail' %>
   alert('タスクを入力してください');
