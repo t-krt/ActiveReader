@@ -11,7 +11,6 @@ class ReviewsController < ApplicationController
     @book.title, @book.author, @book.image_url, @book.url, @book.isbn = \
       params[:title], params[:author], params[:image_url], params[:url], params[:isbn]
     @review = Review.new
-    @task = Task.new
   end
 
   def create
