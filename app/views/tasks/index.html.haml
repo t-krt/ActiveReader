@@ -30,7 +30,7 @@
                       = simple_format(review.book.title) 
                   .card-body.task-index__tasks
                     - review.tasks.each do |task|
-                      = simple_format(task.task_content)
+                      = simple_format(task.content)
               - else 
                 完了済みのタスクはありません。
             = paginate(@finished_task_reviews)
