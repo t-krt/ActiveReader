@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
     reviews = Review.where(user_id: current_user.id).order("reviews.created_at DESC").includes(:book, :tasks)
@@ -27,5 +28,9 @@ class TasksController < ApplicationController
   private
   def task_params
     params.require(:task).permit(:content, :limit, :review_id)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 end
