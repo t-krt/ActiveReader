@@ -44,13 +44,12 @@
         .card-body
           = @review.note.present? ? @review.note :  "「読書メモ」は未記入です。"
         .card-header 
-          この本を読んで行動に移すこと
-          %span.wrapper-book-info--notice （※あなたにしか見えていません）
-        .card-body
           -# review_idがtasks_controllerで必要になるため、パラメータをtasks#newに渡す
           = link_to new_task_path(params: {review_id: @review.id}), remote: true do 
             .i.fas.fa-plus-square.add-task-btn
-            -# class: "btn btn-primary mb-3 add-task__btn"
+          TODOを追加する
+          %span.wrapper-book-info--notice （※あなたにしか見えていません）
+        .card-body
           #todoModal.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
           = render 'shared/task-list'
 :erb
