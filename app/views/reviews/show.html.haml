@@ -54,9 +54,9 @@
           = link_to new_task_path(params: {review_id: @review.id}), remote: true do 
             .i.fas.fa-plus-square.add-task-btn
           TODOを追加する
+          #todoModal.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
           %span.wrapper-book-info--notice （※あなたにしか見えていません）
         .card-body.review-show__contents__list 
-          #todoModal.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
           = render 'shared/task-list'
 :erb
   <script>
