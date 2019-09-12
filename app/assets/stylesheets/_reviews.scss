@@ -20,6 +20,13 @@
       color: $accent-color;
     }
   }
+  &__contents {
+    &__list {
+      &--no-entry {
+        color: gray;
+      }
+    }
+  }
 }
 
 .user-info {

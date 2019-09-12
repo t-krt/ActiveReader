@@ -30,26 +30,32 @@
               %i.fas.fa-trash-alt.fa-lg.icon-color
           = link_to "#{@book.url}" do
             %i.fas.fa-info-circle.fa-lg.icon-color
-    .card
+    .card.review-show__contents
       .card-header 読書の目的
-      .card-body 
+      .card-body.review-show__contents__list 
         = @review.purpose
       .card-header 学んだこと
-      .card-body
-        = @review.learned.present? ? @review.learned : "「学んだこと」は未記入です。"
+      .card-body.review-show__contents__list 
+        - if @review.learned.present?
+          = @review.learned
+        - else
+          .review-show__contents__list--no-entry 「学んだこと」は未記入です。
       - if user_signed_in? && @review.user_id == current_user.id
         .card-header 
           読書メモ
           %span.wrapper-book-info--notice （※あなたにしか見えていません）
-        .card-body
-          = @review.note.present? ? @review.note :  "「読書メモ」は未記入です。"
+        .card-body.review-show__contents__list 
+          - if @review.note.present?
+            = @review.note 
+          - else
+            .review-show__contents__list--no-entry 「読書メモ」は未記入です。
         .card-header 
           -# review_idがtasks_controllerで必要になるため、パラメータをtasks#newに渡す
           = link_to new_task_path(params: {review_id: @review.id}), remote: true do 
             .i.fas.fa-plus-square.add-task-btn
           TODOを追加する
           %span.wrapper-book-info--notice （※あなたにしか見えていません）
-        .card-body
+        .card-body.review-show__contents__list 
           #todoModal.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
           = render 'shared/task-list'
 :erb
