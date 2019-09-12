@@ -12,17 +12,29 @@
     .table-responsive
       %table#todoList.table.table-hover
         %thead
-          %tr.table-info
+          %tr.table-info.task-table
+            %th.task-table__left
             %th タスク内容
-            %th 期限
+            %th.task-table__limit 期限
+            %th.task-table__right
         %tbody#new-task
           - if @unfinished_tasks.present?
             - @unfinished_tasks.each do |task|
               %tr
+                %td.task-table-left
+                  -# finishedの値を更新する
+                  = link_to task_path(task), class: "task-list-icon", remote: true do
+                    %i.far.fa-check-circle
+                  -# check後のアイコン %i.fas.fa-check-circle
+                  = link_to edit_task_path(task), class: "task-list-icon", remote: true do
+                    %i.fas.fa-pen
                 %td
                   = task.content
                 %td
                   = task.limit.present? ? task.limit : "未設定"
+                %td
+                  = link_to "/reviews/#{task.id}", method: :delete, remote: true do
+                    %i.fas.fa-trash-alt.icon-color
     = paginate @unfinished_tasks
   / 完了したタスクリスト
   #complete.tab-pane.fade{"aria-labelledby": "complete-tab", role: "tabpanel"}
