@@ -27,6 +27,5 @@ class TasksController < ApplicationController
   private
   def task_params
     params.require(:task).permit(:content, :limit, :review_id)
-    # params.require(:task).permit(:content, :limit).merge(review_id: @review.id)
   end
 end
