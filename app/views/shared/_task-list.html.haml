@@ -29,9 +29,9 @@
                   = link_to edit_task_path(task, params: {review_id: @review.id}), class: "task-list-icon", remote: true do
                     %i.fas.fa-pen
                   #todoModal-edit.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
-                %td
+                %td{class: "task-#{task.id}-content"}
                   = task.content
-                %td
+                %td{class: "task-#{task.id}-limit"}
                   = task.limit.present? ? task.limit : "未設定"
                 %td
                   = link_to "/reviews/#{task.id}", method: :delete, remote: true do
