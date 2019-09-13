@@ -42,14 +42,20 @@
     .table-responsive
       %table#completeList.table.table-hover
         %thead
-          %tr.table-info
+          %tr.table-info.task-table
+            %th.task-table__left-finished
             %th タスク内容
-            %th 実行日時
-        %tbody
+            %th.task-table__limit 実行日時
+            %th.task-table__right-finished
+        %tbody.finished_task
           - if @finished_tasks.present?
             - @finished_tasks.each do |task|
-              %tr
+              %tr{id: "task-#{task.id}-all"}
                 %td
+                %td.finished_task__content
                   = task.content
                 %td
                   = task.updated_at.strftime("%Y-%m-%d %H:%M")
+                %td
+                  = link_to task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか？' }, remote: true do
+                    %i.fas.fa-trash-alt.icon-color
