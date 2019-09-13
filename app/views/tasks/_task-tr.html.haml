@@ -1,7 +1,14 @@
 %tr
-  %td
+  %td.task-table-left
+    = link_to task_path(task), class: "task-list-icon", remote: true do
+      %i.far.fa-check-circle
+    = link_to edit_task_path(task, params: {review_id: review_id}), class: "task-list-icon", remote: true do
+      %i.fas.fa-pen
+    #todoModal-edit.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
+  %td{class: "task-#{task.id}-content"}
     = task.content
-  %td
+  %td{class: "task-#{task.id}-limit"}
     = task.limit.present? ? task.limit : "未設定"
-  -# %td= link_to 'Show', task
-  -# %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?'}
+  %td
+    = link_to "/reviews/#{task.id}", method: :delete, remote: true do
+      %i.fas.fa-trash-alt.icon-color
