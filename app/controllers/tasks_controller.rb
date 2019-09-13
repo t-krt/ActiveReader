@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: [:edit, :update, :destroy]
+  before_action :set_review, only: [:new, :edit]
 
   def index
     reviews = Review.where(user_id: current_user.id).order("reviews.created_at DESC").includes(:book, :tasks)
@@ -10,7 +11,6 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @review = Review.find(params[:review_id])
   end
 
   def create
@@ -29,6 +29,13 @@ class TasksController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @task.update(task_params)
+        format.js { @status = "success"}
+      else
+        format.js {@status = "fail"}
+      end
+    end
   end
 
   def destroy
@@ -42,5 +49,9 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def set_review
+    @review = Review.find(params[:review_id])
   end
 end
