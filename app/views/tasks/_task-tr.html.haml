@@ -1,7 +1,7 @@
 %tr{id: "task-#{task.id}-all"}
   %td.task-table-left
-    = link_to task_path(task), class: "task-list-icon", remote: true do
-      %i.far.fa-check-circle
+    = link_to finish_task_path(task), class: "task-list-icon task-#{task.id}-check-link", remote: true do
+      %i.far.fa-check-circle{class: "task-#{task.id}-check"}
     = link_to edit_task_path(task, params: {review_id: review_id}), class: "task-list-icon", remote: true do
       %i.fas.fa-pen
     #todoModal-edit.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
