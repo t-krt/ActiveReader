@@ -1,0 +1,8 @@
+task = <%== @task.to_json %>
+console.log(task);
+
+<% if @status == 'success' %>
+  $(`#task-${task.id}-all`).remove();
+<%  elsif @status == 'fail' %>
+  alert('タスクの削除に失敗しました');
+<% end %>

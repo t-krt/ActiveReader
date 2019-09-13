@@ -39,6 +39,13 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    respond_to do |format|
+      if @task.destroy
+        format.js { @status = "success"}
+      else
+        format.js {@status = "fail"}
+      end
+    end
   end
 
 

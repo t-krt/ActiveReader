@@ -20,7 +20,7 @@
         %tbody#new-task
           - if @unfinished_tasks.present?
             - @unfinished_tasks.each do |task|
-              %tr
+              %tr{id: "task-#{task.id}-all"}
                 %td.task-table-left
                   -# finishedの値を更新する
                   = link_to task_path(task), class: "task-list-icon", remote: true do
@@ -34,7 +34,7 @@
                 %td{class: "task-#{task.id}-limit"}
                   = task.limit.present? ? task.limit : "未設定"
                 %td
-                  = link_to "/reviews/#{task.id}", method: :delete, remote: true do
+                  = link_to task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか？' }, remote: true do
                     %i.fas.fa-trash-alt.icon-color
     = paginate @unfinished_tasks
   / 完了したタスクリスト
