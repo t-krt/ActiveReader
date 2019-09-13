@@ -1,0 +1,12 @@
+task = <%== @task.to_json %>
+
+<% if @status == 'success' %>
+  <%# チェックのアイコンを更新 %>
+  $(`.task-${task.id}-check`).removeClass('far').addClass('fas');
+  <%# リンクを無効化 %>
+  $(`.task-${task.id}-check-link`).css('pointer-events', 'none');
+  <%# クラスの追加により打ち消し線を付与 %>
+  $(`.task-${task.id}-content`).addClass("finished_task__content");
+<%  elsif @status == 'fail' %>
+  alert('タスクのチェックに失敗しました');
+<% end %>

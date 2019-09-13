@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:edit, :update, :destroy]
+  before_action :set_task, only: [:edit, :update, :destroy, :finish]
   before_action :set_review, only: [:new, :edit]
 
   def index
@@ -41,6 +41,16 @@ class TasksController < ApplicationController
   def destroy
     respond_to do |format|
       if @task.destroy
+        format.js { @status = "success"}
+      else
+        format.js {@status = "fail"}
+      end
+    end
+  end
+
+  def finish
+    respond_to do |format|
+      if @task.update(finished: true)
         format.js { @status = "success"}
       else
         format.js {@status = "fail"}
