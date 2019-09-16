@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_task, only: [:edit, :update, :destroy, :finish]
+  before_action :set_review, only: [:new, :edit]
 
   def index
     reviews = Review.where(user_id: current_user.id).order("reviews.created_at DESC").includes(:book, :tasks)
@@ -9,7 +11,6 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @review = Review.find(params[:review_id])
   end
 
   def create
@@ -24,9 +25,50 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @task.update(task_params)
+        format.js { @status = "success"}
+      else
+        format.js {@status = "fail"}
+      end
+    end
+  end
+
+  def destroy
+    respond_to do |format|
+      if @task.destroy
+        format.js { @status = "success"}
+      else
+        format.js {@status = "fail"}
+      end
+    end
+  end
+
+  def finish
+    respond_to do |format|
+      if @task.update(finished: true)
+        format.js { @status = "success"}
+      else
+        format.js {@status = "fail"}
+      end
+    end
+  end
+
+
   private
   def task_params
     params.require(:task).permit(:content, :limit, :review_id)
-    # params.require(:task).permit(:content, :limit).merge(review_id: @review.id)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  def set_review
+    @review = Review.find(params[:review_id])
   end
 end

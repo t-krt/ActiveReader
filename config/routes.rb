@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     resources :tasks, only: [:index]
   end
 
-  resources :tasks, except: [:index, :show]
+  resources :tasks, except: [:index, :show] do
+    get :finish, on: :member
+  end
   resources :reviews
   
   resources :books, only: :show do

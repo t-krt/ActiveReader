@@ -13,5 +13,36 @@
 
 .add-task-btn {
   font-size: 1.55em;
-  padding-bottom: 0.8rem;
+  line-height: 1;
+  padding: 5px 0.5rem 5px 0;
+  vertical-align: middle;
+}
+
+.task-list-icon {
+  padding-right: 1rem;
+}
+
+.task-table {
+  &__left {
+    width: 110px;
+  }
+  &__limit {
+    width: 30%;
+  }
+  &__right {
+    width: 5rem;
+  }
+  &__left-finished {
+    width: 3rem;
+  }
+  &__right-finished {
+    width: 5rem;
+  }
+}
+
+.finished_task{
+  &__content {
+    color: gray;
+    text-decoration: line-through;
+  }
 }

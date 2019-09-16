@@ -1,0 +1,11 @@
+task = <%== @task.to_json %>
+
+<% if @status == 'success' %>
+  <%# タスク内容の書き換え %>
+  $(`.task-${task.id}-content`).html("<%= @task.content %>");
+  <%# 期限の書き換え %>
+  $(`.task-${task.id}-limit`).html("<%= @task.limit.present? ? @task.limit : "未設定" %>");
+  $("#todoModal-edit").modal("hide");
+<%  elsif @status == 'fail' %>
+  alert('タスクを入力してください');
+<% end %>

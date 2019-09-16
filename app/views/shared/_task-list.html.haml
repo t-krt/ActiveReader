@@ -12,31 +12,56 @@
     .table-responsive
       %table#todoList.table.table-hover
         %thead
-          %tr
+          %tr.table-info.task-table
+            %th.task-table__left
             %th タスク内容
-            %th 期限
+            %th.task-table__limit 期限
+            %th.task-table__right
         %tbody#new-task
           - if @unfinished_tasks.present?
             - @unfinished_tasks.each do |task|
-              %tr
-                %td
+              %tr{id: "task-#{task.id}-all"}
+                %td.task-table-left
+                  -# finishedの値を更新する
+                  = link_to finish_task_path(task), class: "task-list-icon task-#{task.id}-check-link", remote: true do
+                    %i.far.fa-check-circle{class: "task-#{task.id}-check"}
+                  = link_to edit_task_path(task, params: {review_id: @review.id}), class: "task-list-icon task-#{task.id}-check-link", remote: true do
+                    %i.fas.fa-pen
+                  #todoModal-edit.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
+                %td{class: "task-#{task.id}-content"}
                   = task.content
-                %td
+                %td{class: "task-#{task.id}-limit"}
                   = task.limit.present? ? task.limit : "未設定"
+                %td
+                  = link_to task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか？' }, remote: true do
+                    %i.fas.fa-trash-alt.icon-color
+          - else
+            %td.have-no-tasks
+            %td.have-no-tasks 未完了のタスクはありません
     = paginate @unfinished_tasks
   / 完了したタスクリスト
   #complete.tab-pane.fade{"aria-labelledby": "complete-tab", role: "tabpanel"}
     .table-responsive
       %table#completeList.table.table-hover
         %thead
-          %tr
+          %tr.table-info.task-table
+            %th.task-table__left-finished
             %th タスク内容
-            %th 実行日時
-        %tbody
+            %th.task-table__limit 実行日時
+            %th.task-table__right-finished
+        %tbody.finished_task
           - if @finished_tasks.present?
             - @finished_tasks.each do |task|
-              %tr
+              %tr{id: "task-#{task.id}-all"}
                 %td
+                %td.finished_task__content
                   = task.content
                 %td
                   = task.updated_at.strftime("%Y-%m-%d %H:%M")
+                %td
+                  = link_to task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか？' }, remote: true do
+                    %i.fas.fa-trash-alt.icon-color
+          - else
+            %td
+            %td 完了したタスクはありません
+    = paginate @finished_tasks
