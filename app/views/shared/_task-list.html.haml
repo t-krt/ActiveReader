@@ -36,7 +36,7 @@
                   = link_to task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか？' }, remote: true do
                     %i.fas.fa-trash-alt.icon-color
           - else
-            %td
+            %td.have-no-tasks
             %td.have-no-tasks 未完了のタスクはありません
     = paginate @unfinished_tasks
   / 完了したタスクリスト

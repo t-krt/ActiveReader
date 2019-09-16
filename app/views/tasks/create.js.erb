@@ -1,5 +1,6 @@
 <% if @status == 'success' %>
   $("#new-task").prepend("<%= j(render("task-tr", task: @task, review_id: @task.review_id )) %>");
+  $('.have-no-tasks').remove();
   $("#todoModal").modal("hide");
 <%  elsif @status == 'fail' %>
   alert('タスクを入力してください');
