@@ -25,7 +25,7 @@
           = f.label :avatar
           = f.file_field :avatar, class: 'custom-file'
         .form-group
-          = f.submit t('.update'), class: 'btn btn-primary'
+          = f.submit t('.update'), class: 'btn btn-info'
       %p
-        #{link_to t('.cancel_my_account'), registration_path(resource_name), class: 'btn btn-primary', data: { confirm: t('.are_you_sure') }, method: :delete}
-      = link_to t('.back'), :back, class: 'btn btn-primary'
+        #{link_to t('.cancel_my_account'), registration_path(resource_name), class: 'btn btn-info', data: { confirm: t('.are_you_sure') }, method: :delete}
+      = link_to t('.back'), reading_user_path(current_user), class: 'btn btn-info'
