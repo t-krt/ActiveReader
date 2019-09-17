@@ -24,5 +24,9 @@
           %i.fas.fa-tasks.fa-3x
         .top-content__description--text
           %p タスク管理
-          %p 学んだことを行動に移しましょう。
-    =link_to "かんたんログイン", "#", class: "btn btn-info btn-lg easy-login"
+    .top-content__links
+      .top-content__links__user
+        = link_to "アカウント登録", new_user_registration_path, class: "btn btn-info btn-lg top-content__links__user--left"
+        = link_to "ログイン", new_user_session_path, class: "btn btn-info btn-lg"
+      .top-content__links__guest
+        = link_to "投稿一覧を見る", reviews_path, class: "btn btn-info btn-lg top-content__links__link"
