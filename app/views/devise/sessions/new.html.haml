@@ -15,5 +15,13 @@
             = f.label :remember_me, class: 'form-check-label' do
               = resource.class.human_attribute_name('remember_me')
         .form-group
-          = f.submit  t('.sign_in'), class: 'btn btn-primary'
+          = f.submit  ('ログインする'), class: 'btn btn-info'
+
+      = form_for(resource, as: resource_name, url: user_session_path) do |f|
+        = f.hidden_field :email, {value: 'guest-user@guest.com'}
+        = f.hidden_field :password, {value: 'guest123'}
+        = f.submit "かんたんログイン", class: "btn btn-info easy-login"
+        %p ※ポートフォリオ観覧用のテストユーザーでログインします。
+
+      .guide-message アカウントをお持ちでないですか？
       = render 'devise/shared/links'

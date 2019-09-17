@@ -84,7 +84,13 @@
       width: 60%;
     }
   }
-  .easy-login {
+  &__links {
     margin-bottom: 30px;
+    &__user--left {
+      margin-right: 0.5rem;
+    }
+    &__guest {
+      margin: 2rem 0 1rem 0;
+    }
   }
 }

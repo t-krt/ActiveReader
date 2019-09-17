@@ -22,5 +22,7 @@
           = f.label :avatar
           = f.file_field :avatar, class: 'custom-file'
         .form-group
-          = f.submit t('.sign_up'), class: 'btn btn-primary'
+          = f.submit ('登録する'), class: 'btn btn-info'
+
+      .guide-message 既にアカウントをお持ちですか？
       = render 'devise/shared/links'

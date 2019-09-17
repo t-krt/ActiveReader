@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(_resource)
-    reading_path(current_user)
+    reading_user_path(current_user)
   end
 end
