@@ -4,7 +4,7 @@
       = render "shared/sidebar"
       .col-sm-9.col-md-9
         .card.task-index
-          - @reviews.each do |review|
+          - @reviews.each_with_index do |review, index|
             .card-header.bg-secondary.task-index__book-title
               = link_to review_path(review) do
                 = simple_format(review.book.title) 
@@ -19,8 +19,12 @@
                   後で読む
             - if review.tasks.present?
               .card-body.task-index__tasks
-                = simple_format("#{review.tasks.length}件の未完了のタスクがあります！")
-                = render partial: "shared/task-list-unfinished", locals: {tasks: review.tasks, review: review} 
+                .task-index__tasks__have
+                  = simple_format("#{review.tasks.length}件の未完了のタスクがあります！")
+                  %button.btn.btn-info{"aria-controls": "collapseTasks-#{index}", "aria-expanded": "false", "data-target": "#collapseTasks-#{index}", "data-toggle": "collapse", type: "button"}
+                    確認する
+                .collapse{id: "collapseTasks-#{index}"}
+                  = render partial: "shared/task-list-unfinished", locals: {tasks: review.tasks, review: review} 
             - else 
               .card-body.task-index__tasks
                 .task-index__tasks__content
