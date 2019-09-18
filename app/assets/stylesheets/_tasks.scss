@@ -9,6 +9,11 @@
     }
     font-size: 1.2rem;
   }
+  &__tasks {
+    &__content {
+      margin-bottom: 2rem;
+    }
+  }
 }
 
 .add-task-btn {
