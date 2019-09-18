@@ -3,6 +3,8 @@
     .row
       = render "shared/sidebar"
       .col-sm-9.col-md-9
+        .task-card-title
+          登録済みタスク一覧
         .card.task-index
           - @reviews.each_with_index do |review, index|
             .card-header.bg-secondary.task-index__book-title
