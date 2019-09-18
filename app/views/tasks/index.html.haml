@@ -5,9 +5,18 @@
       .col-sm-9.col-md-9
         .card.task-index
           - @reviews.each do |review|
-            .card-header.task-index__book-title
+            .card-header.bg-secondary.task-index__book-title
               = link_to review_path(review) do
                 = simple_format(review.book.title) 
+              - if review.review_status == "reading"
+                .badge.badge-primary.badge-pill.task-index__book-title--badge
+                  読書中
+              - elsif review.review_status == "read"
+                .badge.badge-success.badge-pill.task-index__book-title--badge
+                  読了
+              - else
+                .badge.badge-danger.badge-pill.task-index__book-title--badge
+                  後で読む
             - if review.tasks.present?
               .card-body.task-index__tasks
                 = simple_format("#{review.tasks.length}件の未完了のタスクがあります！")
