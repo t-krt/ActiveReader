@@ -6,32 +6,35 @@
         .task-card-title
           登録済みタスク一覧
         .card.task-index
-          - @reviews.each_with_index do |review, index|
-            .card-header.bg-secondary.task-index__book-title
-              = link_to review_path(review) do
-                = simple_format(review.book.title) 
-              - if review.review_status == "reading"
-                .badge.badge-primary.badge-pill.task-index__book-title--badge
-                  読書中
-              - elsif review.review_status == "read"
-                .badge.badge-success.badge-pill.task-index__book-title--badge
-                  読了
-              - else
-                .badge.badge-danger.badge-pill.task-index__book-title--badge
-                  後で読む
-            - if review.tasks.present?
-              .card-body.task-index__tasks
-                .task-index__tasks__have
-                  = simple_format("#{review.tasks.length}件の未完了のタスクがあります！")
-                  %button.btn.btn-info{"aria-controls": "collapseTasks-#{index}", "aria-expanded": "false", "data-target": "#collapseTasks-#{index}", "data-toggle": "collapse", type: "button"}
-                    確認する
-                .collapse{id: "collapseTasks-#{index}"}
-                  = render partial: "shared/task-list-unfinished", locals: {tasks: review.tasks, review: review} 
-            - else 
-              .card-body.task-index__tasks
-                .task-index__tasks__content
-                  未完了のタスクはありません
-          = paginate(@reviews)
+          - if @reviews.present?
+            - @reviews.each_with_index do |review, index|
+              .card-header.bg-secondary.task-index__book-title
+                = link_to review_path(review) do
+                  = simple_format(review.book.title) 
+                - if review.review_status == "reading"
+                  .badge.badge-primary.badge-pill.task-index__book-title--badge
+                    読書中
+                - elsif review.review_status == "read"
+                  .badge.badge-success.badge-pill.task-index__book-title--badge
+                    読了
+                - else
+                  .badge.badge-danger.badge-pill.task-index__book-title--badge
+                    後で読む
+              - if review.tasks.present?
+                .card-body.task-index__tasks
+                  .task-index__tasks__have
+                    = simple_format("#{review.tasks.length}件の未完了のタスクがあります！")
+                    %button.btn.btn-info{"aria-controls": "collapseTasks-#{index}", "aria-expanded": "false", "data-target": "#collapseTasks-#{index}", "data-toggle": "collapse", type: "button"}
+                      確認する
+                  .collapse{id: "collapseTasks-#{index}"}
+                    = render partial: "shared/task-list-unfinished", locals: {tasks: review.tasks, review: review} 
+              - else 
+                .card-body.task-index__tasks
+                  .task-index__tasks__content
+                    未完了のタスクはありません
+            = paginate(@reviews)
+          - else
+            = render "shared/no-entry"
           -# %ul#pills-tab.nav.nav-pills.mb-3.task-nav{role: "tablist"}
           -#   %li.nav-item
           -#     = link_to "TODO", "#pills-unfinished", {id: "pills-unfinished-tab", class: "nav-link active", "aria-controls" => "pills-unfinished", "aria-selected" => "true", "data-toggle" => "pill", role: "tab"}
