@@ -57,7 +57,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy if @review.user.id == current_user.id
-    redirect_to reading_path(current_user), notice: "削除しました"
+    redirect_to reading_user_path(current_user), notice: "削除しました"
   end
 
   private
