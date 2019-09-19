@@ -55,7 +55,7 @@
           #todoModal.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
           %span.wrapper-book-info--notice （※あなたにしか見えていません）
         .card-body.review-show__contents__list 
-          = render 'shared/task-list'
+          = render 'shared/task-list-all'
 :erb
   <script>
     $('#star-rate-<%= @review.id %>').raty({

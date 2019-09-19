@@ -4,10 +4,36 @@
     vertical-align: middle;
   }
   &__book-title {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    &--badge {
+      margin-right: 1rem;
+      padding-top: 0 !important;
+      height: 30px;
+      line-height: 30px !important;
+      width: 80px;
+    }
+    a {
+      color: white;
+    }
     p {
       margin-bottom: 0;
     }
-    font-size: 1.2rem;
+  }
+  &__tasks {
+    &__have {
+      display: flex;
+      button {
+        font-size: 12px;
+        height: 25px;
+        margin-left: 0.5rem;
+        padding: 0 0.3rem;
+      }
+    }
+    &__content {
+      margin-bottom: 2rem;
+    }
   }
 }
 
@@ -16,6 +42,13 @@
   line-height: 1;
   padding: 5px 0.5rem 5px 0;
   vertical-align: middle;
+}
+
+.task-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.8rem;
 }
 
 .task-list-icon {

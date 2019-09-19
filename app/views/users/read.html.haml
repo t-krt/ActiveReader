@@ -20,6 +20,6 @@
                     = render partial: "book-lists", locals: { reviewed_book: read_book }
             = paginate(@read_books)
           - else
-            = render "no-entry" 
+            = render "shared/no-entry" 
 
 
