@@ -23,11 +23,11 @@
               - if review.tasks.where(finished: 0).present?
                 .card-body.task-index__tasks
                   .task-index__tasks__have
-                    = simple_format("#{review.tasks.where(finished: 0).length}件の未完了のタスクがあります！")
+                    = simple_format("#{review.tasks.unfinished.length}件の未完了のタスクがあります！")
                     %button.btn.btn-info{"aria-controls": "collapseTasks-#{index}", "aria-expanded": "false", "data-target": "#collapseTasks-#{index}", "data-toggle": "collapse", type: "button"}
                       確認する
                   .collapse{id: "collapseTasks-#{index}"}
-                    = render partial: "shared/task-list-unfinished", locals: {tasks: review.tasks, review: review} 
+                    = render partial: "shared/task-list-unfinished", locals: {tasks: review.tasks.unfinished, review: review} 
               - else 
                 .card-body.task-index__tasks
                   .task-index__tasks__content
