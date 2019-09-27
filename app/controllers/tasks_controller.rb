@@ -48,11 +48,8 @@ class TasksController < ApplicationController
 
   def finish
     respond_to do |format|
-      if @task.update(finished: true)
-        format.js { @status = "success"}
-      else
-        format.js {@status = "fail"}
-      end
+      @task.update_finished_true
+      format.js { @status = "success"}
     end
   end
 
