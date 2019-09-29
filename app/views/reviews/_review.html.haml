@@ -3,15 +3,27 @@
     .user-info__left.col-sm-2
       = image_tag review.user.avatar.url
     .user-info__right.col-sm-10
-      .user_info--ro-review-show
-        = link_to "詳しく見る", review_path(review), class: "badge badge-info float-right"
-      .user-info--name
-        = review.user.nickname
-      .user-info--review
-        = review.learned.present? ? review.learned : "レビューはありません"
-      .user-info--others
+      .user-info__right__learned
+        .user-info__right__learned__upper
+          .user-info__right__learned__upper--label
+            学んだこと
+          .user-info__right__learned__upper--badge
+            = link_to "詳しく見る", review_path(review), class: "badge badge-info float-right"
+        .user-info__right__learned--content
+          - if review.learned.present? 
+            = review.learned.truncate(280) 
+          - else 
+            .user-info__right__learned--content--none 「学んだこと」は未記入です。
+      .user-info__right__others
         = review.created_at.strftime("%Y/%m/%d")
-        .rate{id: "star-rate-#{review.id}"}
+        .user-info__right__others--name
+          = review.user.nickname
+          さん
+        - if review.rate.present?
+          .user-info__right__others--rate.rate{id: "star-rate-#{review.id}"}
+        - else
+          .user-info__right__others--rate.rate 未評価
+
   .review-info-box
     .row.col-sm-10.review-info-box__body
       .review-info-box__body--left.col-sm-3

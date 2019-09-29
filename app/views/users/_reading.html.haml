@@ -18,7 +18,8 @@
             .badge.badge-secondary
               タイトル
             .title
-              = reading_book.book.title
+              = link_to review_path(reading_book.id) do
+                = reading_book.book.title
           .book-list__reading--limit
             .badge.badge-secondary
               期限

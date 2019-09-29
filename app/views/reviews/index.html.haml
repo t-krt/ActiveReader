@@ -1,10 +1,9 @@
 .whole-page
   .container
     .row
-      = render "shared/sidebar"
-      .main-content.col-sm-9.col-md-9.card
+      .main-content.col-sm-12.col-md-12.card
         .card-header
-          みんなの感想・レビュー
+          みんなの投稿一覧
         .card-body
           - @reviews.each do |review|
             = render partial: "review", locals: { review: review }
