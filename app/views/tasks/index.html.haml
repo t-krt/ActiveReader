@@ -23,11 +23,11 @@
               - if review.tasks.where(finished: 0).present?
                 .card-body.task-index__tasks
                   .task-index__tasks__have
-                    = simple_format("#{review.tasks.where(finished: 0).length}件の未完了のタスクがあります！")
+                    = simple_format("#{review.tasks.unfinished.length}件の未完了のタスクがあります！")
                     %button.btn.btn-info{"aria-controls": "collapseTasks-#{index}", "aria-expanded": "false", "data-target": "#collapseTasks-#{index}", "data-toggle": "collapse", type: "button"}
                       確認する
                   .collapse{id: "collapseTasks-#{index}"}
-                    = render partial: "shared/task-list-unfinished", locals: {tasks: review.tasks, review: review} 
+                    = render partial: "shared/task-list-unfinished", locals: {tasks: review.tasks.unfinished, review: review} 
               - else 
                 .card-body.task-index__tasks
                   .task-index__tasks__content
@@ -35,32 +35,3 @@
             = paginate(@reviews)
           - else
             = render "shared/no-entry"
-          -# %ul#pills-tab.nav.nav-pills.mb-3.task-nav{role: "tablist"}
-          -#   %li.nav-item
-          -#     = link_to "TODO", "#pills-unfinished", {id: "pills-unfinished-tab", class: "nav-link active", "aria-controls" => "pills-unfinished", "aria-selected" => "true", "data-toggle" => "pill", role: "tab"}
-          -#   %li.nav-item
-          -#     = link_to "DONE", "#pills-finished", {id: "pills-finished-tab", class: "nav-link", "aria-controls" => "pills-finished", "aria-selected" => "false", "data-toggle" => "pill", role: "tab"}
-          -# #pills-tabContent.tab-content
-          -#   #pills-unfinished.tab-pane.fade.show.active{"aria-labelledby" => "pills-unfinished-tab", :role => "tabpanel"} 
-          -#     - if @unfinished_task_reviews.present?
-          -#       - @unfinished_task_reviews.each do |review|
-          -#         .card-header.task-index__book-title
-          -#           = link_to review_path(review) do
-          -#             = simple_format(review.book.title) 
-          -#         .card-body.task-index__tasks
-          -#           - review.tasks.each do |task|
-          -#             = simple_format(task.content)
-          -#     - else 
-          -#       未完了のタスクはありません。
-          -#   = paginate(@unfinished_task_reviews)
-          -#   #pills-finished.tab-pane.fade{"aria-labelledby" => "pills-finished-tab", :role => "tabpanel"} 
-          -#     - if @finished_task_reviews.present?
-          -#       - @finished_task_reviews.each do |review|
-          -#         .card-header.task-index__book-title
-          -#           = link_to review_path(review) do
-          -#             = simple_format(review.book.title) 
-          -#         .card-body.task-index__tasks
-          -#           - review.tasks.each do |task|
-          -#             = simple_format(task.content)
-          -#     - else 
-          -#       完了済みのタスクはありません。

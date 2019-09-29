@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :set_review, only: [:new, :edit]
 
   def index
-    @reviews = Review.includes(:book, :tasks).where(user_id: current_user.id).order(created_at: "DESC").page(params[:page]).per(5)    
+    @reviews = Review.includes(:book).where(user_id: current_user.id).order(created_at: "DESC").page(params[:page]).per(5)
   end
 
   def new
@@ -48,11 +48,8 @@ class TasksController < ApplicationController
 
   def finish
     respond_to do |format|
-      if @task.update(finished: true)
-        format.js { @status = "success"}
-      else
-        format.js {@status = "fail"}
-      end
+      @task.update_finished_true
+      format.js { @status = "success"}
     end
   end
 
