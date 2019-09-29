@@ -3,7 +3,7 @@
     .row
       .main-content.col-sm-12.col-md-12.card
         .card-header
-          みんなの感想・レビュー
+          みんなの投稿一覧
         .card-body
           - @reviews.each do |review|
             = render partial: "review", locals: { review: review }
