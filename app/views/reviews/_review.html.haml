@@ -11,7 +11,10 @@
         = review.learned.present? ? review.learned : "レビューはありません"
       .user-info--others
         = review.created_at.strftime("%Y/%m/%d")
-        .rate{id: "star-rate-#{review.id}"}
+        - if review.rate.present?
+          .rate{id: "star-rate-#{review.id}"}
+        - else
+          .rate 未評価
   .review-info-box
     .row.col-sm-10.review-info-box__body
       .review-info-box__body--left.col-sm-3
