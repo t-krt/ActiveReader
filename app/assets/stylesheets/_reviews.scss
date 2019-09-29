@@ -29,34 +29,39 @@
   }
 }
 
-.user-info {
-  font-size: 0.9rem;
-  padding-left: 1rem;
-  &--others {
-    text-align: right;
-    padding-right: 1rem;
-  }
-}
-
-.review-info-box {
-  font-size: 0.9rem;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
-  padding-right: 1.5rem;
-  &__body {
-    background-color: #f8f8f8;
-  }
-  .right__author {
-    margin-bottom: 1rem;
-  }
-}
-
 .review-index {
   .badge {
     margin-top: 0;
     margin-right: 0.9rem;
     display: inline;
     font-size: 0.9rem;
+  }
+
+  .user-info {
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    &__right {
+      &__learned {
+        padding: 1rem 1rem 1rem 0;
+      }
+      &__others {
+      text-align: right;
+      padding-right: 1rem;
+      }
+    }
+  }
+
+  .review-info-box {
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    padding-right: 1.5rem;
+    &__body {
+      background-color: #f8f8f8;
+    }
+    .right__author {
+      margin-bottom: 1rem;
+    }
   }
 }
