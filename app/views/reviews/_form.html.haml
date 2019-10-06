@@ -34,18 +34,8 @@
     .form-group.row.review-body__content
       = review.label :読書メモ, class: "col-sm-2 col-form-label badge-info"
       = review.text_area :note, class: 'form-control textarea'
-    #star.form-group.row.review-body__content
+    #star.form-group.row.review-body__content{"data-rating-score": @review.rate}
       = review.label :評価, class: "col-sm-2 col-form-label badge-info star-label"
-      = review.hidden_field :rate, id: 'review_star', class: 'form-control col-sm-2', value: 1, max: 5, min: 1
+      = review.hidden_field :rate, id: 'rating-star', class: 'form-control col-sm-2', value: 1, max: 5, min: 1
   .form-group.review-submit
     = book.submit "登録する", class: 'btn btn-primary'
-
-:erb
-  <script>
-    $('#star').raty({
-      size: 36,
-      starOff: '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      scoreName: 'review[rate]'
-    });
-  </script>
