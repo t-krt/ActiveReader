@@ -8,6 +8,7 @@ class Review < ApplicationRecord
   scope :reading, -> { find_by(review_status: "reading") }
   scope :read, -> { where(review_status: "read") }
   scope :stock, -> { where(review_status: "stock") }
+  scope :desc, -> { order(updated_at: "DESC") }
 
   validates :purpose, presence: true
   validates :review_status, presence: true
