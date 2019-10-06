@@ -27,7 +27,6 @@
 /config/master.key
 /environments/db.env
 /environments/.env.docker
-/config/credentials.yml.enc
 public/uploads/*
 .DS_Store
 /config/initializers/rakuten.rb
