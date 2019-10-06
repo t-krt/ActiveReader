@@ -34,8 +34,8 @@ class ReviewsController < ApplicationController
 
   def show
     tasks = Task.where(review_id: @review.id)
-    @unfinished_tasks = tasks.order("created_at DESC").where(finished: 0).page(params[:page]).per(5)    
-    @finished_tasks = tasks.order("updated_at DESC").where(finished: 1).page(params[:page]).per(5)
+    @unfinished_tasks = tasks.unfinished.desc.page(params[:page]).per(5)    
+    @finished_tasks = tasks.finished.desc.page(params[:page]).per(5)
   end
 
   def update
