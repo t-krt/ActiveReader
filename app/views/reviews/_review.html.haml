@@ -20,7 +20,7 @@
           = review.user.nickname
           さん
         - if review.rate.present?
-          .user-info__right__others--rate.rate{id: "star-rate-#{review.id}"}
+          .user-info__right__others--rate.rate.read-only-rate{id: "star-rate-#{review.id}",  "data-rated-star": {"id": review.id, "score": review.rate}}
         - else
           .user-info__right__others--rate.rate 未評価
 
@@ -41,15 +41,3 @@
                                   image_url: review.book.image_url, url: review.book.url, isbn: review.book.isbn),
                                   class: "badge badge-info"
           = link_to "本の詳細を見る", "#{review.book.url}", class: "badge badge-info"
-
-:erb
-  <script>
-    $('#star-rate-<%= review.id %>').raty({
-      size: 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      readOnly: true,
-      score: <%= review.rate %>,
-    });
-  </script>

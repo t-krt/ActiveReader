@@ -17,16 +17,7 @@
         = link_to review_path(reviewed_book) do
           = reviewed_book.book.title.truncate(35)
     .card-text
-      .rate{id: "star-rate-#{reviewed_book.id}"}
-
-:erb
-  <script>
-    $('#star-rate-<%= reviewed_book.id %>').raty({
-      size: 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      readOnly: true,
-      score: <%= reviewed_book.rate %>,
-    });
-  </script>
+      - if reviewed_book.rate.present? 
+        .rate.read-only-rate{id: "star-rate-#{reviewed_book.id}", "data-rated-star": {"id": reviewed_book.id, "score": reviewed_book.rate}}
+      - else
+        .rate 未評価
