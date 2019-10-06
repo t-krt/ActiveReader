@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :set_review, only: [:new, :edit]
 
   def index
-    @reviews = Review.includes(:book).where(user_id: current_user.id).order(created_at: "DESC").page(params[:page]).per(5)
+    @reviews = Review.with_book.desc.where(user_id: current_user.id).page(params[:page]).per(5)
   end
 
   def new
