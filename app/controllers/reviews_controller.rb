@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :set_review_with_book, only: %i[edit update show destroy]
 
   def index
-    @reviews = Review.includes(:book, :user).page(params[:page]).per(5).order("created_at DESC")
+    @reviews = Review.read.with_book.with_user.desc.page(params[:page]).per(5)
   end
 
   def new
