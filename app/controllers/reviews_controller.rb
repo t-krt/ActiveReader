@@ -42,8 +42,8 @@ class ReviewsController < ApplicationController
     if @review.user_id == current_user.id
       if @book.update(book_params) && @review.update(review_params)
         if @review[:review_status] == "reading"
-          was_reading = Review.where.not(id: @review[:id]).find_by(user_id: current_user.id, review_status: "reading")
-          was_reading.update(review_status: "stock") if was_reading
+          now_reading = Review.reading.where.not(id: @review[:id]).find_by(user_id: current_user.id)
+          now_reading.change_state_stock if now_reading
         end
         redirect_to review_path(@review)
         flash[:notice] = '本の情報を更新しました'
