@@ -18,4 +18,9 @@ class Review < ApplicationRecord
   validates :book_id, presence: true
 
   enum review_status: %i[reading read stock]
+
+  def change_state_stock
+    self.review_status = "stock"
+    self.save
+  end
 end

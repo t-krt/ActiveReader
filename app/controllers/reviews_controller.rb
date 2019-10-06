@@ -16,12 +16,11 @@ class ReviewsController < ApplicationController
   def create
     @book = Book.where(isbn: book_params[:isbn]).first_or_create(book_params)
     @review = Review.create(review_params)
-    # TODO: scopeで書き直す？
     if @book.save && @review.save
       if @review[:review_status] == "reading"
-        last_review = Review.last
-        was_reading = Review.where.not(id: last_review[:id]).find_by(user_id: current_user.id, review_status: "reading")
-        was_reading.update(review_status: "stock") if was_reading
+        new_review = Review.last
+        now_reading = Review.reading.where.not(id: new_review[:id]).find_by(user_id: current_user.id)
+        now_reading.change_state_stock if now_reading
       end
       redirect_to review_path(@review)
       flash[:notice] = '本を登録しました'
