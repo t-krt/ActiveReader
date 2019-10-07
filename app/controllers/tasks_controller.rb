@@ -13,7 +13,6 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-
     respond_to do |format|
       if @task.save
         format.js { @status = "success"}
