@@ -8,7 +8,7 @@
 
 User.create!(
   nickname:              'ゲストユーザー',
-  email:                 'guest-user@guest.co'
-  password:              "guest123",
+  email:                 'guest-user@guest.com'
+  password:              "guest123"
   password_confirmation: "guest123"
 )
