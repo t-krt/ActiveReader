@@ -1,8 +1,8 @@
 .col-sm-6.col-md-4.book-lists__cards
   .card.img-thumbnail
     .card-image-top
-    - if reviewed_book.book.image_url.present?
-      = image_tag reviewed_book.book.image_url
+    - if review.book.image_url.present?
+      = image_tag review.book.image_url
     - else
       = image_tag asset_path("no_image.jpg")
   .card-body.px-2.py-3
@@ -10,14 +10,14 @@
       .dropdown.float-right
         %button{type:"button", class:"btn dropdown-toggle", id:"dropdownMenuButton", "data-toggle":"dropdown", "aria-haspopup":"true", "aria-expanded":"false"}
         .dropdown-menu{"aria-labelledby":"dropdownMenuButton"}
-          = link_to "詳細", review_path(reviewed_book), class: "dropdown-item" 
-          = link_to "編集", edit_review_path(reviewed_book), class: "dropdown-item" 
-          = link_to "削除", "/reviews/#{reviewed_book.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
+          = link_to "詳細", review_path(review), class: "dropdown-item" 
+          = link_to "編集", edit_review_path(review), class: "dropdown-item" 
+          = link_to "削除", "/reviews/#{review.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
       .card-title
-        = link_to review_path(reviewed_book) do
-          = reviewed_book.book.title.truncate(35)
+        = link_to review_path(review) do
+          = review.book.title.truncate(35)
     .card-text
-      - if reviewed_book.rate.present? 
-        .rate.read-only-rate{id: "star-rate-#{reviewed_book.id}", "data-rated-star": {"id": reviewed_book.id, "score": reviewed_book.rate}}
+      - if review.rate.present? 
+        .rate.read-only-rate{id: "star-rate-#{review.id}", "data-rated-star": {"id": review.id, "score": review.rate}}
       - else
         .rate 未評価
