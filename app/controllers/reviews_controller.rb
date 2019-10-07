@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :set_review_with_book, only: %i[edit update show destroy]
 
   def index
-    @reviews = Review.includes(:book, :user).page(params[:page]).per(5).order("created_at DESC")
+    @reviews = Review.read.with_book.with_user.desc.page(params[:page]).per(5)
   end
 
   def new
@@ -16,12 +16,11 @@ class ReviewsController < ApplicationController
   def create
     @book = Book.where(isbn: book_params[:isbn]).first_or_create(book_params)
     @review = Review.create(review_params)
-    # TODO: scopeで書き直す？
     if @book.save && @review.save
       if @review[:review_status] == "reading"
-        last_review = Review.last
-        was_reading = Review.where.not(id: last_review[:id]).find_by(user_id: current_user.id, review_status: "reading")
-        was_reading.update(review_status: "stock") if was_reading
+        new_review = Review.last
+        now_reading = Review.reading.where.not(id: new_review[:id]).find_by(user_id: current_user.id)
+        now_reading.change_state_stock if now_reading
       end
       redirect_to review_path(@review)
       flash[:notice] = '本を登録しました'
@@ -35,16 +34,16 @@ class ReviewsController < ApplicationController
 
   def show
     tasks = Task.where(review_id: @review.id)
-    @unfinished_tasks = tasks.order("created_at DESC").where(finished: 0).page(params[:page]).per(5)    
-    @finished_tasks = tasks.order("updated_at DESC").where(finished: 1).page(params[:page]).per(5)
+    @unfinished_tasks = tasks.unfinished.desc.page(params[:page]).per(5)    
+    @finished_tasks = tasks.finished.desc.page(params[:page]).per(5)
   end
 
   def update
     if @review.user_id == current_user.id
       if @book.update(book_params) && @review.update(review_params)
         if @review[:review_status] == "reading"
-          was_reading = Review.where.not(id: @review[:id]).find_by(user_id: current_user.id, review_status: "reading")
-          was_reading.update(review_status: "stock") if was_reading
+          now_reading = Review.reading.where.not(id: @review[:id]).find_by(user_id: current_user.id)
+          now_reading.change_state_stock if now_reading
         end
         redirect_to review_path(@review)
         flash[:notice] = '本の情報を更新しました'

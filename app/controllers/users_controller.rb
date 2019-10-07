@@ -6,14 +6,14 @@ class UsersController < ApplicationController
   # end
 
   def reading
-    @reading_book = Review.includes(:book).find_by(user_id: current_user.id, review_status: "reading")
+    @reading = Review.reading.with_book.find_by(user_id: current_user.id)
   end
 
   def read
-    @read_books = Review.includes(:book).where(user_id: current_user.id, review_status: "read").page(params[:page]).per(6).order("created_at DESC")
+    @reads = Review.read.with_book.desc.where(user_id: current_user.id).page(params[:page]).per(6)
   end
 
   def stock
-    @stock_books = Review.includes(:book).where(user_id: current_user.id, review_status: "stock").page(params[:page]).per(6).order("created_at DESC")
+    @stocks = Review.stock.with_book.desc.where(user_id: current_user.id).page(params[:page]).per(6)
   end
 end

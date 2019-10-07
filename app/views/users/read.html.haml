@@ -12,13 +12,13 @@
             = link_to "読書中", reading_user_path, class: "btn btn-primary w-100 btn-status"
             = link_to "読了", read_user_path, class: "btn btn-success w-100 btn-status btn-status__active"
             = link_to "あとで読む", stock_user_path, class: "btn btn-danger w-100 btn-status"
-          - if @read_books.present?
+          - if @reads.present?
             .container
               .row
                 .card-group.book-lists
-                  - @read_books.each do |read_book|
-                    = render partial: "book-lists", locals: { reviewed_book: read_book }
-            = paginate(@read_books)
+                  - @reads.each do |read|
+                    = render partial: "book-lists", locals: { review: read }
+            = paginate(@reads)
           - else
             = render "shared/no-entry" 
 

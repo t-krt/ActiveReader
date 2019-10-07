@@ -4,5 +4,44 @@
       = render "shared/sidebar"
       .main-content.col-sm-9.col-md-9
         .card
-          = render 'reading', { reading_book: @reading_book }
-          
+          .card-header.bg-light
+            = current_user.nickname + "さんの本棚"
+          .btn-group.d-flex{"aria-label":"読書状況"}
+            = link_to "読書中", reading_user_path, class: "btn btn-primary w-100 btn-status btn-status__active"
+            = link_to "読了", read_user_path, class: "btn btn-success w-100 btn-status"
+            = link_to "あとで読む", stock_user_path, class: "btn btn-danger w-100 btn-status"
+          - if @reading.present?
+            .container
+              .row
+                .book-list__reading--top
+                  .col-sm-6.float-left.image-wrapper.book-list__reading--top--image
+                    - if @reading.book.image_url.present?
+                      = image_tag @reading.book.image_url
+                    - else
+                      = image_tag asset_path("no_image.jpg")
+                  .card.col-sm-6.float-right
+                    .book-list__reading--title
+                      .badge.badge-secondary
+                        タイトル
+                      .title
+                        = link_to review_path(@reading.id) do
+                          = @reading.book.title
+                    .book-list__reading--limit
+                      .badge.badge-secondary
+                        期限
+                      .limit
+                        = @reading.deadline.present? ? @reading.deadline.strftime('%Y/%m/%d') : "未設定"
+                .book-list__reading--bottom
+                  .card
+                    .card-header
+                      読書の目的
+                      .dropdown.float-right
+                        %button{type:"button", class:"btn dropdown-toggle", id:"dropdownMenuButton", "data-toggle":"dropdown", "aria-haspopup":"true", "aria-expanded":"false"}
+                        .dropdown-menu{"aria-labelledby":"dropdownMenuButton"}
+                          = link_to "詳細", review_path(@reading), class: "dropdown-item" 
+                          = link_to "編集", edit_review_path(@reading), class: "dropdown-item" 
+                          = link_to "削除", "/reviews/#{@reading.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
+                    .card-body
+                      = @reading.purpose
+          - else
+            = render "shared/no-entry"

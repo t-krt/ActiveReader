@@ -6,5 +6,5 @@
   .review-header
     書籍情報
   .review-body__book
-    = form_with model: @book, url: "/reviews/#{@review.id}", local: true do |book|  
+    = form_with model: @book, url: review_path(@review), local: true do |book|  
       = render partial: 'form', locals: { book: book }  
