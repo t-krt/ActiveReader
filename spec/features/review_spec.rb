@@ -21,5 +21,18 @@ RSpec.feature "Reviews", type: :feature do
     expect(current_path).to eq search_books_path
     fill_in 'title', with: "Ruby on Rails"
     find('input[name="commit"]').click
+
+    # レビューの投稿
+    expect {
+      first('.link-to-review').click
+      expect(current_path).to eq new_review_path
+      find("option[value='reading']").select_option
+      fill_in 'review_deadline', with: 20200101
+      fill_in 'review_purpose', with: "レビューのテスト"
+      fill_in 'review_learned', with: "レビューのテスト"
+      fill_in 'review_note', with: "レビューのテスト"
+      find('#rating-star', visible: false).set(5)
+      find('input[type="submit"]').click
+    }.to change(Review, :count).by(1)
   end
 end
