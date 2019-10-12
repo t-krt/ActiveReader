@@ -1,0 +1,10 @@
+ja: 
+  activerecord:
+    attributes:
+      review:
+        status: 読書状況
+        deadline: 目標期日
+        purpose: 読書の目的
+        learned: 学んだこと
+        note: メモ
+        rate: 評価
