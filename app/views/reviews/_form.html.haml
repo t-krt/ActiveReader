@@ -20,22 +20,22 @@
 .review-body__memo
   = fields_for(@review) do |review|
     .form-group.row.review-body__content
-      = review.label :読書状況, class: "col-sm-2 col-form-label badge-info"
+      = review.label :status, class: "col-sm-2 col-form-label badge-info"
       = review.select :review_status, Review.review_statuses_i18n.invert, {}, class: 'form-control col-sm-3', placeholder: 0
     .form-group.row.review-body__content
-      = review.label :目標期日, class: "col-sm-2 col-form-label badge-info"
+      = review.label :deadline, class: "col-sm-2 col-form-label badge-info"
       = review.date_field :deadline, class: 'form-control col-sm-3'
     .form-group.row.review-body__content
-      = review.label :読書の目的, class:"col-sm-2 col-form-label badge-info"
+      = review.label :purpose, class:"col-sm-2 col-form-label badge-info"
       = review.text_area :purpose, class: 'form-control textarea', placeholder: "必須項目"
     .form-group.row.review-body__content
-      = review.label :学んだこと, class: "col-sm-2 col-form-label badge-info"
+      = review.label :learned, class: "col-sm-2 col-form-label badge-info"
       = review.text_area :learned, class: 'form-control textarea'
     .form-group.row.review-body__content
-      = review.label :読書メモ, class: "col-sm-2 col-form-label badge-info"
+      = review.label :note, class: "col-sm-2 col-form-label badge-info"
       = review.text_area :note, class: 'form-control textarea'
     #star.form-group.row.review-body__content{"data-rating-score": @review.rate}
-      = review.label :評価, class: "col-sm-2 col-form-label badge-info star-label"
+      = review.label :rate, class: "col-sm-2 col-form-label badge-info star-label"
       = review.hidden_field :rate, id: 'rating-star', class: 'form-control col-sm-2', value: 1, max: 5, min: 1
   .form-group.review-submit
     = book.submit "登録する", class: 'btn btn-primary'
