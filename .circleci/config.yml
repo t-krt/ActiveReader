@@ -13,10 +13,10 @@ jobs:
           command: docker-compose -f docker-compose_test.yml up -d
       - run:
           name: "before_test: setup db"
-          command: docker-compose app rails db:create db:migrate
+          command: docker-compose run app rails db:create db:migrate
       - run:
           name: test
-          command: docker-compose app bundle exec rspec
+          command: docker-compose run app bundle exec rspec
       - run:
           name: docker-compose down
           command: docker-compose down
