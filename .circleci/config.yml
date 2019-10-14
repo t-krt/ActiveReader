@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: docker-compose build
-          command: docker-compose build -f ./dockerfiles/docker-compose.test.yml
+          command: docker-compose build -f docker-compose_test.yml
       - run:
           name: docker-compose up
           command: docker-compose up -d
