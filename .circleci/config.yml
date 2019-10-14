@@ -10,7 +10,7 @@ jobs:
           command: docker-compose -f docker-compose_test.yml build
       - run:
           name: docker-compose up
-          command: docker-compose up -d
+          command: docker-compose -f docker-compose_test.yml up -d
       - run:
           name: "before_test: setup db"
           command: docker-compose app rails db:create db:migrate
