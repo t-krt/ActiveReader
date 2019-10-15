@@ -16,7 +16,6 @@ default: &default
   username: <%= ENV['MYSQL_USER'] %>
   password: <%= ENV['MYSQL_PASSWORD'] %>
   
-
 development:
   <<: *default
   database: app_development
@@ -28,7 +27,9 @@ development:
 test:
   <<: *default
   database: app_test
-  host: <%= ENV['MYSQL_HOST'] %>
+  username: <%= ENV['MYSQL_USER'] || 'user1' %>
+  password: <%= ENV['MYSQL_PASSWORD'] || 'db_my_userpw1' %>
+  host: <%= ENV['MYSQL_HOST'] || ENV['MYSQL_ROOT_HOST'] || '127.0.0.1' %>%>
   port: 3306
 
 # As with config/secrets.yml, you never want to store sensitive information,
