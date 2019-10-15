@@ -4,9 +4,8 @@ services:
     build: .
     environment:
       RAILS_ENV: test
-      MYSQL_USER: 'root'
-      MYSQL_PASSWORD: ''
       MYSQL_HOST: 127.0.0.1
+      DATABASE_URL: mysql2://user1:db_my_userpw1@mysql:3306 
     ports:
       - 3000:3000
     depends_on:
