@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Setup dockerize
+          command: bash .circleci/setup-dockerize.sh
+      - run:
           name: docker-compose build
           command: docker-compose -f docker-compose_test.yml build
       - run:
