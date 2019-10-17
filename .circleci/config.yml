@@ -10,8 +10,10 @@ jobs:
           DB_PASSWORD: ''
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_USER: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_USER: 'root'
+          MYSQL_DATABASE: 'test-db'
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_ROOT_PASSWORD: ''
     working_directory: ~/repo
     steps:
       - checkout
@@ -27,11 +29,19 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.1
+      - run:
+        name: Wait for DB
+        command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - run:
           name: run tests
-          command: bundle exec rspec|
+          command: bundle exec rspec
       - run:
           name: code check
           command: bundle exec rubocop --require rubocop-rails
