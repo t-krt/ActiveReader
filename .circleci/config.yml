@@ -1,28 +1,40 @@
 version: 2
 jobs:
   build:
-    machine:
-      image: circleci/classic:edge
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          DB_USERNAME: 'root'
+          DB_PASSWORD: ''
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_USER: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    working_directory: ~/repo
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
       - run:
-          name: Setup dockerize
-          command: bash .circleci/setup-dockerize.sh
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
       - run:
-          name: docker-compose build
-          command: docker-compose -f docker-compose_test.yml build
+          name: run tests
+          command: bundle exec rspec|
       - run:
-          name: docker-compose up
-          command: docker-compose -f docker-compose_test.yml up -d
-      - run:
-          name: "before_test: setup db"
-          command: docker-compose -f docker-compose_test.yml run app rails db:create db:migrate RAILS_ENV=test
-      - run:
-          name: test
-          command: docker-compose -f docker-compose_test.yml run app bundle exec rspec
-      - run:
-          name: docker-compose down
-          command: docker-compose -f docker-compose_test.yml down
+          name: code check
+          command: bundle exec rubocop --require rubocop-rails
   deploy:
     machine:
       image: circleci/classic:edge
