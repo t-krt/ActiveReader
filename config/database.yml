@@ -13,13 +13,13 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['MYSQL_USER'] %>
-  password: <%= ENV['MYSQL_PASSWORD'] %>
+  username: app
+  password: app_pass
+  host: db
   
 development:
   <<: *default
   database: app_development
-  host: db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,10 +27,6 @@ development:
 test:
   <<: *default
   database: app_test
-  username: <%= ENV['MYSQL_USER'] || 'user1' %>
-  password: <%= ENV['MYSQL_PASSWORD'] || 'db_my_userpw1' %>
-  host: <%= ENV['MYSQL_HOST'] || ENV['MYSQL_ROOT_HOST'] || '127.0.0.1' %>%>
-  port: 3306
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
