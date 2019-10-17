@@ -35,8 +35,8 @@ jobs:
           environment:
             DOCKERIZE_VERSION: v0.6.1
       - run:
-        name: Wait for DB
-        command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - run:
