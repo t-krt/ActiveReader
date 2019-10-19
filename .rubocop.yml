@@ -1,12 +1,15 @@
+# 現時点では対応できない規約を暫定的に無効に設定
 inherit_from: .rubocop_todo.yml
 
+# 設定
 require:
   - rubocop-rails
 
 AllCops:
+  # Rubyのバージョンしてい
+  TargetRubyVersion: 2.5.1
   # 自動生成されたファイルを規約の調査から除外
   # デフォルト設定にある"vendor/**/*"が無効化されないように記述
-  TargetRubyVersion: 2.5.1
   Exclude:
     - bin/*
     - db/schema.rb
@@ -18,7 +21,7 @@ AllCops:
 AsciiComments:
   Enabled: false
 
-  # "Missing top-level class documentation comment."を無効
+# "Missing top-level class documentation comment."を無効
 Style/Documentation:
   Enabled: false
 
