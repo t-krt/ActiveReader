@@ -21,6 +21,6 @@ class Review < ApplicationRecord
 
   def change_state_stock
     self.review_status = "stock"
-    self.save
+    save
   end
 end

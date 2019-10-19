@@ -7,7 +7,7 @@ class Task < ApplicationRecord
   scope :desc, -> { order(updated_at: "DESC") }
 
   def update_finished_true
-    self.finished = true if self.finished == false
-    self.save
+    self.finished = true if finished == false
+    save
   end
 end
