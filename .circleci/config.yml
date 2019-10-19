@@ -42,9 +42,9 @@ jobs:
       - run:
           name: run tests
           command: bundle exec rspec
-      - run:
-          name: code check
-          command: bundle exec rubocop --require rubocop-rails
+      # - run:
+      #     name: code check
+      #     command: bundle exec rubocop --require rubocop-rails
   deploy:
     machine:
       image: circleci/classic:edge
