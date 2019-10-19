@@ -5,8 +5,6 @@ services:
     container_name: my_rails_app
     command: 
       /bin/bash -c 'rm -rf tmp/pids/server.pid; bundle exec rails s -b 0.0.0.0'
-    env_file:
-      - ./environments/db.env
     environment:
       TZ: "Asia/Tokyo"
     ports:
@@ -21,15 +19,28 @@ services:
     tty: true
     stdin_open: true
   db:
-    image: mysql:5.6.40
-    container_name: db_mysql
-    env_file:
-      - ./environments/db.env
+    image: mysql:5.7
+    container_name: db_mysql_development
+    environment:
+      MYSQL_USER: 'app'
+      MYSQL_PASSWORD: 'app_pass'
+      MYSQL_DATABASE: 'app_development'
+      MYSQL_ROOT_PASSWORD: 'pass'
     restart: always
     ports:
       - 4306:3306
     volumes:
       - db-data:/var/lib/mysql
+  test-db:
+    image: mysql:5.7
+    container_name: db_mysql_test
+    environment:
+      MYSQL_USER: 'app'
+      MYSQL_PASSWORD: 'app_pass'
+      MYSQL_DATABASE: 'app_test'
+      MYSQL_ROOT_PASSWORD: 'pass'
+    ports:
+      - 4307:3306
   web:
     build: 
       context: containers/nginx

@@ -1,0 +1,19 @@
+version: '3'
+services:
+  app:
+    build: .
+    environment:
+      RAILS_ENV: test
+      MYSQL_HOST: 127.0.0.1
+      DATABASE_URL: mysql2://user1:db_my_userpw1@127.0.0.1:3306 
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    restart: unless-stopped # to wait mysql up :(
+  db:
+    image: circleci/mysql:5.7
+    environment:
+      MYSQL_DATABASE: app_test
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_HOST: '%'

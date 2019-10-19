@@ -1,28 +1,50 @@
 version: 2
 jobs:
   build:
-    machine:
-      image: circleci/classic:edge
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          DB_USERNAME: 'root'
+          DB_PASSWORD: ''
+      - image: circleci/mysql:5.7
+        command: |
+          mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+        environment:
+          MYSQL_USER: 'root'
+          MYSQL_DATABASE: 'test-db'
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_ROOT_PASSWORD: ''
+    working_directory: ~/repo
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
       - run:
-          name: docker-compose build
-          command: docker-compose build
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
-          name: docker-compose up
-          command: docker-compose up -d
+          name: install dockerize
+          command: bash .circleci/setup-dockerize.sh
       - run:
-          name: sleep for waiting launch db
-          command: sleep 1
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
       - run:
-          name: "before_test: setup db"
-          command: docker-compose run web rails db:create db:migrate
-      - run:
-          name: test
-          command: docker-compose run bundle exec rspec
-      - run:
-          name: docker-compose down
-          command: docker-compose down
+          name: run tests
+          command: bundle exec rspec
+      # - run:
+      #     name: code check
+      #     command: bundle exec rubocop --require rubocop-rails
   deploy:
     machine:
       image: circleci/classic:edge

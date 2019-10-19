@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_06_24_041203) do
 
-  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title", null: false
     t.string "author", null: false
     t.string "image_url"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_06_24_041203) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "purpose", null: false
     t.text "learned"
     t.text "note"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_06_24_041203) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "content", null: false
     t.boolean "finished", default: false, null: false
     t.date "limit"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_06_24_041203) do
     t.index ["review_id"], name: "index_tasks_on_review_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", null: false
