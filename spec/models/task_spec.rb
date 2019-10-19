@@ -12,5 +12,4 @@ RSpec.describe Task, type: :model do
     task.valid?
     expect(task.errors[:content]).to include("を入力してください")
   end
-
 end

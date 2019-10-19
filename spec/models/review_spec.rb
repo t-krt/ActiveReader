@@ -5,7 +5,7 @@ RSpec.describe Review, type: :model do
   it "is valid with a purpose, review_status, book_id and user_id" do
     expect(FactoryBot.build(:review)).to be_valid
   end
-  
+
   # 目的がなければ無効な状態であること
   it "is invalid without a purpose" do
     review = FactoryBot.build(:review, purpose: nil)
