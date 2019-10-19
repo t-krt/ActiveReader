@@ -8,8 +8,11 @@ class ReviewsController < ApplicationController
 
   def new
     @book = Book.new
-    @book.title, @book.author, @book.image_url, @book.url, @book.isbn = \
-      params[:title], params[:author], params[:image_url], params[:url], params[:isbn]
+    @book.title = params[:title]
+    @book.author = params[:author]
+    @book.image_url = params[:image_url]
+    @book.url = params[:url]
+    @book.isbn = params[:isbn]
     @review = Review.new
   end
 
@@ -20,7 +23,7 @@ class ReviewsController < ApplicationController
       if @review[:review_status] == "reading"
         new_review = Review.last
         now_reading = Review.reading.where.not(id: new_review[:id]).find_by(user_id: current_user.id)
-        now_reading.change_state_stock if now_reading
+        now_reading&.change_state_stock
       end
       redirect_to review_path(@review)
       flash[:notice] = '本を登録しました'
@@ -34,7 +37,7 @@ class ReviewsController < ApplicationController
 
   def show
     tasks = Task.where(review_id: @review.id)
-    @unfinished_tasks = tasks.unfinished.desc.page(params[:page]).per(5)    
+    @unfinished_tasks = tasks.unfinished.desc.page(params[:page]).per(5)
     @finished_tasks = tasks.finished.desc.page(params[:page]).per(5)
   end
 
@@ -43,7 +46,7 @@ class ReviewsController < ApplicationController
       if @book.update(book_params) && @review.update(review_params)
         if @review[:review_status] == "reading"
           now_reading = Review.reading.where.not(id: @review[:id]).find_by(user_id: current_user.id)
-          now_reading.change_state_stock if now_reading
+          now_reading&.change_state_stock
         end
         redirect_to review_path(@review)
         flash[:notice] = '本の情報を更新しました'
