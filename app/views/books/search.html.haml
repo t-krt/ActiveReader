@@ -7,8 +7,14 @@
         = link_to "自分の本棚を見る", reading_user_path(current_user)
     .search-box__input
       = form_with url: '/books/search', method: :get, local: true do |f|
-        = f.text_field :title, class: 'form_control col-sm-10', placeholder: "本のタイトルを入力してください"
-        = f.text_field :author, class: 'form_control col-sm-10', placeholder: "著者の名前を入力してください"
+        - if @title.present?
+          = f.text_field :title, class: 'form_control col-sm-10', value: @title
+        - else
+          = f.text_field :title, class: 'form_control col-sm-10', placeholder: "本のタイトルを入力してください"
+        - if @author.present?
+          = f.text_field :title, class: 'form_control col-sm-10', value: @author
+        - else
+          = f.text_field :author, class: 'form_control col-sm-10', placeholder: "著者の名前を入力してください"
         = f.submit '検索', class: "col-sm-1 submit-btn"
   .search-box__result
     = render partial: 'result_list'
