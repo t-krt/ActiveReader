@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_review_with_book, only: %i[edit update show destroy]
+  before_action :reviewer_equal_current_user?, only: %i[edit update destroy]
 
   def index
     @reviews = Review.read.with_book.with_user.desc.page(params[:page]).per(5)
@@ -42,23 +43,21 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    if @review.user_id == current_user.id
-      if @book.update(book_params) && @review.update(review_params)
-        if @review[:review_status] == "reading"
-          now_reading = Review.reading.where.not(id: @review[:id]).find_by(user_id: current_user.id)
-          now_reading&.change_state_stock
-        end
-        redirect_to review_path(@review)
-        flash[:notice] = '本の情報を更新しました'
-      else
-        flash[:notice] = '正しく入力してください'
-        render :new
+    if @book.update(book_params) && @review.update(review_params)
+      if @review[:review_status] == "reading"
+        now_reading = Review.reading.where.not(id: @review[:id]).find_by(user_id: current_user.id)
+        now_reading&.change_state_stock
       end
+      redirect_to review_path(@review)
+      flash[:notice] = '本の情報を更新しました'
+    else
+      flash[:notice] = '正しく入力してください'
+      render :new
     end
   end
 
   def destroy
-    @review.destroy if @review.user.id == current_user.id
+    @review.destroy
     redirect_to reading_user_path(current_user), notice: "削除しました"
   end
 
@@ -76,5 +75,9 @@ class ReviewsController < ApplicationController
   def set_review_with_book
     @review = Review.find(params[:id])
     @book = Book.find(@review.book_id)
+  end
+
+  def reviewer_equal_current_user?
+    redirect_to reading_user_path(current_user) unless @review.user_id == current_user.id
   end
 end

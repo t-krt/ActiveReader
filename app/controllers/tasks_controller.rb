@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: %i[edit update destroy finish]
   before_action :set_review, only: %i[new edit]
+  before_action :owenr_equal_current_user?, only: %i[edit update destroy]
 
   def index
     @reviews = Review.with_book.desc.where(user_id: current_user.id).page(params[:page]).per(5)
@@ -63,5 +64,9 @@ class TasksController < ApplicationController
 
   def set_review
     @review = Review.find(params[:review_id])
+  end
+
+  def owenr_equal_current_user?
+    redirect_to reading_user_path(current_user) unless @task.review.user_id == current_user.id
   end
 end
