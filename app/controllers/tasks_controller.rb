@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:edit, :update, :destroy, :finish]
-  before_action :set_review, only: [:new, :edit]
+  before_action :set_task, only: %i[edit update destroy finish]
+  before_action :set_review, only: %i[new edit]
 
   def index
     @reviews = Review.with_book.desc.where(user_id: current_user.id).page(params[:page]).per(5)
@@ -15,22 +15,21 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     respond_to do |format|
       if @task.save
-        format.js { @status = "success"}
+        format.js { @status = "success" }
       else
-        format.js {@status = "fail"}
+        format.js { @status = "fail" }
       end
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.js { @status = "success"}
+        format.js { @status = "success" }
       else
-        format.js {@status = "fail"}
+        format.js { @status = "fail" }
       end
     end
   end
@@ -38,9 +37,9 @@ class TasksController < ApplicationController
   def destroy
     respond_to do |format|
       if @task.destroy
-        format.js { @status = "success"}
+        format.js { @status = "success" }
       else
-        format.js {@status = "fail"}
+        format.js { @status = "fail" }
       end
     end
   end
@@ -48,12 +47,12 @@ class TasksController < ApplicationController
   def finish
     respond_to do |format|
       @task.update_finished_true
-      format.js { @status = "success"}
+      format.js { @status = "success" }
     end
   end
 
-
   private
+
   def task_params
     params.require(:task).permit(:content, :limit, :review_id)
   end

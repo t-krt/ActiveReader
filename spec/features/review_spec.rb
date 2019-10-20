@@ -23,7 +23,7 @@ RSpec.feature "Reviews", type: :feature do
     find('input[name="commit"]').click
 
     # レビューの投稿
-    expect {
+    expect do
       first('.link-to-review').click
       expect(current_path).to eq new_review_path
       find("option[value='reading']").select_option
@@ -33,6 +33,6 @@ RSpec.feature "Reviews", type: :feature do
       fill_in 'review_note', with: "レビューのテスト"
       find('#rating-star', visible: false).set(5)
       find('input[type="submit"]').click
-    }.to change(Review, :count).by(1)
+    end.to change(Review, :count).by(1)
   end
 end
