@@ -1,5 +1,10 @@
 .container
   .search-box.row
+    .search-box__nav
+      .search-box__nav__title
+        本を登録する
+      .search-box__nav__link
+        = link_to "自分の本棚を見る", reading_user_path(current_user)
     .search-box__input
       = form_with url: '/books/search', method: :get, local: true do |f|
         = f.text_field :title, class: 'form_control col-sm-10', placeholder: "本のタイトルを入力してください"
