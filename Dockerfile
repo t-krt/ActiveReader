@@ -1,3 +1,4 @@
+# dockerfile for production
 FROM ruby:2.5.1
 
 ENV LANG C.UTF-8
@@ -19,8 +20,13 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 
 RUN mkdir -p tmp/sockets
 
-RUN bundle install
+RUN bundle install --without development test
 COPY . /myapp
+
+ENV RAILS_ENV production
+
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
@@ -28,4 +34,4 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 3000
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
