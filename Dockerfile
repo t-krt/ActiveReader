@@ -24,7 +24,6 @@ RUN bundle install --without development test
 COPY . /myapp
 
 ENV RAILS_ENV production
-
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
 
@@ -34,4 +33,4 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 3000
-CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
