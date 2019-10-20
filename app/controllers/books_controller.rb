@@ -5,23 +5,23 @@ class BooksController < ApplicationController
     @books = []
     @details = []
 
-    title = params[:title]
-    author = params[:author]
+    @title = params[:title]
+    @author = params[:author]
 
-    if title.present? && author.present?
+    if @title.present? && @author.present?
       results = RakutenWebService::Books::Book.search(
-        title: title,
-        author: author,
+        title: @title,
+        author: @author,
         hits: 20
       )
-    elsif title.present?
+    elsif @title.present?
       results = RakutenWebService::Books::Book.search(
-        title: title,
+        title: @title,
         hits: 20
       )
-    elsif author.present?
+    elsif @author.present?
       results = RakutenWebService::Books::Book.search(
-        author: author,
+        author: @author,
         hits: 20
       )
     end
