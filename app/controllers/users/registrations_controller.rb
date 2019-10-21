@@ -25,9 +25,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    # ポートフォリオ閲覧用ユーザーが削除されないよう対応
+    if current_user.id == 1
+      redirect_to reading_user_path(current_user)
+      flash[:notice] = 'ポートフォリオ閲覧用ユーザーは削除できません'
+    else
+      super
+    end
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
