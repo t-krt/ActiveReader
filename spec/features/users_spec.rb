@@ -35,4 +35,15 @@ RSpec.feature "Users", type: :feature do
     click_on "更新"
     expect(page).to have_content "アカウント情報を変更しました。"
   end
+
+  # 後日修正
+  # scenario "user can delete account" do
+  #   sign_in_as(sample_user)
+  #   click_on('ユーザー情報編集')
+  #   click_on "アカウント削除"
+  #   expect {
+  #     page.accept_confirm "アカウントを削除します。本当に良いですか？"
+  #     expect(page).to have_content "アカウントを削除しました。またのご利用をお待ちしております。"
+  #   }.to change(User, :count).by(-1)
+  # end
 end
