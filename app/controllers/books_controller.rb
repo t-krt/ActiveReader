@@ -6,7 +6,7 @@ class BooksController < ApplicationController
     @reviews = @book.reviews.read.includes(:user).desc.page(params[:page]).per(5)
     @average_rate = @reviews.where.not(rate: 0).average(:rate).round(2)
   end
-  
+
   def search
     @books = []
     @details = []
