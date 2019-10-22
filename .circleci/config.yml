@@ -40,6 +40,9 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - run:
+          name: run seeds.rb
+          command: bundle exec rake db:seed RAILS_ENV=test
+      - run:
           name: run tests
           command: bundle exec rspec
       - run:
