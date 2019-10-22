@@ -1,0 +1,17 @@
+.review-info-box
+  .row.col-sm-10.review-info-box__body
+    .review-info-box__body--left.col-sm-3
+      - if review.book.image_url.present?
+        = image_tag review.book.image_url, size: "100x150", alt: "書影"
+      - else
+        = image_tag asset_path("no_image.jpg")
+    .review-info-box__body--right.col-sm-9
+      .right__title
+        = review.book.title
+      .right__author
+        = review.book.author
+      .right__badges
+        = link_to "本を登録する", new_review_path(title: review.book.title, author: review.book.author,
+                                image_url: review.book.image_url, url: review.book.url, isbn: review.book.isbn),
+                                class: "badge badge-info"
+        = link_to "この本に関する投稿を見る", book_path(review.book), class: "badge badge-info"

@@ -6,5 +6,7 @@
           みんなの投稿一覧
         .card-body
           - @reviews.each do |review|
-            = render partial: "review", locals: { review: review }
+            .wrapper-book-info.review-index
+              = render partial: "shared/review", locals: { review: review }
+              = render partial: "shared/book-info", locals: { review: review }
         = paginate(@reviews)

@@ -1,0 +1,34 @@
+.whole-page
+  .container
+    .row
+      .main-content.col-sm-12.col-md-12.card
+        .card-header
+          = "「#{@book.title}」の投稿一覧"
+        .card-body.bg-light.col-sm-11.col-md-11.mx-auto.mt-3
+          .review-info-box
+            .row.col-sm-10.review-info-box__body
+              .review-info-box__body--left.col-sm-3
+                - if @book.image_url.present?
+                  = image_tag @book.image_url, size: "100x150", alt: "書影"
+                - else
+                  = image_tag asset_path("no_image.jpg")
+              .review-info-box__body--right.col-sm-9
+                .right__length.lead.font-weight-bold
+                  = "#{@reviews.length}件の投稿があります！"
+                .right__author.mt-2
+                  = "著者： #{@book.author}"
+                - if @average_rate.present?
+                  %span.rate.average-rate{"data-average": {"score": @average_rate}}
+                  %span.pl-2= @average_rate
+                - else
+                  .rate 評価はありません
+                .right__badges.review-index.mt-2
+                  = link_to "本を登録する", new_review_path(title: @book.title, author: @book.author,
+                                          image_url: @book.image_url, url: @book.url, isbn: @book.isbn),
+                                          class: "badge badge-info"
+                  = link_to "楽天ブックスで本の詳細を見る", "#{@book.url}", class: "badge badge-info"
+        .card-body
+          - @reviews.each do |review|
+            .wrapper-book-info.review-index
+              = render partial: "shared/review", locals: { review: review }
+        = paginate(@reviews)
