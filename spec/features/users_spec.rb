@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.feature "Users", type: :feature do
   given(:user) { FactoryBot.build(:user) }
   let(:sample_user) { FactoryBot.create(:sample_user) }
+  given(:image_path) { Rails.root.join("spec", "fixtures", "sample-avatar.png") }
 
   scenario "user creates a new account" do
     visit root_path
@@ -46,4 +47,13 @@ RSpec.feature "Users", type: :feature do
   #     expect(page).to have_content "アカウントを削除しました。またのご利用をお待ちしております。"
   #   }.to change(User, :count).by(-1)
   # end
+
+  scenario "user can set avatar" do
+    sign_in_as(sample_user)
+    click_on('ユーザー情報編集')
+    attach_file "user[avatar]", image_path
+    fill_in 'user_current_password', with: sample_user.password
+    click_on "更新"
+    expect(page.find("#avatar")["alt"]).to have_content "sample-avatar.png"
+  end
 end
