@@ -56,4 +56,13 @@ RSpec.feature "Users", type: :feature do
     click_on "更新"
     expect(page.find("#avatar")["alt"]).to have_content "sample-avatar.png"
   end
+
+  scenario "test-user cannot edit nickname" do
+    sign_in_as_test_user
+    click_on('ユーザー情報編集')
+    fill_in 'user_nickname', with: "update_name"
+    fill_in 'user_current_password', with: "guest123"
+    click_on "更新"
+    expect(page).to have_content "ポートフォリオ閲覧用ユーザーの情報は編集できません"
+  end
 end
