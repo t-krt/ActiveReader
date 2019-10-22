@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @reviews = @book.reviews.read.includes(:user).desc.page(params[:page]).per(5)
-    @average_rate = @reviews.where.not(rate: 0).average(:rate).round(2)
+    @average_rate = @reviews.where.not(rate: nil).average(:rate).round(2) if @reviews.average(:rate).present?
   end
 
   def search

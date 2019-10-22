@@ -17,7 +17,7 @@
                   = "#{@reviews.length}件の投稿があります！"
                 .right__author.mt-2
                   = "著者： #{@book.author}"
-                - if @average_rate != 0
+                - if @average_rate.present?
                   %span.rate.average-rate{"data-average": {"score": @average_rate}}
                   %span.pl-2= @average_rate
                 - else
