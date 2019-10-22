@@ -20,9 +20,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    # ポートフォリオ閲覧用ユーザーの情報が編集されないよう対応
+    if current_user.email == "guest-user@guest.com"
+      redirect_to reading_user_path(current_user)
+      flash[:notice] = 'ポートフォリオ閲覧用ユーザーの情報は編集できません'
+    else
+      super
+    end
+  end
 
   # DELETE /resource
   def destroy
