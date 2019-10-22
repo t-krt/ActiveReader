@@ -13,7 +13,7 @@ jobs:
           mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
         environment:
           MYSQL_USER: 'root'
-          MYSQL_DATABASE: 'test-db'
+          MYSQL_DATABASE: 'db'
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
           MYSQL_ROOT_PASSWORD: ''
     working_directory: ~/repo
