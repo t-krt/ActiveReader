@@ -13,4 +13,14 @@ RSpec.feature "Sessions", type: :feature do
     expect(page).to have_content('ログインしました。')
   end
 
+  scenario "user can sign_out" do
+    visit root_path
+    first(:link, "ログイン").click
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: user.password
+    first(:css, 'input[name="commit"]').click
+    expect(current_path).to eq reading_user_path(user)
+    first(:link, "ログアウト").click
+    expect(page).to have_content "ログアウトしました。"
+  end
 end
