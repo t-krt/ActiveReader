@@ -17,7 +17,7 @@
         = link_to review_path(review) do
           = review.book.title.truncate(35)
     .card-text
-      - if review.rate.present? 
+      - if review.rate.present?
         .rate.read-only-rate{id: "star-rate-#{review.id}", "data-rated-star": {"id": review.id, "score": review.rate}}
       - else
         .rate 未評価
