@@ -25,6 +25,9 @@
                 .wrapper-book-info.review-index
                   = render partial: "shared/review", locals: { review: result }
                   = render partial: "shared/book-info", locals: { review: result }
+            - else
+              %p.text-center 該当する結果がありません。条件を変えて、再度お試しください。
+              = image_tag "no-results-found", size: "700x360", alt: "書影", class: "img-fluid rounded mx-auto d-block"
         - else
           .card-header
             みんなの投稿一覧
