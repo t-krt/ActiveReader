@@ -1,6 +1,14 @@
 .whole-page
   .container
     .row
+      = search_form_for @search do |f|
+        .form_group
+          = f.label :book_title_cont, "書籍名"
+          = f.search_field :book_title_cont, class: "form_control"
+          = f.label :book_author_cont, "著者"
+          = f.search_field :book_author_cont, class: "form_control"
+        .actions
+          = f.submit "検索"
       .main-content.col-sm-12.col-md-12.card
         - if @check.present?
           .card-header
