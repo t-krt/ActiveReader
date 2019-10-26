@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
         now_reading&.change_state_stock
       end
       redirect_to review_path(@review)
-      flash[:notice] = '本を登録しました'
+      flash[:notice] = 'レビューを登録しました'
     else
       flash[:notice] = '正しく入力してください'
       render :new
@@ -52,7 +52,7 @@ class ReviewsController < ApplicationController
         now_reading&.change_state_stock
       end
       redirect_to review_path(@review)
-      flash[:notice] = '本の情報を更新しました'
+      flash[:notice] = 'レビューを更新しました'
     else
       flash[:notice] = '正しく入力してください'
       render :new
