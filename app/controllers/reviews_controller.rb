@@ -5,6 +5,9 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = Review.read.with_book.with_user.desc.page(params[:page]).per(5)
+    @search = @reviews.ransack(params[:q])
+    @results = @search.result(distinct: true)
+    @check = params[:q] #条件分岐用に設定
   end
 
   def new
