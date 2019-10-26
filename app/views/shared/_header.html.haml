@@ -18,7 +18,7 @@
         .nav-item.active.dropdown
           #navbarDropdown.nav-link.dropdown-toggle{"aria-expanded": "false", "aria-haspopup": "true", "data-toggle": "dropdown", role: "button"}
             -# carrierwaveの設定で、current_user.avatarが存在しない場合はavatar-sample.jpgを指定。
-            = image_tag current_user.avatar.url, size: '25x25', alt: current_user.avatar, id: "avatar"
+            = image_tag current_user.avatar.url, size: '25x25', alt: current_user.avatar, id: "header-avatar"
             = current_user.nickname
           .dropdown-menu.text-center{"aria-labelledby": "navbarDropdown"}
             = link_to reading_user_path(current_user), class: "nav-link dropdown-item" do

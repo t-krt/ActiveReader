@@ -20,7 +20,7 @@ RSpec.feature "Users", type: :feature do
 
   scenario "user can edit nickname" do
     sign_in_as(sample_user)
-    click_on('ユーザー情報編集')
+    first(:link, "ユーザー情報編集").click
     fill_in 'user_nickname', with: "update_name"
     fill_in 'user_current_password', with: sample_user.password
     click_on "更新"
@@ -29,7 +29,7 @@ RSpec.feature "Users", type: :feature do
 
   scenario "user can change password" do
     sign_in_as(sample_user)
-    click_on('ユーザー情報編集')
+    first(:link, "ユーザー情報編集").click
     fill_in 'user_password', with: 'update1234'
     fill_in 'user_password_confirmation', with: 'update1234'
     fill_in 'user_current_password', with: sample_user.password
@@ -50,16 +50,16 @@ RSpec.feature "Users", type: :feature do
 
   scenario "user can set avatar" do
     sign_in_as(sample_user)
-    click_on('ユーザー情報編集')
+    first(:link, "ユーザー情報編集").click
     attach_file "user[avatar]", image_path
     fill_in 'user_current_password', with: sample_user.password
     click_on "更新"
-    expect(page.find("#avatar")["alt"]).to have_content "sample-avatar.png"
+    expect(page.find("#header-avatar")["alt"]).to have_content "sample-avatar.png"
   end
 
   scenario "test-user cannot edit nickname" do
     sign_in_as_test_user
-    click_on('ユーザー情報編集')
+    first(:link, "ユーザー情報編集").click
     fill_in 'user_nickname', with: "update_name"
     fill_in 'user_current_password', with: "guest123"
     click_on "更新"

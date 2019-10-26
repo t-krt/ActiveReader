@@ -17,7 +17,7 @@ RSpec.feature "Reviews", type: :feature do
     expect(page).to have_content('本を登録する')
 
     # レビューする本の選択
-    click_link('本を登録する')
+    first(:link, "本を登録する").click
     expect(current_path).to eq search_books_path
     fill_in 'title', with: "Ruby on Rails"
     find('input[name="commit"]').click
