@@ -1,19 +1,20 @@
-%nav.navbar.navbar-expand.navbar-dark.fixed-top
-  = link_to root_path do
-    = image_tag "logo-white.png",size: '200x56', alt: "logo", id: "logo", class: "navbar-brand"
-    -# = link_to "title", root_path, id: "logo", class: "navbar-brand"
-  %ul.navbar-nav.ml-auto
-    - if user_signed_in?
-      %li.nav-item
-        = link_to reading_user_path(current_user) do
-          .nav-link 
-            マイページ
-      %li.nav-item
-        = link_to "みんなの投稿", reviews_path, class: "nav-link"
-      %li.nav-item
-        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"
-    - else
-      %li.nav-item
-        = link_to "新規登録", new_user_registration_path, class: "nav-link"
-      %li.nav-item
-        = link_to "ログイン", new_user_session_path, class: "nav-link"
+%nav.navbar.navbar-expand-lg.navbar-dark.fixed-top.p-1
+  .navbar-brand.ml-1
+    = link_to root_path do
+      = image_tag "logo-white.png",size: '160x45', alt: "logo", id: "logo"
+  %button.navbar-toggler.mr-3{"aria-controls": "Navbar", "aria-expanded": "false", "aria-label": "Toggl navgation", "data-target": "#Navbar", "data-toggle": "collapse", type: "button"}
+    %span.navbar-toggler-icon
+  #Navbar.collapse.navbar-collapse
+    %ul.navbar-nav.ml-auto
+      - if user_signed_in?
+        %li.nav-item.active
+          = link_to "マイページ", reading_user_path(current_user), class: "nav-link text-light text-center"
+        %li.nav-item.active
+          = link_to "みんなの投稿", reviews_path, class: "nav-link text-light text-center"
+        %li.nav-item.active
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-light text-center"
+      - else
+        %li.nav-item.active
+          = link_to "新規登録", new_user_registration_path, class: "nav-link text-light"
+        %li.nav-item.active
+          = link_to "ログイン", new_user_session_path, class: "nav-link text-light"
