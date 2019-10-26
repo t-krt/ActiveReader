@@ -5,6 +5,9 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = Review.read.with_book.with_user.desc.page(params[:page]).per(5)
+    @search = @reviews.ransack(params[:q])
+    @results = @search.result(distinct: true)
+    @check = params[:q] # 条件分岐用に設定
   end
 
   def new
@@ -27,7 +30,7 @@ class ReviewsController < ApplicationController
         now_reading&.change_state_stock
       end
       redirect_to review_path(@review)
-      flash[:notice] = '本を登録しました'
+      flash[:notice] = 'レビューを登録しました'
     else
       flash[:notice] = '正しく入力してください'
       render :new
@@ -49,7 +52,7 @@ class ReviewsController < ApplicationController
         now_reading&.change_state_stock
       end
       redirect_to review_path(@review)
-      flash[:notice] = '本の情報を更新しました'
+      flash[:notice] = 'レビューを更新しました'
     else
       flash[:notice] = '正しく入力してください'
       render :new
