@@ -5,16 +5,16 @@
   %button.navbar-toggler.mr-3{"aria-controls": "Navbar", "aria-expanded": "false", "aria-label": "Toggl navgation", "data-target": "#Navbar", "data-toggle": "collapse", type: "button"}
     %span.navbar-toggler-icon
   #Navbar.collapse.navbar-collapse
-    %ul.navbar-nav.ml-auto
+    %ul.navbar-nav.ml-auto.text-center
       - if user_signed_in?
         %li.nav-item.active
-          = link_to "マイページ", reading_user_path(current_user), class: "nav-link text-light text-center"
+          = link_to "マイページ", reading_user_path(current_user), class: "nav-link"
         %li.nav-item.active
-          = link_to "みんなの投稿", reviews_path, class: "nav-link text-light text-center"
+          = link_to "みんなの投稿", reviews_path, class: "nav-link"
         %li.nav-item.active
-          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-light text-center"
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"
       - else
         %li.nav-item.active
-          = link_to "新規登録", new_user_registration_path, class: "nav-link text-light"
+          = link_to "新規登録", new_user_registration_path, class: "nav-link"
         %li.nav-item.active
-          = link_to "ログイン", new_user_session_path, class: "nav-link text-light"
+          = link_to "ログイン", new_user_session_path, class: "nav-link"
