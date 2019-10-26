@@ -35,4 +35,21 @@ RSpec.feature "Reviews", type: :feature do
       find('input[type="submit"]').click
     end.to change(Review, :count).by(1)
   end
+
+  scenario 'search review with book-title' do
+    sign_in_as(user)
+    first(:link, "みんなの投稿").click
+
+    # 一覧に"Ruby", "JavaScript"を含む書籍があることを確認
+    expect(page).to have_content "Ruby"
+    expect(page).to have_content "JavaScript"
+
+    # 書籍名で"Ruby"を検索
+    fill_in 'q[book_title_cont]', with: "Ruby"
+    first(:css, 'input[name="commit"]').click
+
+    # "Ruby"を含む書籍のみ存在し、"JavaScript"を含む書籍が無いことを確認
+    expect(page).to have_content "Ruby"
+    expect(page).to have_no_content "JavaScript"
+  end
 end
