@@ -2,11 +2,20 @@
   .container
     .row
       .main-content.col-sm-12.col-md-12.card
-        .card-header
-          みんなの投稿一覧
-        .card-body
-          - @reviews.each do |review|
-            .wrapper-book-info.review-index
-              = render partial: "shared/review", locals: { review: review }
-              = render partial: "shared/book-info", locals: { review: review }
-        = paginate(@reviews)
+        - if @check.present?
+          .card-header
+            検索結果
+          .card-body
+            - @results.each do |result|
+              .wrapper-book-info.review-index
+                = render partial: "shared/review", locals: { review: result }
+                = render partial: "shared/book-info", locals: { review: result }
+        - else
+          .card-header
+            みんなの投稿一覧
+          .card-body
+            - @reviews.each do |review|
+              .wrapper-book-info.review-index
+                = render partial: "shared/review", locals: { review: review }
+                = render partial: "shared/book-info", locals: { review: review }
+        = @results.present? ? paginate(@results) : paginate(@reviews)
