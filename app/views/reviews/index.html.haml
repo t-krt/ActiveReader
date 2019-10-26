@@ -15,15 +15,16 @@
                 = f.submit "検索", class: "actions col-2 p-0"
               .rate-sort.col-3.mt-2.text-right
                 = sort_link(@search, :rate, "評価順に並べ替え")
-      .main-content.col-sm-12.col-md-12.card
+      .main-content.col-sm-12.col-md-12.p-0.card
         - if @check.present?
           .card-header
             検索結果
           .card-body
-            - @results.each do |result|
-              .wrapper-book-info.review-index
-                = render partial: "shared/review", locals: { review: result }
-                = render partial: "shared/book-info", locals: { review: result }
+            - if @results.any?
+              - @results.each do |result|
+                .wrapper-book-info.review-index
+                  = render partial: "shared/review", locals: { review: result }
+                  = render partial: "shared/book-info", locals: { review: result }
         - else
           .card-header
             みんなの投稿一覧
