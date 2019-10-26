@@ -2,16 +2,20 @@
   .navbar-brand.ml-1
     = link_to root_path do
       = image_tag "logo-white.png", size: '160x45', alt: "logo", id: "logo"
-  %button.navbar-toggler.mr-3{"aria-controls": "Navbar", "aria-expanded": "false", "aria-label": "Toggl navgation", "data-target": "#Navbar", "data-toggle": "collapse", type: "button"}
+  %button.navbar-toggler.mr-3{"aria-controls": "navbar-content", "aria-expanded": "false", "aria-label": "Toggl navgation", "data-target": "#navbar-content", "data-toggle": "collapse", type: "button"}
     %span.navbar-toggler-icon
-  #Navbar.collapse.navbar-collapse
+  #navbar-content.collapse.navbar-collapse
     %ul.navbar-nav.ml-auto.text-center.mr-3
       - if user_signed_in?
         %li.nav-item.active
           = link_to reviews_path, class: "nav-link" do
             .fas.fa-list-ul
             みんなの投稿
-        .nav-item.active.dropdown.ml-2
+        %li.nav-item.active
+          = link_to search_books_path, class: "nav-link" do
+            .fas.fa-search
+            本を登録する
+        .nav-item.active.dropdown
           #navbarDropdown.nav-link.dropdown-toggle{"aria-expanded": "false", "aria-haspopup": "true", "data-toggle": "dropdown", role: "button"}
             -# carrierwaveの設定で、current_user.avatarが存在しない場合はno_image.jpgを指定。
             = image_tag current_user.avatar.url, size: '25x25', alt: current_user.avatar, id: "avatar"
@@ -20,6 +24,9 @@
             = link_to reading_user_path(current_user), class: "nav-link dropdown-item" do
               .fas.fa-user-circle
               マイページ
+            = link_to edit_user_registration_path, class: "nav-link dropdown-item" do
+              .fas.fa-user-edit
+              ユーザー情報編集
             = link_to destroy_user_session_path, method: :delete, class: "nav-link dropdown-item" do
               .fas.fa-sign-out-alt
               ログアウト
