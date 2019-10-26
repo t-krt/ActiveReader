@@ -1,14 +1,16 @@
 .whole-page
   .container
     .row
-      = search_form_for @search do |f|
-        .form_group
-          = f.label :book_title_cont, "書籍名"
-          = f.search_field :book_title_cont, class: "form_control"
-          = f.label :book_author_cont, "著者"
-          = f.search_field :book_author_cont, class: "form_control"
-        .actions
-          = f.submit "検索"
+      = search_form_for @search, class: "col-12 p-0" do |f|
+        .form-group.d-flex.justify-content-between
+          -# = f.label :book_title_cont, "書籍名"
+          = f.search_field :book_title_cont, class: "form-control col-5", placeholder: "書籍名"
+          -# = f.label :book_author_cont, "著者"
+          = f.search_field :book_author_cont, class: "form-control col-5", placeholder: "著者"
+          = f.submit "検索", class: "actions col-1"
+      .rate-sort
+        = sort_link(@search, :rate, "Rate")
+        評価順で並べ替え
       .main-content.col-sm-12.col-md-12.card
         - if @check.present?
           .card-header
