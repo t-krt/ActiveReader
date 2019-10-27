@@ -1,36 +1,44 @@
 # dockerfile for production
-FROM ruby:2.5.1
+FROM ruby:2.6.5-alpine3.10
 
 ENV LANG C.UTF-8
-
-RUN apt-get update && apt-get install -y \
-    --no-install-recommends \
-    build-essential \
-    vim
-
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-  && apt-get install -y nodejs \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
-
 WORKDIR /myapp
-
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 
-RUN mkdir -p tmp/sockets
+RUN apk upgrade --no-cache && \
+    apk add --update --no-cache \
+      imagemagick6-dev \
+      mariadb-dev \
+      nodejs \
+      tzdata  \
+      yarn && \
+    apk add --update --no-cache --virtual=build-dependencies \
+      build-base \
+      curl-dev \
+      linux-headers \
+      libxml2-dev \
+      libxslt-dev \
+      ruby-dev \
+      yaml-dev \
+      zlib-dev && \
+    gem install bundler && \
+    bundle install --without development test -j4 && \
+    apk del build-dependencies && \
+    rm -rf /usr/local/bundle/cache/* \  
+    /usr/local/share/.cache/* \
+    /var/cache/* \
+    /tmp/* \
+    /usr/lib/mysqld* \
+    /usr/bin/mysql*
 
-RUN bundle install --without development test
+RUN mkdir -p tmp/sockets
 COPY . /myapp
 
 ENV RAILS_ENV production
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
 
-# Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-
+RUN rm -f tmp/pids/server.pid
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
