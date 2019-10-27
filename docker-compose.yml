@@ -6,7 +6,7 @@ services:
       dockerfile: 'Dockerfile.dev'
     container_name: my_rails_app
     command: 
-      /bin/bash -c 'rm -rf tmp/pids/server.pid; bundle exec rails s -b 0.0.0.0'
+      /bin/sh -c 'rm -rf tmp/pids/server.pid; bundle exec rails s -b 0.0.0.0'
     environment:
       TZ: "Asia/Tokyo"
     ports:
