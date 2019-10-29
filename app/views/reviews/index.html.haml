@@ -1,7 +1,7 @@
 .whole-page
   .container
     .row
-      .review-search-box.col-12.p-0.card.mb-4
+      .review-search-box.col-12.col-md-8.p-0.card.mb-4.mx-auto
         .card-header
           レビューを検索する
         .card-body.font-small
@@ -15,7 +15,7 @@
                 = f.submit "検索", class: "actions col-2 p-0"
               .rate-sort.col-3.mt-2.text-right
                 = sort_link(@search, :rate, "評価順に並べ替え")
-      .main-content.col-sm-12.col-md-12.p-0.card
+      .main-content.col-sm-12.col-md-8.p-0.card.mx-auto
         - if @check.present?
           .card-header
             検索結果
