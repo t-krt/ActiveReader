@@ -27,7 +27,7 @@
                                           image_url: @book.image_url, url: @book.url, isbn: @book.isbn),
                                           class: "badge badge-info"
                   = link_to "楽天ブックスで本の詳細を見る", "#{@book.url}", class: "badge badge-info"
-        .card-body
+        .card-body.col-11.mx-auto
           - @reviews.each do |review|
             .wrapper-book-info.review-index
               = render partial: "shared/review", locals: { review: review }
