@@ -1,10 +1,10 @@
 .whole-page
-  .container
+  .container.px-0
     = render partial: "shared/notification"
     -# TODO パンくずリストの追加？
-    .row
+    .row.col-12.col-md-10.mx-auto.p-0
       = render "shared/sidebar"
-      .main-content.col-sm-9.col-md-9
+      .main-content.col-8.col-md-9.m-0
         .card
           .card-header.bg-light
             = current_user.nickname + "さんの本棚"
