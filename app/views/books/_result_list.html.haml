@@ -1,26 +1,26 @@
 - if @books.present?
   - @books.zip(@details) do |book, detail|
-    .wrapper-book-info.row
-      .wrapper-book-info__image.col-sm-5
+    .wrapper-book-info.row.col-12.col-md-8.mx-auto
+      .wrapper-book-info__image.col-4
         = image_tag "#{book.image_url}", size: "350x350", alt: "書影"
-      .col-sm-7
-        .wrapper-book-info__title
+      .col-8
+        .wrapper-book-info__title.small
           .badge.badge-info.badge-pill
             タイトル
           = book.title
-        .wrapper-book-info__author
+        .wrapper-book-info__author.small
           .badge.badge-info.badge-pill
             著者
           = book.author
-        .wrapper-book-info__details
+        .wrapper-book-info__details.small
           .badge.badge-info.badge-pill
             商品詳細
           = detail.truncate(100)
-        .wrapper-book-info__links
+        .wrapper-book-info__links.small
           = link_to "楽天ブックスで詳細を見る", "#{book.url}"   
           .links-to-review
             = link_to "この本を登録する", new_review_path(title: book.title, author: book.author, image_url: book.image_url, url: book.url, isbn: book.isbn), class: "link-to-review"
   .result-note
-    探している書籍が見つからなかった場合は、条件を変えて再度検索してください。
+    探している書籍が見つからなかった場合は、<br>条件を変えて再度検索してください。
 - else 
-  .result-note.no-result 該当する書籍が見つかりません。検索条件を変えて、再度お試しください。
+  .result-note.no-result 該当する書籍が見つかりません。<br>検索条件を変えて、再度お試しください。
