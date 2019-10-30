@@ -38,10 +38,6 @@
               .i.fas.fa-plus-square.add-task-btn
             #todoModal.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
           この本を読んで行動すること
-          -# = link_to new_task_path(params: {review_id: @review.id}), remote: true do 
-          -#   .i.fas.fa-plus-square.add-task-btn
-          -# TODOを追加する
-          -# #todoModal.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
         .card-body.review-show__contents__list.small.p-0
           = render 'shared/task-list-all'
         - if user_signed_in? && @review.user_id == current_user.id
