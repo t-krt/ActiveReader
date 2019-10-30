@@ -8,10 +8,6 @@
     &__right {
       margin-bottom: 2rem;
     }
-    &--notice {
-      font-size: 0.9rem;
-      color: $accent-color;
-    }
   }
   &__contents {
     &__list {
@@ -54,11 +50,6 @@
     }
   }
 
- .read-only-rate img {
-    width: 14px;
-    height: 14px;
-  }
-
   .review-info-box {
     font-size: 0.9rem;
     display: flex;
@@ -85,4 +76,9 @@
   .icon-color {
     color: #17a2b8;
   }
+}
+
+.read-only-rate img {
+  width: 14px;
+  height: 14px;
 }
