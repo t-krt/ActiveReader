@@ -1,29 +1,31 @@
 .table-responsive
   %table#todoList.table.table-hover
     %thead.task-index__tasks--table
-      %tr.table-info.task-table
+      %tr.table-info.task-table.text-center
         %th.task-table__left
-        %th タスク内容
+        %th 内容
         %th.task-table__limit 期限
         %th.task-table__right
     %tbody#new-task
       - if tasks.present?
         - tasks.each do |task|
-          %tr{id: "task-#{task.id}-all"}
+          %tr.text-center{id: "task-#{task.id}-all"}
             %td.task-table-left
               -# finishedの値を更新する
-              = link_to finish_task_path(task), class: "task-list-icon task-#{task.id}-check-link", remote: true do
-                %i.far.fa-check-circle{class: "task-#{task.id}-check"}
-              = link_to edit_task_path(task, params: {review_id: review.id}), class: "task-list-icon task-#{task.id}-check-link", remote: true do
-                %i.fas.fa-pen
-              #todoModal-edit.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
+              - if user_signed_in? && @review.user_id == current_user.id
+                = link_to finish_task_path(task), class: "task-#{task.id}-check-link", remote: true do
+                  %i.far.fa-check-circle{class: "task-#{task.id}-check"}
+                = link_to edit_task_path(task, params: {review_id: review.id}), class: "task-#{task.id}-check-link ml-2", remote: true do
+                  %i.fas.fa-pen
+                #todoModal-edit.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
             %td{class: "task-#{task.id}-content"}
               = task.content
             %td{class: "task-#{task.id}-limit"}
               = task.limit.present? ? task.limit : "未設定"
             %td
-              = link_to task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか？' }, remote: true do
-                %i.fas.fa-trash-alt.icon-color
+              - if user_signed_in? && @review.user_id == current_user.id
+                = link_to task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか？' }, remote: true do
+                  %i.fas.fa-trash-alt.icon-color
       - else
         %td.have-no-tasks
         %td.have-no-tasks 未完了のタスクはありません
