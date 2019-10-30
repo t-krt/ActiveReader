@@ -6,7 +6,7 @@
       .main-content.col-11.col-sm-8.col-md-9.m-0.order-sm-2.mx-auto
         .card
           .card-header.bg-light
-            = current_user.nickname + "さんの本棚"
+            = "#{@user.nickname} さんの本棚"
           .btn-group.d-flex{"aria-label":"読書状況"}
             = link_to "読書中", reading_user_path, class: "btn btn-primary w-100 btn-status"
             = link_to "読了", read_user_path, class: "btn btn-success w-100 btn-status"

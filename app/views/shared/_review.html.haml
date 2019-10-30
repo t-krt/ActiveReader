@@ -5,7 +5,8 @@
     .user-info__right__learned
       .user-info__right__learned__upper
         .user-info__right__learned__upper--label.text-muted
-          = "#{review.user.nickname} さんの学んだこと"
+          = link_to "#{review.user.nickname}", reading_user_path(review.user)
+          さんの学んだこと
         .user-info__right__learned__upper--others.d-inline-flex.text-muted.small
           = review.created_at.strftime("%Y/%m/%d")
           - if review.rate.present?
@@ -14,7 +15,7 @@
             .user-info__right__others--rate.rate.ml-2 未評価
       .user-info__right__learned--content.bg-light.small.mt-2.py-3
         - if review.learned.present? 
-          .user-info__right__learned--content--present
+          .user-info__right__learned--content--present.pr-3
             = review.learned.truncate(280) 
         - else 
           .user-info__right__learned--content--none 「学んだこと」は未記入です。
