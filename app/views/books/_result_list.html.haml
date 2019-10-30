@@ -1,6 +1,6 @@
 - if @books.present?
   - @books.zip(@details) do |book, detail|
-    .wrapper-book-info.row.col-12.col-md-8.mx-auto
+    .wrapper-book-info.row.col-12.col-lg-9.mx-auto
       .wrapper-book-info__image.col-4
         = image_tag "#{book.image_url}", size: "350x350", alt: "書影"
       .col-8
