@@ -4,7 +4,12 @@
       = image_tag @user.avatar.url, size: "100x100", alt: current_user.avatar, id: "avatar"
     .sidebar-others__profile--name.small.text-center.pb-2.bg-light
       = "#{@user.nickname} さん"
-    .sidebar-others__profile--name.small.text-center
-      = link_to reading_user_path(current_user), class: "nav-link mr-2" do
-        .fas.fa-user-circle
-        マイページへ戻る
+    .sidebar-others__profile--name.small.text-center.py-2
+      .link
+        = link_to reviews_path do
+          .fas.fa-list-ul
+          みんなの投稿に戻る
+      .link.mt-1
+        = link_to reading_user_path(current_user) do
+          .fas.fa-user-circle
+          マイページへ戻る
