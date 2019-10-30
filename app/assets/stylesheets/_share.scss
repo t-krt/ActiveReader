@@ -19,6 +19,7 @@ body {
   text-decoration: none;
   border-bottom: solid 6px gray;
   border-radius: 3px;
+  font-size: 0.9rem !important;
   margin-bottom: 25px;
   &__active {
     -webkit-transform: translateY(2.5px);
@@ -97,7 +98,7 @@ body {
 }
 
 .font-small {
-  font-size: 0.85rem;
+  font-size: 0.95rem !important;
 }
 
 .rate {

@@ -1,17 +1,17 @@
 .form-group.row.review-body__content
-  = book.label :タイトル, class: "col-sm-2 col-form-label badge-info"
-  .col-sm-10
+  = book.label :タイトル, class: "col-3 col-md-2  col-form-label badge-info"
+  .col-9.col-md-10
     = @book.title
   = book.hidden_field :title, value: @book.title
 .form-group.row.review-body__content
-  = book.label :著者, class: "col-sm-2 col-form-label badge-info"
-  .col-sm-10
+  = book.label :著者, class: "col-3 col-md-2 col-form-label badge-info"
+  .col-9.col-md-10
     = @book.author
   = book.hidden_field :author, value: @book.author
 .form-group.row.review-body__content.book-image
   - if @book.image_url.present?
-    = book.label :書影, class:"col-sm-2 col-form-label badge-info"
-    = image_tag "#{@book.image_url}", size: "150x200", alt: "書影", class: "col-sm-2"
+    = book.label :書影, class:"col-3 col-md-2 col-form-label badge-info"
+    = image_tag "#{@book.image_url}", size: "150x200", alt: "書影", class: "col-5 col-md-3"
     = book.hidden_field :image_url, value: @book.image_url
   = book.hidden_field :url, value: @book.url
   = book.hidden_field :isbn, value: @book.isbn
@@ -20,22 +20,22 @@
 .review-body__memo
   = fields_for(@review) do |review|
     .form-group.row.review-body__content
-      = review.label :status, class: "col-sm-2 col-form-label badge-info"
-      = review.select :review_status, Review.review_statuses_i18n.invert, {}, class: 'form-control col-sm-3', placeholder: 0
+      = review.label :status, class: "col-3 col-form-label badge-info"
+      = review.select :review_status, Review.review_statuses_i18n.invert, {}, class: 'form-control col-4', placeholder: 0
     .form-group.row.review-body__content
-      = review.label :deadline, class: "col-sm-2 col-form-label badge-info"
-      = review.date_field :deadline, class: 'form-control col-sm-3'
+      = review.label :deadline, class: "col-3 col-form-label badge-info"
+      = review.date_field :deadline, class: 'form-control col-4'
     .form-group.row.review-body__content
-      = review.label :purpose, class:"col-sm-2 col-form-label badge-info"
+      = review.label :purpose, class:"col-12 col-sm-3 col-form-label badge-info"
       = review.text_area :purpose, class: 'form-control textarea', placeholder: "必須項目"
     .form-group.row.review-body__content
-      = review.label :learned, class: "col-sm-2 col-form-label badge-info"
+      = review.label :learned, class: "col-12 col-sm-3 col-form-label badge-info"
       = review.text_area :learned, class: 'form-control textarea'
     .form-group.row.review-body__content
-      = review.label :note, class: "col-sm-2 col-form-label badge-info"
+      = review.label :note, class: "col-12 col-sm-3 col-form-label badge-info"
       = review.text_area :note, class: 'form-control textarea'
     #star.form-group.row.review-body__content{"data-rating-score": @review.rate}
-      = review.label :rate, class: "col-sm-2 col-form-label badge-info star-label"
+      = review.label :rate, class: "col-12 col-sm-3 col-form-label badge-info star-label"
       = review.hidden_field :rate, id: 'rating-star', class: 'form-control col-sm-2', value: 1, max: 5, min: 1
   .form-group.review-submit
     = book.submit "登録する", class: 'btn btn-primary'

@@ -1,18 +1,18 @@
 .whole-page
   .container
     .row
-      .main-content.col-sm-12.col-md-12.card
+      .main-content.col-10.col-sm-12.col-lg-9.p-0.card.mx-auto
         .card-header
           = "「#{@book.title}」の投稿一覧"
-        .card-body.bg-light.col-sm-11.col-md-11.mx-auto.mt-3
+        .card-body.bg-light.col-11.mx-auto.mt-3
           .review-info-box
-            .row.col-sm-10.review-info-box__body
-              .review-info-box__body--left.col-sm-3
+            .row.col-12.col-sm-11.review-info-box__body
+              .review-info-box__body--left.col-5.col-sm-3
                 - if @book.image_url.present?
                   = image_tag @book.image_url, size: "100x150", alt: "書影"
                 - else
                   = image_tag asset_path("no_image.jpg")
-              .review-info-box__body--right.col-sm-9
+              .review-info-box__body--right.col-7.col-sm-9
                 .right__length.lead.font-weight-bold
                   = "#{@reviews.length}件の投稿があります！"
                 .right__author.mt-2
@@ -27,7 +27,7 @@
                                           image_url: @book.image_url, url: @book.url, isbn: @book.isbn),
                                           class: "badge badge-info"
                   = link_to "楽天ブックスで本の詳細を見る", "#{@book.url}", class: "badge badge-info"
-        .card-body
+        .card-body.col-11.mx-auto
           - @reviews.each do |review|
             .wrapper-book-info.review-index
               = render partial: "shared/review", locals: { review: review }

@@ -1,11 +1,11 @@
 .review-info-box
-  .row.col-sm-10.review-info-box__body
-    .review-info-box__body--left.col-sm-3
+  .row.col-12.col-sm-10.review-info-box__body
+    .review-info-box__body--left.col-3
       - if review.book.image_url.present?
         = image_tag review.book.image_url, size: "100x150", alt: "書影"
       - else
         = image_tag asset_path("no_image.jpg")
-    .review-info-box__body--right.col-sm-9
+    .review-info-box__body--right.col-9
       .right__title
         = review.book.title
       .right__author

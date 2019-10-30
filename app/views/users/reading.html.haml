@@ -1,8 +1,7 @@
 .whole-page
-  .container
-    .row
-      = render "shared/sidebar"
-      .main-content.col-sm-9.col-md-9
+  .container.px-0
+    .row.col-12.col-lg-10.mx-auto.p-0
+      .main-content.col-11.col-sm-8.col-md-9.m-0.order-sm-2.mx-auto
         .card
           .card-header.bg-light
             = current_user.nickname + "さんの本棚"
@@ -45,3 +44,4 @@
                       = @reading.purpose
           - else
             = render "shared/no-entry"
+      = render "shared/sidebar"

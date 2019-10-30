@@ -1,5 +1,5 @@
 .container
-  .search-box.row
+  .search-box.row.col-12.col-lg-9.mx-auto
     .search-box__nav
       .search-box__nav__title
         本を登録する
@@ -8,14 +8,14 @@
     .search-box__input
       = form_with url: '/books/search', method: :get, local: true do |f|
         - if @title.present?
-          = f.text_field :title, class: 'form_control col-sm-10', value: @title
+          = f.text_field :title, class: 'form_control col-9', value: @title
         - else
-          = f.text_field :title, class: 'form_control col-sm-10', placeholder: "本のタイトルを入力してください"
+          = f.text_field :title, class: 'form_control col-9', placeholder: "本のタイトルを入力してください"
         - if @author.present?
-          = f.text_field :title, class: 'form_control col-sm-10', value: @author
+          = f.text_field :title, class: 'form_control col-9', value: @author
         - else
-          = f.text_field :author, class: 'form_control col-sm-10', placeholder: "著者の名前を入力してください"
-        = f.submit '検索', class: "col-sm-1 submit-btn"
+          = f.text_field :author, class: 'form_control col-9', placeholder: "著者の名前を入力してください"
+        = f.submit '検索', class: "col-2 ml-2 submit-btn"
   - if @title.present? || @author.present?
     .search-box__result
       = render partial: 'result_list'
