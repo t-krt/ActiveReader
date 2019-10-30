@@ -5,7 +5,7 @@
     .row.col-12.col-lg-10.mx-auto.p-0
       .main-content.col-11.col-sm-8.col-md-9.m-0.order-sm-2.mx-auto
         .card
-          .card-header.bg-light
+          .card-header.bg-secondary.text-white
             = "#{@user.nickname} さんの本棚"
           .btn-group.d-flex{"aria-label":"読書状況"}
             = link_to "読書中", reading_user_path, class: "btn btn-primary w-100 btn-status"
@@ -19,7 +19,7 @@
                     = render partial: "book-lists", locals: { review: read }
             = paginate(@reads)
           - else
-            = render "shared/no-entry" 
+            = render "shared/no-entry"
       = render "shared/sidebar"
         
 
