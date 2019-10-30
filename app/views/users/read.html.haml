@@ -2,9 +2,8 @@
   .container.px-0
     = render partial: "shared/notification"
     -# TODO パンくずリストの追加？
-    .row.col-12.col-md-10.mx-auto.p-0
-      = render "shared/sidebar"
-      .main-content.col-8.col-md-9.m-0
+    .row.col-12.col-lg-10.mx-auto.p-0
+      .main-content.col-11.col-sm-8.col-md-9.m-0.order-sm-2.mx-auto
         .card
           .card-header.bg-light
             = current_user.nickname + "さんの本棚"
@@ -21,5 +20,7 @@
             = paginate(@reads)
           - else
             = render "shared/no-entry" 
+      = render "shared/sidebar"
+        
 
 
