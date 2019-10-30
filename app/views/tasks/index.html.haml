@@ -20,7 +20,7 @@
                   .badge.badge-danger.badge-pill.task-index__book-title--badge
                     後で読む
               - if review.tasks.finished.present?
-                .card-body.task-index__tasks
+                .card-body.task-index__tasks.small
                   .task-index__tasks__have
                     = simple_format("#{review.tasks.unfinished.length}件の未完了のタスクがあります！")
                     %button.btn.btn-info{"aria-controls": "collapseTasks-#{index}", "aria-expanded": "false", "data-target": "#collapseTasks-#{index}", "data-toggle": "collapse", type: "button"}
@@ -28,7 +28,7 @@
                   .collapse{id: "collapseTasks-#{index}"}
                     = render partial: "shared/task-list-unfinished", locals: {tasks: review.tasks.unfinished, review: review} 
               - else 
-                .card-body.task-index__tasks
+                .card-body.task-index__tasks.small.text-muted
                   .task-index__tasks__content
                     未完了のタスクはありません
             = paginate(@reviews)
