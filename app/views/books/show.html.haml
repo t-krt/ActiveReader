@@ -23,10 +23,10 @@
                 - else
                   .rate 評価はありません
                 .right__badges.review-index.mt-2
-                  = link_to "本を登録する", new_review_path(title: @book.title, author: @book.author,
+                  = link_to "楽天ブックスで本の詳細を見る", "#{@book.url}", class: "badge badge-info"
+                  = link_to "この本を登録する", new_review_path(title: @book.title, author: @book.author,
                                           image_url: @book.image_url, url: @book.url, isbn: @book.isbn),
                                           class: "badge badge-info"
-                  = link_to "楽天ブックスで本の詳細を見る", "#{@book.url}", class: "badge badge-info"
         .card-body.col-11.mx-auto
           - @reviews.each do |review|
             .wrapper-book-info.review-index
