@@ -8,13 +8,6 @@
     &__right {
       margin-bottom: 2rem;
     }
-    &__icon {
-      padding: 1rem 2rem 1rem 0;
-      .icon-color {
-        color: #007bff;
-        padding-right: 0.5rem;
-      }
-    }
     &--notice {
       font-size: 0.9rem;
       color: $accent-color;
@@ -85,5 +78,11 @@
   .card-header {
     font-size: 1.1rem;
     font-weight: bold;
+  }
+}
+
+.sidebar-others {
+  .icon-color {
+    color: #17a2b8;
   }
 }
