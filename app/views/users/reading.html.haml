@@ -3,8 +3,8 @@
     .row.col-12.col-lg-10.mx-auto.p-0
       .main-content.col-11.col-sm-8.col-md-9.m-0.order-sm-2.mx-auto
         .card
-          .card-header.bg-light
-            = current_user.nickname + "さんの本棚"
+          .card-header.bg-secondary.text-white
+            = "#{@user.nickname} さんの本棚"
           .btn-group.d-flex{"aria-label":"読書状況"}
             = link_to "読書中", reading_user_path, class: "btn btn-primary w-100 btn-status btn-status__active"
             = link_to "読了", read_user_path, class: "btn btn-success w-100 btn-status"
@@ -34,12 +34,13 @@
                   .card
                     .card-header
                       読書の目的
-                      .dropdown.float-right
-                        %button{type:"button", class:"btn dropdown-toggle", id:"dropdownMenuButton", "data-toggle":"dropdown", "aria-haspopup":"true", "aria-expanded":"false"}
-                        .dropdown-menu{"aria-labelledby":"dropdownMenuButton"}
-                          = link_to "詳細", review_path(@reading), class: "dropdown-item" 
-                          = link_to "編集", edit_review_path(@reading), class: "dropdown-item" 
-                          = link_to "削除", "/reviews/#{@reading.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
+                      - if @user.id == current_user.id
+                        .dropdown.float-right
+                          %button{type:"button", class:"btn dropdown-toggle", id:"dropdownMenuButton", "data-toggle":"dropdown", "aria-haspopup":"true", "aria-expanded":"false"}
+                          .dropdown-menu{"aria-labelledby":"dropdownMenuButton"}
+                            = link_to "詳細", review_path(@reading), class: "dropdown-item" 
+                            = link_to "編集", edit_review_path(@reading), class: "dropdown-item" 
+                            = link_to "削除", "/reviews/#{@reading.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
                     .card-body
                       = @reading.purpose
           - else

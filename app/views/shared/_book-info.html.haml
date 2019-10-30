@@ -6,12 +6,14 @@
       - else
         = image_tag asset_path("no_image.jpg")
     .review-info-box__body--right.col-9
-      .right__title
-        = review.book.title
-      .right__author
-        = review.book.author
+      .right__label.my-2
+        読んだ本
+      .right__title.small
+        = "タイトル：  #{review.book.title}"
+      .right__author.small
+        = "著者：  #{review.book.author}"
       .right__badges
-        = link_to "本を登録する", new_review_path(title: review.book.title, author: review.book.author,
+        = link_to "この本に関する投稿を見る", book_path(review.book), class: "badge badge-info"
+        = link_to "この本を登録する", new_review_path(title: review.book.title, author: review.book.author,
                                 image_url: review.book.image_url, url: review.book.url, isbn: review.book.isbn),
                                 class: "badge badge-info"
-        = link_to "この本に関する投稿を見る", book_path(review.book), class: "badge badge-info"

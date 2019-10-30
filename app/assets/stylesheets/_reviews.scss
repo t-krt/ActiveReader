@@ -8,17 +8,6 @@
     &__right {
       margin-bottom: 2rem;
     }
-    &__icon {
-      padding: 1rem 2rem 1rem 0;
-      .icon-color {
-        color: #007bff;
-        padding-right: 0.5rem;
-      }
-    }
-    &--notice {
-      font-size: 0.9rem;
-      color: $accent-color;
-    }
   }
   &__contents {
     &__list {
@@ -34,7 +23,7 @@
     margin-top: 0;
     margin-right: 0.9rem;
     display: inline;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   .user-info {
@@ -44,8 +33,6 @@
       &__learned {
         padding: 0 1rem 1rem 0;
         &__upper {
-          display: flex;
-          justify-content: space-between;
           &--label {
             font-size: 1rem;
           }
@@ -58,15 +45,6 @@
           &--none {
             color: gray;
           }
-        }
-      }
-      &__others {
-        font-size: 0.9rem;
-        text-align: right;
-        padding-right: 1rem;
-        &--name {
-          display: inline-block;
-          padding-left: 0.5rem;
         }
       }
     }
@@ -92,4 +70,15 @@
     font-size: 1.1rem;
     font-weight: bold;
   }
+}
+
+.sidebar-others {
+  .icon-color {
+    color: #17a2b8;
+  }
+}
+
+.read-only-rate img {
+  width: 14px;
+  height: 14px;
 }

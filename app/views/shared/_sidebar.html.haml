@@ -1,4 +1,4 @@
-.side-bar.col-11.col-sm-4.col-md-3.mx-auto.order-sm-1.mt-3.mt-sm-0	
+.side-bar.col-11.col-sm-4.col-md-3.mx-auto.order-sm-1.mt-3.mt-sm-0.border.border-white
   .side-bar__profile.panel
     .side-bar__profile--avatar
       -# carrierwaveで設定。current_user.avatarが存在しない場合はno_image.jpgを指定。
@@ -14,13 +14,13 @@
 
     .list-group.list-group-flush.list-group__under
       .list-group-item.list-group-item-light
-        = link_to "Todo一覧", user_tasks_path(current_user)
-      .list-group-item.list-group-item-light
         = link_to "読書中", reading_user_path(current_user)
       .list-group-item.list-group-item-light
         = link_to "読了", read_user_path(current_user)
       .list-group-item.list-group-item-light
         = link_to "あとで読む", stock_user_path(current_user)
+      .list-group-item.list-group-item-light
+        = link_to "タスク一覧", user_tasks_path(current_user)
 
     .list-group.list-group-flush.list-group__under
       .list-group-item.list-group-item-light

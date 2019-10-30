@@ -1,0 +1,37 @@
+.sidebar-others.col-6.col-sm-4.col-md-3.mx-auto.order-sm-1.mt-3.mt-sm-0.px-0
+  .sidebar-others__profile.panel.card
+    .card-header.bg-info.text-center.text-white.p-1
+      投稿者
+    .sidebar-others__profile--avatar.text-center.mt-1
+      = image_tag @user.avatar.url, size: "100x100", alt: current_user.avatar, id: "avatar"
+    .sidebar-others__profile--name.small.text-center.pt-1.mark
+      = "#{@user.nickname} さん"
+      <br>
+      = link_to "本棚を見る", reading_user_path(@user)
+  .sidebar-others__book-info.card.mt-3
+    .card-header.bg-info.text-center.text-white.p-1
+      書籍の情報
+    .sidebar-others__book-info__image.mx-auto
+      - if @book.image_url.present?
+        = image_tag @book.image_url, size: "100x150", alt: "書影"
+      - else
+        = image_tag asset_path("no_image.jpg")
+    .mark
+      .sidebar-others__book-info__title.pl-4.mt-3
+        .badge.badge-info.badge-pill
+          タイトル
+        .small.mx-2= @book.title
+      .sidebar-others__book-info__author.pl-4
+        .badge.badge-info.badge-pill
+          著者
+        .small.mx-2= @book.author
+      .sidebar-others__book-info--links.mt-3.pl-4.small
+        -# .search
+        .link
+          = link_to "" do
+            %i.fas.fa-search.fa-lg.icon-color
+            %span.text-dark 他のレビューを見る
+        .link.pb-3
+          = link_to "#{@book.url}" do
+            %i.fas.fa-info-circle.fa-lg.icon-color
+            %span.text-dark 本の情報を見る

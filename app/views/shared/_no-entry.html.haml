@@ -1,4 +1,5 @@
 .no-entry-message.font-small
   登録されている本はありません<br>
-  = link_to "こちら", search_books_path
-  から登録しましょう
+  - if @user.id == current_user.id
+    = link_to "こちら", search_books_path
+    から登録しましょう

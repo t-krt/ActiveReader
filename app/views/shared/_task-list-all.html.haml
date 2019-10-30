@@ -1,10 +1,9 @@
 / タブを画面に表示する
 %ul#myTab.nav.nav-tabs{role: "tablist"}
   %li.nav-item
-    = link_to "未完了のタスク", "#todolist", { id: "#todolist-tab", class:"nav-link active", "aria-controls": "todolist", "aria-selected": "true", "data-toggle": "tab", role: "tab"}
+    = link_to "これからやること", "#todolist", { id: "#todolist-tab", class:"nav-link active", "aria-controls": "todolist", "aria-selected": "true", "data-toggle": "tab", role: "tab"}
   %li.nav-item
-    = link_to "完了したタスク", "#complete", { id: "complete-tab", class: "nav-link", "aria-controls": "complete", "aria-selected": "false", "data-toggle": "tab", role: "tab" }
-
+    = link_to "やったこと", "#complete", { id: "complete-tab", class: "nav-link", "aria-controls": "complete", "aria-selected": "false", "data-toggle": "tab", role: "tab" }
 / タブの中身
 #myTabContent.tab-content
   / 未完了のタスクリスト
@@ -16,24 +15,22 @@
     .table-responsive
       %table#completeList.table.table-hover
         %thead
-          %tr.table-info.task-table
-            %th.task-table__left-finished
-            %th タスク内容
+          %tr.table-info.task-table.text-center
+            %th 内容
             %th.task-table__limit 実行日時
             %th.task-table__right-finished
-        %tbody.finished_task
+        %tbody.finished_task.text-center
           - if @finished_tasks.present?
             - @finished_tasks.each do |task|
               %tr{id: "task-#{task.id}-all"}
-                %td
                 %td.finished_task__content
                   = task.content
                 %td
                   = task.updated_at.strftime("%Y-%m-%d %H:%M")
-                %td
-                  = link_to task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか？' }, remote: true do
-                    %i.fas.fa-trash-alt.icon-color
+                %td.text-center
+                  - if user_signed_in? && @review.user_id == current_user.id
+                    = link_to task_path(task), method: :delete, data: { confirm: 'タスクを削除しますか？' }, remote: true do
+                      %i.fas.fa-trash-alt.icon-color
           - else
-            %td
-            %td 完了したタスクはありません
+            %td.text-muted{colspan: "3"} 完了したタスクはありません
     = paginate @finished_tasks

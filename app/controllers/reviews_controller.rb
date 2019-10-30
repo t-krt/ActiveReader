@@ -43,6 +43,7 @@ class ReviewsController < ApplicationController
     tasks = Task.where(review_id: @review.id)
     @unfinished_tasks = tasks.unfinished.desc.page(params[:page]).per(5)
     @finished_tasks = tasks.finished.desc.page(params[:page]).per(5)
+    @user = User.find(@review.user_id)
   end
 
   def update
