@@ -4,21 +4,20 @@
   .user-info__right.col-10
     .user-info__right__learned
       .user-info__right__learned__upper
-        .user-info__right__learned__upper--label
-          学んだこと
-        .user-info__right__learned__upper--badge
-          = link_to "詳しく見る", review_path(review), class: "badge badge-info float-right"
-      .user-info__right__learned--content
+        .user-info__right__learned__upper--label.text-muted
+          = "#{review.user.nickname} さんの学んだこと"
+        .user-info__right__learned__upper--others.d-inline-flex.text-muted.small
+          = review.created_at.strftime("%Y/%m/%d")
+          - if review.rate.present?
+            .user-info__right__others--rate.rate.read-only-rate.ml-2{id: "star-rate-#{review.id}",  "data-rated-star": {"id": review.id, "score": review.rate}}
+          - else
+            .user-info__right__others--rate.rate.ml-2 未評価
+      .user-info__right__learned--content.bg-light.small.mt-2.py-3
         - if review.learned.present? 
-          = review.learned.truncate(280) 
+          .user-info__right__learned--content--present
+            = review.learned.truncate(280) 
         - else 
           .user-info__right__learned--content--none 「学んだこと」は未記入です。
-    .user-info__right__others
-      = review.created_at.strftime("%Y/%m/%d")
-      .user-info__right__others--name
-        = review.user.nickname
-        さん
-      - if review.rate.present?
-        .user-info__right__others--rate.rate.read-only-rate{id: "star-rate-#{review.id}",  "data-rated-star": {"id": review.id, "score": review.rate}}
-      - else
-        .user-info__right__others--rate.rate 未評価
+      .user-info__right__others
+        .user-info__right__others--badge
+          = link_to "詳しく見る", review_path(review), class: "badge badge-info float-right mr-0"
