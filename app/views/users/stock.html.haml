@@ -20,4 +20,7 @@
             = paginate(@stocks)
           - else
             = render "shared/no-entry"
-      = render "shared/sidebar"
+      - if @user.id == current_user.id
+        = render "shared/sidebar"
+      - else
+        = render "sidebar-others"

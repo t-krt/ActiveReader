@@ -3,7 +3,7 @@
     .card-header.bg-info.text-center.text-white.p-1
       投稿者
     .sidebar-others__profile--avatar.text-center.mt-1
-      = image_tag @user.avatar.url, size: "100x100", alt: current_user.avatar, id: "avatar"
+      = image_tag @user.avatar.url, size: "100x100", alt: "アバター", id: "avatar" 
     .sidebar-others__profile--name.small.text-center.pt-1.mark
       = "#{@user.nickname} さん"
       <br>
@@ -28,7 +28,7 @@
       .sidebar-others__book-info--links.mt-3.pl-4.small
         -# .search
         .link
-          = link_to "" do
+          = link_to book_path(@book) do
             %i.fas.fa-search.fa-lg.icon-color
             %span.text-dark 他のレビューを見る
         .link.pb-3
