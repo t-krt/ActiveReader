@@ -4,7 +4,7 @@
       投稿者
     .sidebar-others__profile--avatar.text-center.mt-1
       = image_tag @user.avatar.url, size: "100x100", alt: "アバター", id: "avatar" 
-    .sidebar-others__profile--name.small.text-center.pt-1.mark
+    .sidebar-others__profile--name.small.text-center.pt-1.bg-light
       = "#{@user.nickname} さん"
       <br>
       = link_to "本棚を見る", reading_user_path(@user)
@@ -16,7 +16,7 @@
         = image_tag @book.image_url, size: "100x150", alt: "書影"
       - else
         = image_tag asset_path("no_image.jpg")
-    .mark
+    .bg-light
       .sidebar-others__book-info__title.pl-4.mt-3
         .badge.badge-info.badge-pill
           タイトル
