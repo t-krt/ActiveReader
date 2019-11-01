@@ -4,6 +4,8 @@ class Review < ApplicationRecord
 
   belongs_to :user
   belongs_to :book
+  has_many :likes, dependent: :destroy
+  has_many :likers, through: :likes, source: :user
 
   scope :reading, -> { find_by(review_status: "reading") }
   scope :read, -> { where(review_status: "read") }
