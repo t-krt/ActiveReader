@@ -32,4 +32,9 @@ class Review < ApplicationRecord
   def unlike(user)
     likes.find_by(user_id: user.id).destroy
   end
+
+  # 現在のユーザーがいいねしていたらtrueを返す
+  def after_like?(user)
+    likers.include?(user)
+  end
 end
