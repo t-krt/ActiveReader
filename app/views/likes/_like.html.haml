@@ -1,0 +1,8 @@
+- if current_user != review.user
+  %span.like
+    - if review.after_like?(current_user)
+      = link_to review_like_path(review.id, review.likes.find_by(user_id: current_user.id)), method: :delete, remote: true do
+        %i.fas.fa-heart.text-danger.small
+    - else
+      = link_to review_likes_path(review.id), method: :post, remote: true do
+        %i.far.fa-heart.text-danger.small
