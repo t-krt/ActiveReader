@@ -7,9 +7,6 @@ class Review < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :likers, through: :likes, source: :user
 
-  scope :reading, -> { find_by(review_status: "reading") }
-  scope :read, -> { where(review_status: "read") }
-  scope :stock, -> { where(review_status: "stock") }
   scope :desc, -> { order(updated_at: "DESC") }
   scope :with_book, -> { includes(:book) }
   scope :with_user, -> { includes(:user) }
