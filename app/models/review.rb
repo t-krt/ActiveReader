@@ -22,4 +22,14 @@ class Review < ApplicationRecord
     self.review_status = "stock"
     save
   end
+
+  # レビューに対する「いいね」をつくる
+  def like(user)
+    likes.create(user_id: user.id)
+  end
+
+  # レビューについた「いいね」を削除する
+  def unlike(user)
+    likes.find_by(user_id: user.id).destroy
+  end
 end
