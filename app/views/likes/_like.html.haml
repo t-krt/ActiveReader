@@ -1,15 +1,9 @@
-- if current_user != review.user
-  %span
-    - if review.after_like?(current_user)
-      = link_to review_like_path(review.id, review.likes.find_by(user_id: current_user.id)), method: :delete, remote: true do
-        %i.fas.fa-heart.text-danger
-      = render "likes/count", review: review
-    - else
-      = link_to review_likes_path(review.id), method: :post, remote: true do
-        %i.far.fa-heart.text-danger
-      = render "likes/count", review: review
-- else
-  -# 自分のレビューの時は、青色のハートを表示
-  %span
-    %i.fas.fa-heart.text-primary
+%span
+  - if review.after_like?(current_user)
+    = link_to review_like_path(review.id, review.likes.find_by(user_id: current_user.id)), method: :delete, remote: true do
+      %i.fas.fa-heart.text-danger
+    = render "likes/count", review: review
+  - else
+    = link_to review_likes_path(review.id), method: :post, remote: true do
+      %i.far.fa-heart.text-danger
     = render "likes/count", review: review
