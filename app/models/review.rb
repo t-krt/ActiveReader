@@ -10,6 +10,9 @@ class Review < ApplicationRecord
   scope :desc, -> { order(updated_at: "DESC") }
   scope :with_book, -> { includes(:book) }
   scope :with_user, -> { includes(:user) }
+  scope :with_likers, -> { includes(:likers) }
+  # reviews_controllerのindexアクションに使用
+  scope :with_book_user_likers, -> { with_book.with_user.with_likers.desc }
 
   validates :purpose, presence: true
   validates :review_status, presence: true
