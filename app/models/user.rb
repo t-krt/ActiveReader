@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :nickname, presence: true, uniqueness: true
 
   # 自分の投稿であるかどうか、及び既にいいねしたレビューかどうかを確認
-  def likable_for?(review)
-    review && review.user != self && !likes.exists?(review_id: review_id)
-  end
+  # def likable_for?(review)
+  #   review && review.user != self && !likes.exists?(review_id: review_id)
+  # end
 end
