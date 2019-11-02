@@ -7,12 +7,15 @@
         .user-info__right__learned__upper--label.text-muted.align-items-center
           = link_to "#{review.user.nickname}", reading_user_path(review.user)
           さんの学んだこと
-          .user-info__right__learned__upper--time.text-muted.small.float-right.mr-4
+          .user-info__right__learned__upper--time.text-muted.small.float-right
             = review.created_at.strftime("%Y/%m/%d")
-        - if review.rate.present?
-          .user-info__right__rate.rate.read-only-rate{id: "star-rate-#{review.id}",  "data-rated-star": {"id": review.id, "score": review.rate}}
-        - else
-          .user-info__right__rate.rate 未評価
+        .d-flex.justify-content-between
+          - if review.rate.present?
+            .user-info__right__rate.rate.read-only-rate{id: "star-rate-#{review.id}",  "data-rated-star": {"id": review.id, "score": review.rate}}
+          - else
+            .user-info__right__rate.rate 未評価
+          .like-btn{id: "review-#{review.id}"}
+            = render "likes/like", review: review
       .user-info__right__learned--content.bg-light.small.mt-2.py-3
         - if review.learned.present? 
           .user-info__right__learned--content--present.pr-3
