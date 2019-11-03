@@ -1,9 +1,9 @@
 .container
   .search-box.row.col-12.col-lg-9.mx-auto
     .search-box__nav
-      .search-box__nav__title
+      .heading.search-box__nav__title
         本を登録する
-      .search-box__nav__link
+      .search-box__nav__link.text-right.font-small
         = link_to "自分の本棚を見る", reading_user_path(current_user)
     .search-box__input
       = form_with url: '/books/search', method: :get, local: true do |f|
