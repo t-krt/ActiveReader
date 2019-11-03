@@ -8,7 +8,7 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 
 RUN apk upgrade --no-cache && \
     apk add --update --no-cache \
-      imagemagick6 \
+      imagemagick \
       mariadb-dev \
       nodejs \
       tzdata  \
