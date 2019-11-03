@@ -33,15 +33,16 @@
             = @review.learned
           - else
             .review-show__contents__list--no-entry 「学んだこと」は未記入です。
-        .card-header.py-2
-          - if user_signed_in? && @review.user_id == current_user.id
-            -# review_idがtasks_controllerのset_reviewメソッドで必要になるため、パラメータをtasks#newに渡す
-            = link_to new_task_path(params: {review_id: @review.id}), remote: true do 
-              .i.fas.fa-plus-square.add-task-btn
-            #todoModal.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
-          この本を読んで行動すること
-        .card-body.review-show__contents__list.small.p-0
-          = render 'shared/task-list-all'
+        .show-tasks
+          .card-header.py-2
+            - if user_signed_in? && @review.user_id == current_user.id
+              -# review_idがtasks_controllerのset_reviewメソッドで必要になるため、パラメータをtasks#newに渡す
+              = link_to new_task_path(params: {review_id: @review.id}), remote: true do 
+                .i.fas.fa-plus-square.add-task-btn
+              #todoModal.modal{"aria-hidden": "true", "aria-labelledby": "exampleModalLabel", role: "dialog", tabindex: "-1"}
+            %span.align-bottom この本を読んで行動すること
+          .card-body.review-show__contents__list.small.p-0
+            = render 'shared/task-list-all'
         - if user_signed_in? && @review.user_id == current_user.id
           .card-header.py-2
             読書メモ

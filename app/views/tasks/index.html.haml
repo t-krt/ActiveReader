@@ -19,8 +19,8 @@
                 - else
                   .badge.badge-danger.badge-pill.task-index__book-title--badge
                     後で読む
-              - if review.tasks.finished.present?
-                .card-body.task-index__tasks.small
+              - if review.tasks.unfinished.present?
+                .card-body.task-index__tasks.small.show-tasks
                   .task-index__tasks__have
                     = simple_format("#{review.tasks.unfinished.length}件の未完了のタスクがあります！")
                     %button.btn.btn-info{"aria-controls": "collapseTasks-#{index}", "aria-expanded": "false", "data-target": "#collapseTasks-#{index}", "data-toggle": "collapse", type: "button"}
