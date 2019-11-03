@@ -17,8 +17,10 @@ Rails.application.routes.draw do
   end
 
   resources :reviews do
-    resources :likes, only: [:index, :create, :destroy]
+    resources :likes, only: [:create, :destroy]
   end
+
+  resources :likes, only: [:index]
   
   resources :books, only: :show do
     get :search, on: :collection
