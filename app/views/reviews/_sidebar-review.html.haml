@@ -4,7 +4,7 @@
       投稿者
     .sidebar-others__profile--avatar.text-center.mt-1
       = image_tag @user.avatar.url, size: "100x100", alt: "アバター", id: "avatar" 
-    .sidebar-others__profile--name.small.text-center.pt-1.bg-light
+    .sidebar-others__profile--name.small.text-center.py-3.bg-light
       = "#{@user.nickname} さん"
       <br>
       = link_to "本棚を見る", reading_user_path(@user)
@@ -17,21 +17,21 @@
       - else
         = image_tag asset_path("no_image.jpg")
     .bg-light
-      .sidebar-others__book-info__title.pl-4.mt-3
+      .sidebar-others__book-info__title.pl-3.mt-3
         .badge.badge-info.badge-pill
           タイトル
         .small.mx-2= @book.title
-      .sidebar-others__book-info__author.pl-4
+      .sidebar-others__book-info__author.pl-3
         .badge.badge-info.badge-pill
           著者
         .small.mx-2= @book.author
-      .sidebar-others__book-info--links.mt-3.pl-4.small
-        -# .search
+      .sidebar-others__book-info--links.mt-3.pl-3.small
         .link
           = link_to book_path(@book) do
             %i.fas.fa-search.fa-lg.icon-color
             %span.text-dark 他のレビューを見る
-        .link.pb-3
+        .link.mt-1.pb-3
           = link_to "#{@book.url}" do
             %i.fas.fa-info-circle.fa-lg.icon-color
             %span.text-dark 本の情報を見る
+

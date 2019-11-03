@@ -2,8 +2,10 @@
   .container.px-0
     .row.col-12.col-lg-10.mx-auto.p-0
       .col-11.col-sm-8.col-md-9.m-0.order-sm-2.mx-auto
-        .task-card-title
-          登録済みタスク一覧
+        .heading
+          %span
+            %i.fas.fa-check.text-success
+            登録済みタスク一覧
         .card.task-index
           - if @reviews.present?
             - @reviews.each_with_index do |review, index|

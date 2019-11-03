@@ -1,15 +1,15 @@
-.sidebar-others.col-6.col-sm-4.col-md-3.mx-auto.order-sm-1.mt-3.mt-sm-0.px-0
+.sidebar-others.col-6.col-sm-4.col-md-3.mx-auto.order-sm-1.mt-3.mt-sm-0.p-0
   .sidebar-others__profile.panel.card
-    .sidebar-others__profile--avatar.text-center.py-3.bg-light
+    .sidebar-others__profile--avatar.text-center.py-3
       = image_tag @user.avatar.url, size: "100x100", alt: current_user.avatar, id: "avatar"
-    .sidebar-others__profile--name.small.text-center.pb-2.bg-light
+    .sidebar-others__profile--name.small.text-center.pb-2
       = "#{@user.nickname} さん"
-    .sidebar-others__profile--name.small.text-center.py-2
-      .link
+    .sidebar-others__profile--name.small.text-center.py-2.bg-light
+      .link.pt-2
         = link_to reviews_path do
           .fas.fa-list-ul
           みんなの投稿に戻る
-      .link.mt-1
+      .link.mt-1.pb-2
         = link_to reading_user_path(current_user) do
           .fas.fa-user-circle
           マイページへ戻る
