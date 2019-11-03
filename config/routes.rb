@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   resources :tasks, except: [:index, :show] do
     get :finish, on: :member
   end
-  resources :reviews
+
+  resources :reviews do
+    resources :likes, only: [:create, :destroy]
+  end
+
+  resources :likes, only: [:index]
 
   resources :books, only: :show do
     get :search, on: :collection

@@ -6,13 +6,13 @@
     .side-bar__profile--name.small
       = current_user.nickname
   %nav.side-bar__menu
-    .list-group.list-group-flush
+    .list-group.list-group-flush.font-small
       .list-group-item.list-group-item-light
         = link_to "みんなの投稿", reviews_path
       .list-group-item.list-group-item-light
         = link_to "本を登録する", search_books_path
 
-    .list-group.list-group-flush.list-group__under
+    .list-group.list-group-flush.list-group__under.font-small
       .list-group-item.list-group-item-light
         = link_to "読書中", reading_user_path(current_user)
       .list-group-item.list-group-item-light
@@ -21,8 +21,10 @@
         = link_to "あとで読む", stock_user_path(current_user)
       .list-group-item.list-group-item-light
         = link_to "タスク一覧", user_tasks_path(current_user)
+      .list-group-item.list-group-item-light
+        = link_to "お気に入り一覧", likes_path
 
-    .list-group.list-group-flush.list-group__under
+    .list-group.list-group-flush.list-group__under.font-small
       .list-group-item.list-group-item-light
         = link_to "ユーザー情報編集", edit_user_registration_path
       .list-group-item.list-group-item-light

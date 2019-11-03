@@ -6,5 +6,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   has_many :reviews, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_reviews, through: :likes, source: :review
   validates :nickname, presence: true, uniqueness: true
 end

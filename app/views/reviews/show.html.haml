@@ -1,6 +1,6 @@
 .container.px-0
   .row.col-12.col-lg-10.mx-auto.p-0
-    .review-show.col-11.col-sm-7.col-md-8.m-0.order-sm-2.mx-auto.p-0.pb-3
+    .review-show.col-11.col-sm-8.m-0.order-sm-2.mx-auto.p-0.pb-3.pl-3.pl-md-0
       .card
         .card-header.bg-info.text-white.review-show__info
           = "「#{@book.title}」のレビュー"
@@ -16,11 +16,13 @@
               = link_to review_path(@review), method: :delete, data: { confirm: "本当に削除しますか？" } do
                 %i.fas.fa-trash-alt.fa-lg.icon-color
                 削除する
-          .review-show__info--rate.mt-1
+          .review-show__info--rate.mt-2.d-flex.justify-content-between
             - if @review.rate.present?
               .rate.read-only-rate{id: "star-rate-#{@review.id}",  "data-rated-star": {"id": @review.id, "score": @review.rate}}
             - else
               未評価
+            .like-btn{id: "review-#{@review.id}"}
+              = render "likes/like", review: @review
       .card.review-show__contents
         .card-header.py-2 読書の目的
         .card-body.review-show__contents__list.small  
