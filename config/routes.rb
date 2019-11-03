@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :likes, only: [:index]
-  
+
   resources :books, only: :show do
     get :search, on: :collection
   end
