@@ -2,10 +2,9 @@
   .container.px-0
     .row.col-12.col-lg-10.mx-auto.p-0
       .main-content.col-11.col-sm-8.col-md-9.m-0.order-sm-2.mx-auto
+        = render "heading"
         .card
-          .card-header.bg-secondary.text-white
-            = "#{@user.nickname} さんの本棚"
-          .btn-group.d-flex{"aria-label":"読書状況"}
+          .btn-group.d-flex.p-0{"aria-label":"読書状況"}
             = link_to "読書中", reading_user_path, class: "btn btn-primary w-100 btn-status"
             = link_to "読了", read_user_path, class: "btn btn-success w-100 btn-status"
             = link_to "あとで読む", stock_user_path, class: "btn btn-danger w-100 btn-status  btn-status__active"
