@@ -2,8 +2,10 @@
   .container.px-0
     .row.col-12.col-lg-10.mx-auto.p-0
       .col-11.col-sm-8.col-md-9.m-0.order-sm-2.mx-auto
-        .task-card-title.mx-auto
-          お気に入り一覧
+        .heading
+          %span
+            %i.fab.fa-gratipay.text-danger
+            お気に入り一覧
         .card
           .card-body
             - if @reviews.present?
