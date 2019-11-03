@@ -19,7 +19,7 @@
                 - else
                   .badge.badge-danger.badge-pill.task-index__book-title--badge
                     後で読む
-              - if review.tasks.finished.present?
+              - if review.tasks.unfinished.present?
                 .card-body.task-index__tasks.small
                   .task-index__tasks__have
                     = simple_format("#{review.tasks.unfinished.length}件の未完了のタスクがあります！")
