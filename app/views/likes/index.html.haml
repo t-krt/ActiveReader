@@ -1,0 +1,20 @@
+.whole-page
+  .container.px-0
+    .row.col-12.col-lg-10.mx-auto.p-0
+      .col-11.col-sm-8.col-md-9.m-0.order-sm-2.mx-auto
+        .task-card-title.mx-auto
+          お気に入り一覧
+        .card
+          .card-body
+            - if @reviews.present?
+              - @reviews.each do |review|
+                .wrapper-book-info.review-index
+                  = render partial: "shared/review", locals: { review: review }
+                  = render partial: "shared/book-info", locals: { review: review }
+              = paginate(@reviews)
+            - else
+              .py-5.text-center
+                お気に入りに登録したレビューがありません<br>
+                = link_to "こちら", reviews_path 
+                %span から投稿されたレビューを探してみましょう
+      = render "shared/sidebar"
