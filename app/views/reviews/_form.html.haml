@@ -21,10 +21,10 @@
   = fields_for(@review) do |review|
     .form-group.row.review-body__content
       = review.label :status, class: "col-3 col-form-label badge-info"
-      = review.select :review_status, Review.review_statuses_i18n.invert, {}, class: 'form-control col-4', placeholder: 0
+      = review.select :review_status, Review.review_statuses_i18n.invert, {}, class: 'form-control col-6 col-sm-4', placeholder: 0
     .form-group.row.review-body__content
       = review.label :deadline, class: "col-3 col-form-label badge-info"
-      = review.date_field :deadline, class: 'form-control col-4'
+      = review.date_field :deadline, class: 'form-control col-6 col-sm-4'
     .form-group.row.review-body__content
       = review.label :purpose, class:"col-12 col-sm-3 col-form-label badge-info"
       = review.text_area :purpose, class: 'form-control textarea', placeholder: "必須項目"
