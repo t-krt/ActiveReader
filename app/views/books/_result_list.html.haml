@@ -1,9 +1,9 @@
 - if @books.present?
   - @books.zip(@details) do |book, detail|
     .wrapper-book-info.row.col-12.col-lg-9.mx-auto
-      .wrapper-book-info__image.col-4
-        = image_tag "#{book.image_url}", size: "350x350", alt: "書影"
-      .col-8
+      .wrapper-book-info__image.col-4.col-sm-3.mx-auto.pt-sm-3
+        = image_tag "#{book.image_url}", alt: "書影", class: "img-fluid"
+      .col-12.col-sm-9
         .wrapper-book-info__title.small
           .badge.badge-info.badge-pill
             タイトル

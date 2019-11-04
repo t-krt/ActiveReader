@@ -1,11 +1,11 @@
 .review-info-box
   .row.col-12.col-md-10.p-0.review-info-box__body
-    .review-info-box__body--left.col-12.col-md-3
+    .review-info-box__body--left.col-5.col-sm-3.mx-auto
       - if review.book.image_url.present?
-        = image_tag review.book.image_url, size: "100x150", alt: "書影"
+        = image_tag review.book.image_url, alt: "書影", class: "img-fluid"
       - else
-        = image_tag asset_path("no_image.jpg")
-    .review-info-box__body--right.col-12.col-md-9
+        = image_tag asset_path("no_image.jpg"), class: "img-fluid"
+    .review-info-box__body--right.col-12.col-sm-9
       .right__label.my-2
         読んだ本
       .right__title.small

@@ -11,7 +11,7 @@
 .form-group.row.review-body__content.book-image
   - if @book.image_url.present?
     = book.label :書影, class:"col-3 col-md-2 col-form-label badge-info"
-    = image_tag "#{@book.image_url}", size: "150x200", alt: "書影", class: "col-5 col-md-3"
+    = image_tag "#{@book.image_url}", alt: "書影", class: "col-5 col-md-3 img-fluid"
     = book.hidden_field :image_url, value: @book.image_url
   = book.hidden_field :url, value: @book.url
   = book.hidden_field :isbn, value: @book.isbn

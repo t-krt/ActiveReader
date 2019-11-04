@@ -2,8 +2,8 @@
   .sidebar-others__profile.panel.card
     .card-header.bg-info.text-center.text-white.p-1
       投稿者
-    .sidebar-others__profile--avatar.text-center.mt-1
-      = image_tag @user.avatar.url, size: "100x100", alt: "アバター", id: "avatar" 
+    .sidebar-others__profile--avatar.text-center.mt-1.col-6.col-sm-7.mx-auto
+      = image_tag @user.avatar.url, alt: "アバター", id: "avatar", class: "img-fluid"
     .sidebar-others__profile--name.small.text-center.py-3.bg-light
       = "#{@user.nickname} さん"
       <br>
@@ -11,11 +11,11 @@
   .sidebar-others__book-info.card.my-3
     .card-header.bg-info.text-center.text-white.p-1
       書籍の情報
-    .sidebar-others__book-info__image.mx-auto
+    .sidebar-others__book-info__image.mx-auto.col-6.col-sm-7.mx-auto
       - if @book.image_url.present?
-        = image_tag @book.image_url, size: "100x150", alt: "書影"
+        = image_tag @book.image_url, alt: "書影", class: "img-fluid"
       - else
-        = image_tag asset_path("no_image.jpg")
+        = image_tag asset_path("no_image.jpg"), class: "img-fluid"
     .bg-light
       .sidebar-others__book-info__title.pl-3.mt-3
         .badge.badge-info.badge-pill
