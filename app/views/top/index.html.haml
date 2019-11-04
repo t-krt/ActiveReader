@@ -2,7 +2,7 @@
   .top-content.wrapper
     .bg
     %h2.top-content__title
-      = image_tag "logo.png",size: '800x132', alt: "logo", id: "logo"
+      = image_tag "logo.png", alt: "logo", id: "logo", class: "img-fluid"
     %p.top-content__sub
       このアプリは、『読書を行動に変える』をサポートします！
     .row
@@ -17,7 +17,7 @@
           %i.fas.fa-pencil-alt.fa-3x
         .top-content__description--text
           %p 読書メモ
-          %p.small-text 学んだことを記録し、<br>共有しましょう！
+          %p.small-text 学んだことを記録し、共有しましょう！
       .top-content__description.col-sm-4
         .top-content__description--icon
           %i.fas.fa-tasks.fa-3x
@@ -26,7 +26,6 @@
           %p.small-text 学んだことを<br>行動に移しましょう！
     .top-content__links.mt-5.mb-5
       .top-content__links__user
-        -# = link_to "アカウント登録", new_user_registration_path, class: "btn btn-info btn-lg top-content__links__user--left"
         = link_to "早速始める（テストユーザーでログインできます）", new_user_session_path, class: "btn btn-info btn-lg"
       .top-content__links__guest
         = link_to "投稿一覧を見る", reviews_path, class: "btn btn-info btn-lg top-content__links__link"

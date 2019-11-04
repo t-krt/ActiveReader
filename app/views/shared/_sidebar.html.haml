@@ -1,8 +1,8 @@
 .side-bar.col-11.col-sm-4.col-md-3.mx-auto.order-sm-1.mt-3.mt-sm-0.border.border-white
-  .side-bar__profile.panel
+  .side-bar__profile.panel.col-6.col-sm-12.mx-auto
     .side-bar__profile--avatar.py-3
       -# carrierwaveで設定。current_user.avatarが存在しない場合はno_image.jpgを指定。
-      = image_tag current_user.avatar.url, size: "100x100", alt: current_user.avatar, id: "avatar"
+      = image_tag current_user.avatar.url, alt: current_user.avatar, id: "avatar", class: "img-fluid"
     .side-bar__profile--name.small
       = current_user.nickname
   %nav.side-bar__menu

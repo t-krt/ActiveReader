@@ -14,7 +14,7 @@
             .container
               .row
                 .book-list__reading--top
-                  .col-sm-6.float-left.image-wrapper.book-list__reading--top--image
+                  .image-wrapper.book-list__reading--top--image.col-6.mx-auto.float-sm-left
                     - if @reading.book.image_url.present?
                       = image_tag @reading.book.image_url
                     - else
