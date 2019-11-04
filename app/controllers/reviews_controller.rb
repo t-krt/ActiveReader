@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   before_action :reviewer_equal_current_user?, only: %i[edit update destroy]
 
   def index
-    @reviews = Review.with_book_user_likers.page(params[:page]).per(5)
+    @reviews = Review.read.with_book_user_likers.page(params[:page]).per(5)
     @search = @reviews.ransack(params[:q])
     @results = @search.result(distinct: true)
     @check = params[:q] # 条件分岐用に設定
