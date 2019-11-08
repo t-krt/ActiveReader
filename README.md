@@ -1,4 +1,3 @@
-* Deployment instructions
 ## Active Reader
 [アプリはこちらから確認できます。](https://active-reader.herokuapp.com/)
 「早速始める」→「かんたんログイン」をクリックいただくと、テストユーザーとして各種機能をお試しいただけます。
@@ -19,6 +18,7 @@
 - Heroku
 - RSpec（単体テスト・統合テスト）
 - CircleCI
+  - Githubへのプッシュ時に自動ビルド・テストの実行
   - masterブランチにマージ後、本番環境へ自動デプロイ
 
 ### 実装した機能
