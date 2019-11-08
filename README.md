@@ -32,7 +32,7 @@
   - rubocop（静的コード解析）
   - bullet（N+1問題対策）
   - jQuery Raty（5段階でのレビュー評価）
-  - ransaku（投稿済みレビューの検索機能）
+  - ransack（投稿済みレビューの検索機能）
   - Bootstrap4
   - Font Awesome
 
