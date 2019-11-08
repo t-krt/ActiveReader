@@ -13,7 +13,7 @@
 - Rails 5.2.3
 - MySQL 5.7
 - Haml
-- Sass
+- SCSS
 - Docker
 - Heroku
 - RSpec（単体テスト・統合テスト）
