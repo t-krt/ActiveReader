@@ -30,6 +30,7 @@ gem 'devise', ">= 4.7.1"
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'dotenv-rails'
 gem 'enum_help'
 gem 'erb2haml'
 gem 'fog-aws'
