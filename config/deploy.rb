@@ -44,7 +44,7 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.6.5' 
 
 set :ssh_options, auth_methods: ['publickey'],
-                  keys: ['~/.ssh/mykeypair.pem']
+                  keys: ['~/.ssh/my-portfolio_key_rsa']
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
