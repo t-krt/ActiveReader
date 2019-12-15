@@ -3,13 +3,13 @@ jobs:
   checkout_code:
     docker:
       - image: circleci/ruby:2.5.1-node-browsers
-    working_directory: ~/ActiveReader
+    working_directory: ~/my-portfolio
     steps:
       - checkout
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - ~/ActiveReader
+            - ~/my-portfolio
 
   test:
     docker:
@@ -27,7 +27,7 @@ jobs:
           MYSQL_DATABASE: 'db'
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
           MYSQL_ROOT_PASSWORD: ''
-    working_directory: ~/ActiveReader
+    working_directory: ~/my-portfolio
     steps:
       - checkout
       - restore_cache:
@@ -63,8 +63,7 @@ jobs:
           command: bundle exec rubocop --require rubocop-rails
 
   deploy:
-    machine:
-      # image: circleci/classic:edge
+    docker:
       - image: circleci/python
     steps:
       - checkout
