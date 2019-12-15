@@ -67,6 +67,8 @@ jobs:
       - image: circleci/python
     steps:
       - checkout
+      # dockerを起動する
+      - setup_remote_docker 
       - run:
           name: install aws
           command: |
