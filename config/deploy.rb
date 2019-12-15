@@ -41,7 +41,7 @@ set :linked_files, %w{ config/master.key environments/.env.production }
 # set :ssh_options, verify_host_key: :secure
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.6.5' 
+set :rbenv_ruby, '2.5.1' 
 
 set :ssh_options, auth_methods: ['publickey'],
                   keys: ['~/.ssh/my-portfolio_key_rsa']
