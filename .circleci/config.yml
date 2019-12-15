@@ -86,8 +86,8 @@ jobs:
       - run:
           name: "Build & Push Docker Image"
           command: |
-            docker build -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/my-portfolio_repo:latest -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/myportfolio_repo:$CIRCLE_SHA1 .
-            docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/my-portfolio_repo:$CIRCLE_SHA1
+            docker build -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/my-portfolio:latest -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/myportfolio:$CIRCLE_SHA1 .
+            docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/my-portfolio:$CIRCLE_SHA1
 
       - run:
           name: "DB Migrate"
