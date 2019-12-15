@@ -8,7 +8,7 @@ set :repo_url, "git@github.com:t-krt/ActiveReader.git"
 ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, "/var/www/my_app_name"
+set :deploy_to, "/var/www/rails/ActiveReader"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -26,7 +26,7 @@ ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
-set :linked_files, %w{ config/master.key }
+set :linked_files, %w{ config/master.key environments/.env.production }
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -69,8 +69,9 @@ namespace :deploy do
         execute "mkdir -p #{shared_path}/config"
       end
       upload!('config/master.key', "#{shared_path}/config/master.key")
+      upload!('environments/.env.production', "#{shared_path}/.env.production")
     end
-  end
+  end  
   before :starting, 'deploy:upload'
   after :finishing, 'deploy:cleanup'
 end

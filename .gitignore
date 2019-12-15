@@ -25,8 +25,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-/environments/db.env
-/environments/.env.docker
+/environments/
 public/uploads/*
 .DS_Store
 /config/initializers/rakuten.rb
@@ -37,4 +36,4 @@ public/uploads/*
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-.env
+
