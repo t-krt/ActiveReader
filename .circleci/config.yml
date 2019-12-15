@@ -2,7 +2,7 @@ version: 2
 jobs:
   checkout_code:
     docker:
-      - image: circleci/ruby:2.5.1-node-browsers-legacy
+      - image: circleci/ruby:2.5.1-node-browsers
     working_directory: ~/ActiveReader
     steps:
       - checkout
