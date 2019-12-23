@@ -26,11 +26,11 @@
       .card.review-show__contents
         .card-header.py-2 読書の目的
         .card-body.review-show__contents__list.small  
-          = @review.purpose
+          = simple_format(@review.purpose)
         .card-header.py-2 学んだこと
         .card-body.review-show__contents__list.small 
           - if @review.learned.present?
-            = @review.learned
+            = simple_format(@review.learned)
           - else
             .review-show__contents__list--no-entry 「学んだこと」は未記入です。
         .show-tasks
@@ -49,7 +49,7 @@
             %span.wrapper-book-info--notice.small  （※あなたにしか見えていません）
           .card-body.review-show__contents__list.small  
             - if @review.note.present?
-              = @review.note 
+              = simple_format(@review.note)
             - else
               .review-show__contents__list--no-entry 「読書メモ」は未記入です。
     = render "sidebar-review"

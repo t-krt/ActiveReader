@@ -43,7 +43,7 @@
                             = link_to "編集", edit_review_path(@reading), class: "dropdown-item" 
                             = link_to "削除", "/reviews/#{@reading.id}", method: :delete, class: "dropdown-item", data: { confirm: "本当に削除しますか？" }
                     .card-body.small
-                      = @reading.purpose
+                      = simple_format(@reading.purpose)
           - else
             = render "shared/no-entry"
       - if @user.id == current_user.id
