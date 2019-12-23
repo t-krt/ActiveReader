@@ -100,6 +100,14 @@ jobs:
               --task-definition my-portfolio-taskdefinition_01 \
               --overrides file://ecs/run_task_db_migrate.json
 
+      - run:
+          name: "Sevice deploy"
+          environment:
+          command: |
+            ecs-deploy -c  my-portfolio-ecs-cluster -n my-portfolio-ecs-service \
+              -r ap-northeast-1 -t 240 \
+              -i $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/my-portfolio:$CIRCLE_SHA1
+
 workflows:
   version: 2
   test_and_deploy:
