@@ -121,4 +121,4 @@ workflows:
             - test
           filters:
             branches:
-              only: deploy-aws_with_ecs
+              only: master
