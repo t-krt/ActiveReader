@@ -19,7 +19,7 @@
       .user-info__right__learned--content.bg-light.small.mt-2.py-3
         - if review.learned.present? 
           .user-info__right__learned--content--present.pr-3
-            = review.learned.truncate(280) 
+            = simple_format(review.learned.truncate(280))
         - else 
           .user-info__right__learned--content--none 「学んだこと」は未記入です。
       .user-info__right__others
